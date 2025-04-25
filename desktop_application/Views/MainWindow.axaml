@@ -1,22 +1,43 @@
-<Window xmlns="https://github.com/avaloniaui"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="using:desktop_application.ViewModels"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:reactiveUi="http://reactiveui.net"
-        xmlns:home="clr-namespace:desktop_application.Views.Home"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        x:Class="desktop_application.Views.MainWindow"
-        x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/icon.ico"
-        >
+<suki:SukiWindow xmlns="https://github.com/avaloniaui"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:vm="using:desktop_application.ViewModels"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:reactiveUi="http://reactiveui.net"
+                 xmlns:home="clr-namespace:desktop_application.Views.Home"
+                 xmlns:suki="https://github.com/kikipoulet/SukiUI"
+                 xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
+                 xmlns:settings="clr-namespace:desktop_application.Views.Settings"
+                 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+                 x:Class="desktop_application.Views.MainWindow"
+                 x:DataType="vm:MainWindowViewModel"
+                 Icon="/Assets/icon.ico">
 
-    <DockPanel>
-        <StackPanel DockPanel.Dock="Left" Width="150" Background="#f0f0f0">
+    <suki:SukiSideMenu >
+        <suki:SukiSideMenu.Items>
+            <suki:SukiSideMenuItem Header="Page Title" >
+                <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
+                <suki:SukiSideMenuItem.PageContent><settings:SettingsView/></suki:SukiSideMenuItem.PageContent>
+            </suki:SukiSideMenuItem>
+
+            <suki:SukiSideMenuItem Header="Page Title2" >
+                <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
+                <suki:SukiSideMenuItem.PageContent><home:HomeView/></suki:SukiSideMenuItem.PageContent>
+            </suki:SukiSideMenuItem>
             
-            <Button Content="主页" Width="120" Command="{Binding GoHome}" Margin="5"/>
-            <Button Content="设置" Width="120" Command="{Binding GoSettings}" Margin="5"/>
-        </StackPanel>
-        <reactiveUi:RoutedViewHost Router="{Binding Router}" />
-    </DockPanel>
-</Window>
+            
+        </suki:SukiSideMenu.Items>
+        
+  
+        
+
+        <suki:SukiSideMenu.HeaderContent>
+        
+        </suki:SukiSideMenu.HeaderContent>
+
+        <suki:SukiSideMenu.FooterContent>
+        
+        </suki:SukiSideMenu.FooterContent>
+    </suki:SukiSideMenu>
+
+</suki:SukiWindow>

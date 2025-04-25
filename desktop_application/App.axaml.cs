@@ -32,6 +32,7 @@ public partial class App : Application{
                 DataContext = new MainWindowViewModel(),
                 Width = 1000,  
                 Height = 500, 
+                CanResize = false ,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
        
             };
