@@ -1,30 +1,36 @@
 <suki:SukiWindow xmlns="https://github.com/avaloniaui"
                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                  xmlns:vm="using:desktop_application.ViewModels"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 xmlns:reactiveUi="http://reactiveui.net"
                  xmlns:home="clr-namespace:desktop_application.Views.Home"
                  xmlns:suki="https://github.com/kikipoulet/SukiUI"
-                 xmlns:objectModel="clr-namespace:System.Collections.ObjectModel;assembly=System.ObjectModel"
-                 xmlns:settings="clr-namespace:desktop_application.Views.Settings"
-                 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+                 xmlns:filelock="clr-namespace:desktop_application.Views.FileLock"
                  x:Class="desktop_application.Views.MainWindow"
                  x:DataType="vm:MainWindowViewModel"
                  Icon="/Assets/icon.ico">
 
     <suki:SukiSideMenu >
         <suki:SukiSideMenu.Items>
-            <suki:SukiSideMenuItem Header="Page Title" >
+            
+            <suki:SukiSideMenuItem Header="FileLock" >
                 <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
-                <suki:SukiSideMenuItem.PageContent><settings:SettingsView/></suki:SukiSideMenuItem.PageContent>
+                <suki:SukiSideMenuItem.PageContent><filelock:FileLockView/></suki:SukiSideMenuItem.PageContent>
             </suki:SukiSideMenuItem>
-
-            <suki:SukiSideMenuItem Header="Page Title2" >
+            
+            <suki:SukiSideMenuItem Header="FileLock" >
                 <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
                 <suki:SukiSideMenuItem.PageContent><home:HomeView/></suki:SukiSideMenuItem.PageContent>
             </suki:SukiSideMenuItem>
             
+            <!-- <suki:SukiSideMenuItem Header="Page Title" > -->
+            <!--     <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon> -->
+            <!--     <suki:SukiSideMenuItem.PageContent><settings:SettingsView/></suki:SukiSideMenuItem.PageContent> -->
+            <!-- </suki:SukiSideMenuItem> -->
+            <!-- -->
+            <!-- <suki:SukiSideMenuItem Header="Page Title2" > -->
+            <!--     <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon> -->
+            <!--     <suki:SukiSideMenuItem.PageContent><filelock:FileLockView/></suki:SukiSideMenuItem.PageContent> -->
+            <!-- </suki:SukiSideMenuItem> -->
+
             
         </suki:SukiSideMenu.Items>
         

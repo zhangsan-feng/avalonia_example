@@ -1,9 +1,9 @@
-﻿using ReactiveUI;
+﻿
 
 namespace desktop_application.ViewModels;
 
-public class ViewModelBase : ReactiveObject{
+public class ViewModelBase {
   
-    public RoutingState Router { get; } = new RoutingState();
+   
     
 }

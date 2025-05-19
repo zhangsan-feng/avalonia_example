@@ -6,7 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="desktop_application.Views.Settings.SettingsView"
              x:DataType="vm:SettingsViewModel">
- 
-        <TextBlock Text="这是设置页面" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-    
+
+    <TextBlock Text="这是settings" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        
 </UserControl>

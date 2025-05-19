@@ -12,27 +12,35 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Folder Include="Models\"/>
-        <AvaloniaResource Include="Assets\**"/>
+        <Folder Include="Models\" />
+        <AvaloniaResource Include="Assets\**" />
         <Folder Include="style\" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="11.2.7" />
-        <PackageReference Include="Avalonia.Desktop" Version="11.2.7"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.2.7"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.2.7"/>
+        <PackageReference Include="Avalonia" Version="11.3.0" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.3.0" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.3.0" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.3.0" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.2.7"/>
-        <PackageReference Include="Avalonia.ReactiveUI" Version="11.2.7"/>
-        <PackageReference Include="Material.Avalonia" Version="3.10.2-nightly.0.3" />
-        <PackageReference Include="Material.Icons.Avalonia" Version="2.4.0" />
-        <PackageReference Include="SukiUI" Version="6.0.1" />
-        <PackageReference Include="SukiUI.Dock" Version="6.0.0-rc" />
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.3.0" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="11.3.0" />
+        <PackageReference Include="Material.Avalonia" Version="3.12.1-nightly.0.3" />
+        <PackageReference Include="Material.Icons.Avalonia" Version="2.4.1" />
+        <PackageReference Include="SukiUI" Version="6.0.2" />
+        <PackageReference Include="SukiUI.Dock" Version="6.0.2" />
     </ItemGroup>
 
     <ItemGroup>
+      <AdditionalFiles Include="Views\FileLock\FileLockView.axaml" />
       <AdditionalFiles Include="Views\Home\HomeView.axaml" />
       <AdditionalFiles Include="Views\Settings\SettingsView.axaml" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Views\FileLock\FileLockView.axaml.cs">
+        <DependentUpon>FileLockView.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>

@@ -1,0 +1,44 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="desktop_application.Views.FileLock.FileLockView"
+>
+    
+    <StackPanel Margin="20">
+        <Border x:Name="DropZone"
+                Height="300"
+                CornerRadius="8"
+                Background="{DynamicResource ThemeBackgroundBrush}"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                Padding="20">
+            <TextBlock Text="拖拽文件或文件夹到此处"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextWrapping="Wrap"
+                       FontSize="16"/>
+        </Border>
+    
+        <!-- 显示拖拽结果的文本框 -->
+        <TextBox x:Name="ResultTextBox"
+                 Margin="0,20,0,0"
+                 IsReadOnly="True"
+                 AcceptsReturn="True"
+                 TextWrapping="Wrap"
+                 Height="150"/>
+    </StackPanel>
+    <UserControl.Styles>
+        <Style Selector="Border.dragover">
+            <Setter Property="Background" Value="#4000AAFF"/>
+            <Setter Property="BorderBrush" Value="#FF0078D7"/>
+            <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+
+        <Style Selector="Border.dragover > TextBlock.Subtitle">
+            <Setter Property="Text" Value="释放文件以处理"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </UserControl.Styles>
+</UserControl>
