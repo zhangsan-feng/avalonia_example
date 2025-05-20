@@ -27,8 +27,7 @@ public partial class App : Application{
         Locator.CurrentMutable.Register(() => new SettingsView(), typeof(IViewFor<SettingsViewModel>));
         
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop){
-            desktop.MainWindow = new MainWindow
-            {
+            desktop.MainWindow = new MainWindow{
                 DataContext = new MainWindowViewModel(),
                 Width = 1000,  
                 Height = 500, 

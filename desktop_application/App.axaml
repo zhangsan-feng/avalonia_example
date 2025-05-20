@@ -12,9 +12,11 @@
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
+    
     <Application.Styles>
         <sukiUi:SukiTheme ThemeColor="Blue"  /> 
     </Application.Styles>
+    
     <Application.Styles>
         <FluentTheme />
     </Application.Styles>

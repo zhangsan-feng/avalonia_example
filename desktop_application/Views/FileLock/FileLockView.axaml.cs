@@ -1,17 +1,15 @@
 ﻿using System;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using desktop_application.ViewModels;
+using Avalonia;
+using Avalonia.Media;
+using desktop_application.win32api;
 
 namespace desktop_application.Views.FileLock;
 
 public partial class FileLockView : UserControl {
-
     public FileLockView() {
         InitializeComponent();
 
@@ -23,85 +21,63 @@ public partial class FileLockView : UserControl {
         DropZone.AddHandler(DragDrop.DropEvent, Drop);
     }
 
-    private void DragEnter(object? sender, DragEventArgs e) {
-        DropZone.Classes.Add("dragover");
-        if (IsFileDrag(e.Data)) {
-            e.DragEffects = DragDropEffects.Copy;
-        }
-        else {
-            e.DragEffects = DragDropEffects.None;
-        }
 
+    private void ChangeStyle() {
+        DropZone.Background = new SolidColorBrush(Color.Parse("#4000AAFF"));
+        DropZone.BorderBrush = new SolidColorBrush(Color.Parse("#FF0078D7"));
+        DropZone.BorderThickness = new Thickness(2);
+    }
+
+    private void CannelStyle() {
+        DropZone.Background = new SolidColorBrush(Color.Parse("#F0F0F0"));
+        DropZone.BorderBrush = new SolidColorBrush(Color.Parse("Gray"));
+        DropZone.BorderThickness = new Thickness(2);
+    }
+
+    private void DragEnter(object? sender, DragEventArgs e) {
+        ChangeStyle();
+        e.DragEffects = IsFileDrag(e.Data) ? DragDropEffects.Copy : DragDropEffects.None;
         e.Handled = true;
     }
 
     private void DragOver(object? sender, DragEventArgs e) {
- 
-        if (IsFileDrag(e.Data)) {
-            e.DragEffects = DragDropEffects.Copy;
-        }
-        else {
-            e.DragEffects = DragDropEffects.None;
-        }
-
+        e.DragEffects = IsFileDrag(e.Data) ? DragDropEffects.Copy : DragDropEffects.None;
         e.Handled = true;
     }
 
     private void DragLeave(object? sender, RoutedEventArgs e) {
-        DropZone.Classes.Remove("dragover");
+        CannelStyle();
     }
 
     private void Drop(object? sender, DragEventArgs e) {
- 
-        DropZone.Classes.Remove("dragover");
+        CannelStyle();
 
         if (IsFileDrag(e.Data)) {
-            var files = e.Data.GetFiles()?.Select(f => f.Path.LocalPath).ToList();
+            var files = e.Data.GetFiles()?.Select(f => f.Path.AbsolutePath).ToList();
             if (files != null) {
-                Console.WriteLine($"Dropped {files.Count} file(s)");
-                ProcessDroppedFiles(files);
+                Console.WriteLine($"Dropped {files[0]} file(s)");
+                int? processId = ProcessFileLock.FindProcessHoldingFile(files[0]);
+                if (processId.HasValue) {
+                    Console.WriteLine($"文件被进程ID {processId.Value} 占用");
+                    try {
+                        var process = System.Diagnostics.Process.GetProcessById(processId.Value);
+                        Console.WriteLine($"进程名称: {process.ProcessName}");
+                        Console.WriteLine($"进程路径: {process.MainModule?.FileName}");
+                    }
+                    catch (Exception ex) {
+                        Console.WriteLine($"===无法获取进程信息: {ex.Message}");
+                    }
+                }
+                else {
+                    Console.WriteLine("===文件未被任何进程占用");
+                }
             }
         }
 
         e.Handled = true;
     }
 
-    private bool IsFileDrag(IDataObject data) {
+    private static bool IsFileDrag(IDataObject data) {
         return data.Contains(DataFormats.Files) || data.Contains(DataFormats.FileNames);
-    }
-    
-    public void ProcessDroppedFiles(List<string> filePaths) {
-        Console.WriteLine($"Processing files from {filePaths.Count} file(s)");
-        foreach (var filePath in filePaths) {
-            var processes = GetProcessesLockingFile(filePath);
-            Console.WriteLine($"Processes: {processes.Name}");
-
-        }
-    }
-
-    private List<string> GetProcessesLockingFile(string filePath) {
-        var processes = new List<string>();
-        try {
-            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.None)) {
-                fs.Close();
-            }
-        }
-        catch (IOException) {
-            processes.AddRange(System.Diagnostics.Process.GetProcesses()
-                .Where(p => !p.HasExited && IsFileLockedByProcess(p, filePath))
-                .Select(p => p.ProcessName));
-        }
-
-        return processes;
-    }
-
-    private bool IsFileLockedByProcess(System.Diagnostics.Process process, string filePath) {
-        try {
-            return process.Modules.Cast<System.Diagnostics.ProcessModule>()
-                .Any(m => m.FileName.Equals(filePath, StringComparison.OrdinalIgnoreCase));
-        }
-        catch {
-            return false;
-        }
     }
 }
