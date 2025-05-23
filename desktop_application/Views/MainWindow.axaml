@@ -12,15 +12,18 @@
     <suki:SukiSideMenu >
         <suki:SukiSideMenu.Items>
             
-            <suki:SukiSideMenuItem Header="FileLock" >
-                <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
-                <suki:SukiSideMenuItem.PageContent><filelock:FileLockView/></suki:SukiSideMenuItem.PageContent>
-            </suki:SukiSideMenuItem>
             
             <suki:SukiSideMenuItem Header="Home" >
                 <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
                 <suki:SukiSideMenuItem.PageContent><home:HomeView/></suki:SukiSideMenuItem.PageContent>
             </suki:SukiSideMenuItem>
+            
+            <suki:SukiSideMenuItem Header="FileLock" >
+                <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon>
+                <suki:SukiSideMenuItem.PageContent><filelock:FileLockView/></suki:SukiSideMenuItem.PageContent>
+            </suki:SukiSideMenuItem>
+            
+
             
             <!-- <suki:SukiSideMenuItem Header="Page Title" > -->
             <!--     <suki:SukiSideMenuItem.Icon></suki:SukiSideMenuItem.Icon> -->

@@ -56,21 +56,7 @@ public partial class FileLockView : UserControl {
             var files = e.Data.GetFiles()?.Select(f => f.Path.AbsolutePath).ToList();
             if (files != null) {
                 Console.WriteLine($"Dropped {files[0]} file(s)");
-                int? processId = ProcessFileLock.FindProcessHoldingFile(files[0]);
-                if (processId.HasValue) {
-                    Console.WriteLine($"文件被进程ID {processId.Value} 占用");
-                    try {
-                        var process = System.Diagnostics.Process.GetProcessById(processId.Value);
-                        Console.WriteLine($"进程名称: {process.ProcessName}");
-                        Console.WriteLine($"进程路径: {process.MainModule?.FileName}");
-                    }
-                    catch (Exception ex) {
-                        Console.WriteLine($"===无法获取进程信息: {ex.Message}");
-                    }
-                }
-                else {
-                    Console.WriteLine("===文件未被任何进程占用");
-                }
+
             }
         }
 
