@@ -8,7 +8,9 @@
     
     <!-- https://github.com/kikipoulet/SukiUI -->
     <!-- https://github.com/irihitech/Semi.Avalonia -->
-             
+    <!-- https://github.com/Microsoft/CsWin32 -->
+    
+    
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>
