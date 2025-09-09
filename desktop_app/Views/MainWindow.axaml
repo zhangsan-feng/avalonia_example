@@ -1,0 +1,99 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:desktop_app.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="desktop_app.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        WindowStartupLocation="CenterScreen"
+        Title="导航示例">
+
+    <Window.Styles>
+
+        <Style Selector="ListBox.navigation">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+
+        <Style Selector="ListBox.navigation ListBoxItem">
+            <Setter Property="Padding" Value="15,10" />
+            <Setter Property="Margin" Value="5,2" />
+            <Setter Property="CornerRadius" Value="5" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+        </Style>
+
+
+        <Style Selector="ListBox.navigation ListBoxItem:pointerover">
+            <Setter Property="Background" Value="LightBlue" />
+        </Style>
+
+        <!-- 选中效果 -->
+        <Style Selector="ListBox.navigation ListBoxItem:selected">
+            <Setter Property="Background" Value="DodgerBlue" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+
+        <Style Selector="ListBox.navigation ListBoxItem:selected:focus">
+            <Setter Property="Background" Value="DodgerBlue" />
+            <Setter Property="Foreground" Value="White" />
+        </Style>
+    </Window.Styles>
+
+    <DockPanel>
+
+        <DockPanel DockPanel.Dock="Top" Height="50" Background="AntiqueWhite">
+            <TextBlock Text="应用程序导航示例"
+                       VerticalAlignment="Center"
+                       Margin="20,0"
+                       FontSize="18"
+                       FontWeight="Bold" />
+        </DockPanel>
+
+        <DockPanel DockPanel.Dock="Bottom" Margin="0 5 0 0">
+
+            <DockPanel Dock="Left" Width="220" Background="#F5F5F5">
+                <StackPanel Orientation="Vertical" Margin="10">
+
+                    <TextBlock Text="导航菜单"
+                               FontWeight="Bold"
+                               FontSize="16"
+                               Margin="10,10,10,15"
+                               HorizontalAlignment="Center"
+                               Foreground="DarkSlateGray" />
+                    
+                    <ListBox ItemsSource="{Binding NavigationItems}"
+                             SelectedItem="{Binding SelectedNavigationItem}"
+                             Classes="navigation">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Icon}"
+                                               FontSize="16"
+                                               Margin="0,0,10,0"
+                                               VerticalAlignment="Center" />
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="14"
+                                               VerticalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </DockPanel>
+            
+            <Border Background="White"
+                    Margin="5"
+                    CornerRadius="8"
+                    BorderBrush="#E0E0E0"
+                    BorderThickness="1"
+                    BoxShadow="0 2 10 0 #10000000">
+                <ContentControl Content="{Binding CurrentPage}"
+                                Margin="20" />
+            </Border>
+        </DockPanel>
+    </DockPanel>
+</Window>
