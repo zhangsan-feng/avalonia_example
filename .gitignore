@@ -1,3 +1,7 @@
 /.idea
 /**/bin
 /**/obj
+
+/avalonia_server/.idea
+
+

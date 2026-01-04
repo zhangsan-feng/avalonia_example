@@ -1,0 +1,375 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:example.Component.Messages"
+             x:DataType="vm:MessagesViewModel"
+             xmlns:rich="using:AvRichTextBox"
+             x:Class="example.Component.Messages.MessagesView">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" MinWidth="200" MaxWidth="400" />
+            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <TextBox Margin="5"
+                             Width="155"
+                             Text="{Binding SearchInput}"
+                             Watermark="搜索" />
+                    <Button DockPanel.Dock="Right"
+                            Margin="5"
+                            Content="+" />
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <ListBox ItemsSource="{Binding MessageGroup}" SelectedItem="{Binding SelectMessageGroupIndex}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Background="Transparent">
+                                <Grid.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem Header="置顶" />
+                                        <MenuItem Header="复制群号" />
+                                        <MenuItem Header="标记已读" />
+                                        <MenuItem Header="群消息设置">
+                                            <MenuItem Header="置顶" />
+                                            <MenuItem Header="复制群号" />
+                                            <MenuItem Header="标记已读" />
+                                        </MenuItem>
+                                        <Border Height="1" Background="#999999"></Border>
+                                        <MenuItem Header="从消息列表中删除" />
+
+                                    </ContextMenu>
+                                </Grid.ContextMenu>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"></ColumnDefinition>
+                                    <ColumnDefinition Width="300"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+                                    <Border Width="50" Height="50" CornerRadius="25" ClipToBounds="True">
+                                        <Image Source="{Binding Avatar}" Stretch="UniformToFill" Width="50" Height="50" />
+                                    </Border>
+                                </Grid>
+                                <Grid Grid.Column="1" Margin="8 0 0 0 ">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left"
+                                                VerticalAlignment="Center" Spacing="10">
+                                        <TextBlock Text="{Binding Name}" />
+                                        <Grid Margin="4 0 0 0" ColumnDefinitions="Auto, Auto, *">
+                                            <TextBlock Grid.Column="0"
+                                                       Text="{Binding LastMessage.SendUserName}"
+                                                       MaxWidth="80"
+                                                       TextTrimming="CharacterEllipsis" />
+
+                                            <TextBlock Grid.Column="1" Text=": "
+                                                       IsVisible="{Binding LastMessage.Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
+                                            <TextBlock Grid.Column="2"
+                                                       Text="{Binding LastMessage.Message}"
+                                                       TextTrimming="CharacterEllipsis" />
+                                        </Grid>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Right"
+                                                VerticalAlignment="Center" Spacing="10">
+                                        <Border Background="Transparent" CornerRadius="12" HorizontalAlignment="Right"
+                                                Padding="4">
+                                            <TextBlock Text="{Binding MessageNumber}"></TextBlock>
+                                        </Border>
+                                        <TextBlock Text="{Binding LastMessage.Time}"></TextBlock>
+
+                                    </StackPanel>
+                                </Grid>
+                            </Grid>
+
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Grid>
+
+        <GridSplitter Grid.Column="1" ResizeDirection="Columns" Background="Transparent">
+            <GridSplitter.Template>
+                <ControlTemplate>
+                    <Border Width="3" Background="#f8f8f8" />
+                </ControlTemplate>
+            </GridSplitter.Template>
+        </GridSplitter>
+
+        <Grid Grid.Column="2" IsVisible="{Binding MessageWindowIsShow}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="2" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="8*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.Styles>
+                        <Style Selector="TextBlock">
+                            <!-- <Setter Property="HorizontalAlignment" Value="Center" /> -->
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Styles>
+                    <Grid Grid.Column="0">
+                        <TextBlock Margin="20 0 0 0"> 群标题</TextBlock>
+                    </Grid>
+                    <Grid Grid.Column="1">
+                        <StackPanel Orientation="Horizontal">
+                            <Button Background="#ffff">
+                                <Image Width="20" Source="avares://example/Assets/icons8-phone-50.png"></Image>
+                            </Button>
+                            <Button Background="#ffff">
+                                <Image Width="20" Source="avares://example/Assets/icons8-video-call-50.png"></Image>
+                            </Button>
+                            <Button Background="#ffff">
+                                <Image Width="20" Source="avares://example/Assets/icons8-plus-50.png"></Image>
+                            </Button>
+                            <Button Background="#ffff">
+                                <Image Width="20" Source="avares://example/Assets/icons8-more-25.png"></Image>
+                            </Button>
+
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Separator Grid.Row="1" Margin="0" Padding="0" />
+
+            <Grid Grid.Row="2" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="2" />
+                        <ColumnDefinition Width="200" MaxWidth="400" MinWidth="200" />
+                    </Grid.ColumnDefinitions>
+                    <Grid Grid.Column="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="2" />
+                                <RowDefinition Height="200" MinHeight="200" MaxHeight="400" />
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <ListBox ItemsSource="{Binding GroupHistoryMessage}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+
+                                            <StackPanel Orientation="Horizontal" Name="MessageControl">
+                                                <StackPanel.Styles>
+                                                    <Style Selector="StackPanel[Tag=True]">
+                                                        <Setter Property="HorizontalAlignment" Value="Right" />
+                                                        <Setter Property="FlowDirection" Value="RightToLeft" />
+                                                    </Style>
+                                                    <Style Selector="StackPanel[Tag=False]">
+                                                        <Setter Property="HorizontalAlignment" Value="Left" />
+                                                        <Setter Property="FlowDirection" Value="LeftToRight" />
+                                                    </Style>
+                                                </StackPanel.Styles>
+
+                                                <StackPanel.Tag>
+                                                    <Binding Path="IsSelf" />
+                                                </StackPanel.Tag>
+
+                                                <Border Width="45" Height="45" CornerRadius="25" ClipToBounds="True">
+                                                    <Image Source="{Binding SendUserAvatar}" Width="45" Height="45"
+                                                           Stretch="UniformToFill" />
+                                                </Border>
+
+                                                <StackPanel Margin="10,0">
+                                                    <TextBlock Text="{Binding SendUserName}"
+                                                               FlowDirection="LeftToRight" />
+                                                    <TextBlock Text="{Binding Message}" Margin="0,5,0,0"
+                                                               FlowDirection="LeftToRight" />
+                                                </StackPanel>
+                                            </StackPanel>
+
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+
+                            <!-- <GridSplitter Grid.Row="1" ResizeDirection="Rows" Background="Transparent"/> -->
+                            <GridSplitter Grid.Row="1" ResizeDirection="Rows">
+                                <GridSplitter.Template>
+                                    <ControlTemplate>
+                                        <Border Height="3" Background="#f8f8f8" />
+                                    </ControlTemplate>
+                                </GridSplitter.Template>
+                            </GridSplitter>
+
+                            <Grid Grid.Row="2">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="50"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Background="Transparent">
+                                            <Image Width="18" Source="avares://example/Assets/icons8-happy-64.png"></Image>
+                                            <Button.Flyout>
+                                                <Flyout Placement="TopEdgeAlignedLeft">
+                                                    <Border Height="300" Width="400"></Border>
+                                                </Flyout>
+                                            </Button.Flyout>
+                                        </Button>
+                                        <Button Background="Transparent">
+                                            <Image Width="18" Source="avares://example/Assets/icons8-scissors-50.png"></Image>
+                                        </Button>
+                                        <Button Background="Transparent">
+                                            <Image Width="18" Source="avares://example/Assets/icons8-microphone-48.png"></Image>
+                                        </Button>
+                                        <Button Background="Transparent">
+                                            <Image Width="18" Source="avares://example/Assets/icons8-picture-48.png"></Image>
+                                        </Button>
+                                        <Button Background="Transparent">
+                                            <Image Width="18" Source="avares://example/Assets/icons8-folder-24.png"></Image>
+                                        </Button>
+
+                                    </StackPanel>
+                                    <Button Margin="0 0 10 0" Background="Transparent" HorizontalAlignment="Right">
+                                        <Image Width="18" Source="avares://example/Assets/icons8-time-machine-50.png"></Image>
+                                    </Button>
+
+                                </Grid>
+
+                                <Grid Grid.Row="1" Margin="8">
+                                    <!-- <Grid > -->
+                                    <!--     <Grid.RowDefinitions> -->
+                                    <!--         <RowDefinition></RowDefinition> -->
+                                    <!--         <RowDefinition></RowDefinition> -->
+                                    <!--     </Grid.RowDefinitions> -->
+                                        
+                                        <!-- <ItemsControl ItemsSource="{Binding PastedImages}" Grid.Row="0"> -->
+                                        <!--     <ItemsControl.ItemsPanel> -->
+                                        <!--         <ItemsPanelTemplate> -->
+                                        <!--             <WrapPanel Orientation="Horizontal" /> -->
+                                        <!--         </ItemsPanelTemplate> -->
+                                        <!--     </ItemsControl.ItemsPanel> -->
+                                        <!-- -->
+                                        <!--     <ItemsControl.ItemTemplate> -->
+                                        <!--         <DataTemplate> -->
+                                        <!--             <Border Margin="4" Width="50" Height="50" BorderBrush="Gray" -->
+                                        <!--                     BorderThickness="1"> -->
+                                        <!--                 <Image Source="{Binding}" Stretch="Uniform" /> -->
+                                        <!--             </Border> -->
+                                        <!--         </DataTemplate> -->
+                                        <!--     </ItemsControl.ItemTemplate> -->
+                                        <!-- </ItemsControl> -->
+
+                                        <TextBox Name="InputBox"
+                                                 Text="{Binding UserInput}"
+                                                 Padding="8"
+                                                 AcceptsReturn="False"
+                                                 AcceptsTab="True">
+                                            <TextBox.KeyBindings>
+                                                <KeyBinding Gesture="Enter" Command="{Binding SubmitMessageEvent}" />
+                                            </TextBox.KeyBindings>
+                                        </TextBox>
+                                    <!-- </Grid> -->
+
+                                </Grid>
+
+                                <Grid Grid.Row="2" RowSpacing="10">
+                                    <Button
+                                        HorizontalContentAlignment="Center"
+                                        VerticalContentAlignment="Center"
+                                        HorizontalAlignment="Right"
+                                        CornerRadius="10"
+                                        Background="#0099ff"
+                                        Command="{Binding SubmitMessageEvent}"
+                                        Width="80" Margin="0 0 10 0">
+                                        发送
+                                    </Button>
+                                </Grid>
+
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
+                    <GridSplitter Grid.Column="1" ResizeDirection="Columns">
+                        <GridSplitter.Template>
+                            <ControlTemplate>
+                                <Border Width="3" Background="#f8f8f8" />
+                            </ControlTemplate>
+                        </GridSplitter.Template>
+                    </GridSplitter>
+
+                    <Grid Grid.Column="2">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*"></RowDefinition>
+                                <RowDefinition Height="3"></RowDefinition>
+                                <RowDefinition Height="7*"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Grid Grid.Row="0">
+                                <Border Padding="25">
+                                    <TextBlock> 群公告</TextBlock>
+                                </Border>
+                            </Grid>
+
+                            <Separator Grid.Row="1" Margin="0" Padding="0" />
+
+                            <Grid Grid.Row="2">
+                                <TextBlock>群成员</TextBlock>
+                                <ListBox ItemsSource="{Binding GroupUser}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Border Grid.Column="0"
+                                                            Width="25"
+                                                            Height="25"
+                                                            CornerRadius="25"
+                                                            ClipToBounds="True">
+                                                        <Image Source="{Binding Avatar}" />
+                                                    </Border>
+
+                                                    <TextBlock Grid.Column="1"
+                                                               Text="{Binding Name}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Margin="8,0,0,0" />
+
+                                                    <Border Grid.Column="2" Background="#c4e3f7" CornerRadius="55"
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Center">
+                                                        <TextBlock TextAlignment="Center" Text="{Binding UserTyoe}" />
+                                                    </Border>
+
+                                                </Grid>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

@@ -1,0 +1,63 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Width="325"
+        Height="375"
+        xmlns:vm="clr-namespace:example.Component.Login"
+        x:DataType="vm:LoginViewModel"
+        x:Class="example.Component.Login.LoginView"
+        WindowStartupLocation="CenterScreen"
+        Title="LoginView">
+    
+    <Grid >
+        <Border 
+                Width="350" 
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Padding="30"
+                CornerRadius="8"
+                BoxShadow="0 4 10 0 #20000000">
+        
+            <StackPanel Spacing="15">
+                <TextBlock Text="欢迎回来" 
+                           FontSize="24" 
+                           FontWeight="Bold" 
+                           HorizontalAlignment="Center"
+                           Margin="0,0,0,10"/>
+
+                <TextBox Text="{Binding UserName}" 
+                         Watermark="请输入用户名"
+                         UseFloatingWatermark="True"
+                         InnerLeftContent="👤 "/>
+
+                <TextBox Text="{Binding Password}" 
+                         Watermark="请输入密码"
+                         PasswordChar="*"
+                         UseFloatingWatermark="True"
+                         InnerLeftContent="🔒 "/>
+                <TextBlock Text="{Binding ErrorMessage}" 
+                           Foreground="Red" 
+                           FontSize="12"
+                           HorizontalAlignment="Left"
+                           Height="20"
+                           IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
+                
+                <Button Content="登 录" 
+                        Command="{Binding LoginCommand}"
+                        Classes="accent"
+                        HorizontalAlignment="Stretch"
+                        HorizontalContentAlignment="Center"
+                        Padding="10"
+                        Margin="0,10,0,0"/>
+
+                <Button Content="忘记密码？" 
+                        Background="Transparent"
+                        FontSize="12"
+                        Foreground="Gray"
+                        HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

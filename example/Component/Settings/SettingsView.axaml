@@ -1,0 +1,43 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:example.Component.Settings"
+             x:DataType="vm:SettingsViewModel"
+             x:Class="example.Component.Settings.SettingsView">
+    <StackPanel Margin="20">
+        <TextBlock Text="请按下你想设置的快捷键：" />
+        <Border Name="HotkeyCaptureArea"
+                Background="LightGray"
+                MinWidth="200"
+                Height="30"
+                CornerRadius="4"
+                Padding="5"
+                Focusable="True"
+                BorderBrush="Gray"
+                BorderThickness="1"
+                KeyDown="HotkeyCaptureArea_KeyDown"
+               >
+            <TextBlock Name="HotkeyDisplay"
+                       VerticalAlignment="Center"
+                       Text="点击此处并按键..." />
+            
+            
+        </Border>
+
+        <TextBox
+            Padding="8"
+            AcceptsReturn="False"
+            AcceptsTab="True"
+            Cursor="IBeam"
+                                    
+            Text="{Binding UserInput, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                    
+            <TextBox.KeyBindings>
+                <KeyBinding Gesture="Enter"
+                            Command="{Binding SubmitMessageEvent}" />
+            </TextBox.KeyBindings>
+        </TextBox>
+    </StackPanel>
+</UserControl>
