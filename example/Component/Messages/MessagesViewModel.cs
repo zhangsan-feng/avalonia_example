@@ -10,6 +10,7 @@ using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using Avalonia.Platform.Storage;
 using Avalonia.Threading;
 using example.State;
 using example.ViewModels;
@@ -24,7 +25,6 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
     public AppStateService State => AppState.Global;
     public readonly IMessage MessageApi; 
     public ReactiveCommand<Unit, Unit> SubmitMessageEvent  { get; }
-    public ReactiveCommand<Bitmap, Unit> DeleteImageCommand { get; }
     
     public IScreen HostScreen{ get; }
     public string UrlPathSegment{ get; } = "MessagesViewModel";
@@ -73,17 +73,20 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
         get => _userInput;
         set =>this.RaiseAndSetIfChanged(ref _userInput, value);
     }
-
+    
+    private ObservableCollection<IStorageFile> _selectedFiles;
+    public ObservableCollection<IStorageFile> SelectedFiles{
+        get => _selectedFiles;
+        set => this.RaiseAndSetIfChanged(ref _selectedFiles, value);
+    }
+    public ReactiveCommand<IStorageFile, Unit> RemoveFileCommand { get; }
     
     private async Task InitializeAsync(){
         try{
-
             var res = await MessageApi.GetMessageGroup(State.UserId);
-            Console.WriteLine(res.Data);
-            
+            // Console.WriteLine(res.Data);
             var tasks = res.Data.Select(UserMessageGroupUi.FromPayloadAsync);
-            var results = await Task.WhenAll(tasks);
-            MessageGroup = new ObservableCollection<UserMessageGroupUi>(results);
+            MessageGroup = new ObservableCollection<UserMessageGroupUi>(await Task.WhenAll(tasks));
             MessageWindowIsShow = true;
             if (MessageGroup.Count > 0){
                 SelectMessageGroupIndex = MessageGroup[0];
@@ -111,12 +114,7 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
         Console.WriteLine(PastedImages.Count);
     }
     
-    private void DeleteImage(Bitmap bitmap){
-        if (bitmap != null){
-            PastedImages.Remove(bitmap);
-            bitmap.Dispose(); // 释放图片占用的内存资源
-        }
-    }
+
     public MessagesViewModel(IScreen screen){
         HostScreen = screen;
         MessageApi = RestService.For<IMessage>(State.ServerAddress);
@@ -125,16 +123,19 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
         }
         _ = InitializeAsync();
         
-        DeleteImageCommand = ReactiveCommand.Create<Bitmap>(DeleteImage);
+        
+        RemoveFileCommand = ReactiveCommand.Create<IStorageFile>(file => {
+            Console.WriteLine(file);
+            Console.WriteLine(SelectedFiles);
+            SelectedFiles.Remove(file);
+        });
         
         SubmitMessageEvent = ReactiveCommand.Create(() => {
             Console.WriteLine(UserInput);
-            MessageApi.SendMessage(new UserSendMessageHttp {
-                SendGroupId = SelectMessageGroupIndex.Id,
-                Message =  UserInput,
-                SendUserId = State.UserId,
-                Emoji = []
-            });
+            if (UserInput.Length == 0){
+                return;
+            }
+            MessageApi.SendMessage(State.UserId, SelectMessageGroupIndex.Id, UserInput ,[]);
             UserInput = "";
         });
 
@@ -152,7 +153,7 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
                 if (targetGroup != null){
                     targetGroup.HistoryCache.Add(result.UI);
                     targetGroup.LastMessage = result.Payload;
-                    Console.WriteLine($"收到组 {targetGroup.Id} 的新消息");
+                    Console.WriteLine($"recv group: [ {targetGroup.Id} ] message");
                 }
             })
             .DisposeWith(_disposables);

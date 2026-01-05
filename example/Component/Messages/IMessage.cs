@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Refit;
@@ -56,8 +57,13 @@ public  class ApiResponse<T>{
 
 public interface IMessage{
     [Post("/user_send_message")]
-    Task<UserSendMessageHttp> SendMessage([Body] UserSendMessageHttp data);
-
+    [Multipart]
+    Task<ApiResponse<string>> SendMessage(
+        [AliasAs("send_user_id")] string sendUserId,
+        [AliasAs("send_group_id")] string sendGroupId,
+        [AliasAs("message")] string message,
+        [AliasAs("emoji")] IEnumerable<StreamPart> files); 
+    
     [Get("/user_message_group")]
     Task<ApiResponse<UserMessageGroupHttp[]>> GetMessageGroup([AliasAs("user_id")] string userId);
 }

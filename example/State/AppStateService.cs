@@ -11,7 +11,7 @@ namespace example.State;
 
 public class AppStateService : ReactiveObject{
     private string _userName = "默认用户名";
-    private string _userId = "0b5ebfcb-dda4-44a7-bc55-66a9d21cf082";
+    private string _userId = "055a1129-b786-4836-b9bd-87293d543593";
     private static string _serverAddress = "http://127.0.0.1:34332";
     private string _userAvatar = "";
     private string _userToken = "";
@@ -129,7 +129,7 @@ public class AppStateService : ReactiveObject{
 
     
                 var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                Console.WriteLine($"收到消息: {message}");
+                Console.WriteLine($"recv message: {message}");
                 if (message != "ping"){
                     PushMessage(message);
                 }

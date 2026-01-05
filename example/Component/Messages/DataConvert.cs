@@ -92,7 +92,7 @@ public class GroupHistoryMessageUi : ReactiveObject{
     public Bitmap? SendUserAvatar{ get; set; }
     public string Message{ get; set; }
     public string Time{ get; set; }
-    public string[] Emoji{ get; set; }
+    public Bitmap?[] Emoji{ get; set; }
     public bool IsSelf => SendUserId == State.UserId;
     
     public static async Task<GroupHistoryMessageUi> FromPayloadAsync(GroupHistoryMessageHttp payload){
@@ -109,7 +109,10 @@ public class GroupHistoryMessageUi : ReactiveObject{
                 userAvatar = null;
             }
         }
-
+        var tasks = payload.Emoji?.Select(x=>ImageHelper.LoadFromWeb(new Uri(x)));
+        if (tasks == null){
+            tasks = [];
+        }
         return new GroupHistoryMessageUi {
             SendUserId = payload.SendUserId,
             SendUserName = payload.SendUserName,
@@ -118,7 +121,7 @@ public class GroupHistoryMessageUi : ReactiveObject{
             SendGroupId = payload.SendGroupId,
             Message = payload.Message,
             Time = payload.Time,
-            Emoji = payload.Emoji
+            Emoji = await Task.WhenAll(tasks)
         };
     }
 }
@@ -135,7 +138,7 @@ public class UserMessageGroupUi : ReactiveObject{
     public ObservableCollection<GroupHistoryMessageUi> HistoryCache { get; set; } = new();
     public bool IsHistoryLoaded { get; set; } = false;
     
-    private bool _showMessageNumber;
+    private bool _showMessageNumber = false;
     public bool ShowMessageNumber{
         get => _showMessageNumber;
         set => this.RaiseAndSetIfChanged(ref _showMessageNumber, value);

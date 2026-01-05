@@ -1,7 +1,6 @@
 package global
 
 import (
-	"avalonia_server/event_bus"
 	"github.com/robfig/cron/v3"
 )
 
@@ -21,5 +20,3 @@ func (c *CrontabTask) AddTask() {
 func DelTask() {
 
 }
-
-var EventBus = event_bus.New()

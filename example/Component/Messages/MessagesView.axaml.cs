@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Avalonia.Controls;
@@ -9,8 +10,9 @@ using Avalonia.Input.Platform;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using Avalonia.ReactiveUI;
-using AvRichTextBox;
+
 using example.State;
 using ReactiveUI;
 
@@ -23,6 +25,30 @@ public partial class MessagesView:ReactiveUserControl<MessagesViewModel>{
         AvaloniaXamlLoader.Load(this);
         this.WhenActivated(app => { });
 
+    }
+    
+    private async void SelectImageFiles(object sender, RoutedEventArgs e){}
+    
+    private async void SelectFiles(object sender, RoutedEventArgs e){
+
+        var topLevel = TopLevel.GetTopLevel(this);
+        if (topLevel == null) return;
+        
+        var files = await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions() {
+            AllowMultiple  = true
+        });
+
+        if (files.Count > 0){
+            foreach (var file in files){
+                Console.WriteLine($"Selected file: {file.Path.AbsolutePath}");
+                if (DataContext is MessagesViewModel  vm){
+                    vm.SelectedFiles = new ObservableCollection<IStorageFile>(files);
+                }
+                // 如果你需要 Stream（比如传给 Refit 的 StreamPart）：
+                // using var stream = await file.OpenReadAsync();
+            }
+
+        }
     }
     
     private async void InputBox_KeyDown(object? sender, KeyEventArgs e){

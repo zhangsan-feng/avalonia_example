@@ -10,21 +10,38 @@ import (
 )
 
 type UserSendMessage struct {
-	SendUserId  string   `json:"send_user_id"`
-	SendGroupId string   `json:"send_group_id"`
-	Message     string   `json:"message"`
-	Emoji       []string `json:"emoji"`
+	SendUserId  string `form:"send_user_id" binding:"required"`
+	SendGroupId string `form:"send_group_id" binding:"required"`
+	Message     string `form:"message"`
 }
 
 func UserSendMessageApi(r *gin.Context) {
 	var req *UserSendMessage
-	err := r.BindJSON(&req)
+	err := r.ShouldBind(&req)
 	if err != nil {
 		log.Println(err)
 		return
 	}
 
 	log.Println(req.SendUserId, req.SendGroupId, req.Message)
+
+	//form, _ := r.MultipartForm()
+	//files := form.File["files"] // 注意：字段名要匹配前端的 AliasAs("files")
+	//
+	//if len(files) == 0 {
+	//	r.JSON(http.StatusBadRequest, gin.H{"error": "no files uploaded"})
+	//	return
+	//}
+	//
+	//// 3. 遍历并保存每个文件
+	//for _, fileHeader := range files {
+	//	err := r.SaveUploadedFile(fileHeader, "./uploads/"+fileHeader.Filename)
+	//	if err != nil {
+	//		r.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save file"})
+	//		return
+	//	}
+	//}
+	//
 
 	//if err := global.EventBus.Publish(event_bus.EventWebSocketMessage, gconv.String("")); err != nil {
 	//	log.Println(err)
