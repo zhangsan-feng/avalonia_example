@@ -101,10 +101,11 @@ public partial class MessagesView : ReactiveUserControl<MessagesViewModel>{
             
             string ext = Path.GetExtension(imageUri.LocalPath).ToLowerInvariant();
             if (string.IsNullOrEmpty(ext) || !ext.StartsWith("."))
-                ext = ".png"; // 默认
+                ext = "."; // 默认
             string tempFile = Path.Combine(Path.GetTempPath(), $"avalonia_img_{Guid.NewGuid()}{ext}");
             await File.WriteAllBytesAsync(tempFile, bytes);
             Console.WriteLine(tempFile);
+            Console.WriteLine(bytes.Length);
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)){
                 Process.Start(new ProcessStartInfo {
                     FileName = tempFile,
@@ -116,14 +117,14 @@ public partial class MessagesView : ReactiveUserControl<MessagesViewModel>{
             else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)){
                 Process.Start("xdg-open", tempFile);
             }
-            _ = Task.Delay(2500).ContinueWith(_ => {
-                try{
-                    File.Delete(tempFile);
-                }
-                catch{
-                    /* ignore */
-                }
-            });
+            // _ = Task.Delay(2500).ContinueWith(_ => {
+            //     try{
+            //         File.Delete(tempFile);
+            //     }
+            //     catch{
+            //         /* ignore */
+            //     }
+            // });
         }
         catch (Exception ex){
             Console.WriteLine($"Failed to open image: {ex.Message}");
