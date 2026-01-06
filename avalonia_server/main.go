@@ -81,7 +81,7 @@ func main() {
 	}()
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 	if _, osPathErr := os.Stat("./logs"); os.IsNotExist(osPathErr) {
-		if osMkdirErr := os.Mkdir("./logs", 0777); osMkdirErr != nil {
+		if osMkdirErr := os.MkdirAll("./logs", 0777); osMkdirErr != nil {
 			log.Fatalln("os mkdir error")
 		}
 	}

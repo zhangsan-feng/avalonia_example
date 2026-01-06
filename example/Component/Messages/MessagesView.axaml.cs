@@ -110,8 +110,13 @@ public partial class MessagesView : ReactiveUserControl<MessagesViewModel>{
                     FileName = tempFile,
                     UseShellExecute = true
                 });
+            }            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX)){
+                Process.Start("open", tempFile);
             }
-            _ = Task.Delay(60_000).ContinueWith(_ => {
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux)){
+                Process.Start("xdg-open", tempFile);
+            }
+            _ = Task.Delay(2500).ContinueWith(_ => {
                 try{
                     File.Delete(tempFile);
                 }
