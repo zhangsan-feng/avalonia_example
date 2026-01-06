@@ -83,8 +83,8 @@ func main() {
 		}
 	}
 
-	logWriterHandler := io.MultiWriter(os.Stdout)
-	//multiWriter := io.MultiWriter(os.Stdout, NewFileHook())
+	//logWriterHandler := io.MultiWriter(os.Stdout)
+	logWriterHandler := io.MultiWriter(os.Stdout, NewFileHook())
 
 	log.SetOutput(logWriterHandler)
 
@@ -95,6 +95,9 @@ func main() {
 	api.NewHttpRouter(engine)
 	address := "0.0.0.0:34332"
 	log.Println("http server start ", address)
+	
+	api.InitData()
+
 	if err := engine.Run(address); err != nil {
 		log.Println("http server start failed", address)
 	}

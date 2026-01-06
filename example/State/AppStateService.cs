@@ -11,8 +11,9 @@ namespace example.State;
 
 public class AppStateService : ReactiveObject{
     private string _userName = "默认用户名";
-    private string _userId = "055a1129-b786-4836-b9bd-87293d543593";
-    private static string _serverAddress = "http://127.0.0.1:34332";
+    private string _userId = "9ef3c295-229d-4660-97a1-650890e03370";
+    // private static string _serverAddress = "://127.0.0.1:34332";
+    private static string _serverAddress = "://39.96.115.200:34332";
     private string _userAvatar = "";
     private string _userToken = "";
 
@@ -66,10 +67,10 @@ public class AppStateService : ReactiveObject{
                 _webSocket?.Dispose();
                 _webSocket = new ClientWebSocket();
                 _webSocket.Options.KeepAliveInterval = TimeSpan.FromSeconds(20); 
-                _webSocket.Options.SetRequestHeader("Origin", "http://localhost:34332");
+                _webSocket.Options.SetRequestHeader("Origin", "http" + ServerAddress);
 
                 var cancellationToken = _cancellationTokenSource?.Token ?? CancellationToken.None;
-                await _webSocket.ConnectAsync(new Uri("ws://127.0.0.1:34332/register_ws"), cancellationToken);
+                await _webSocket.ConnectAsync(new Uri($"ws{ServerAddress}/register_ws"), cancellationToken);
 
                 Console.WriteLine("✅ WebSocket 连接成功！");
                 _ = ReceiveMessagesAsync(cancellationToken);
@@ -126,17 +127,16 @@ public class AppStateService : ReactiveObject{
                     Console.WriteLine("连接已关闭");
                     break;
                 }
-
-    
+                
                 var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
                 Console.WriteLine($"recv message: {message}");
-                if (message != "ping"){
+                if (message.StartsWith("{") && message.EndsWith("}")){
                     PushMessage(message);
                 }
             }
         }
         catch (Exception ex){
-            Console.WriteLine($"接收消息出错: {ex.Message}");
+            Console.WriteLine($"recv error: {ex.Message}");
         }
     }
 

@@ -22,7 +22,7 @@ type GroupHistoryMessage struct {
 	SendUserAvatar string   `json:"send_user_avatar"`
 	Message        string   `json:"message"`
 	Time           string   `json:"time"`
-	Emoji          []string `json:"emoji"`
+	Files          []string `json:"files"`
 }
 type GroupMembers struct {
 	Id       string `json:"id"`
@@ -52,7 +52,7 @@ var AllUsers map[string]*User
 用户有哪些好友
 */
 
-func init() {
+func InitData() {
 	ActiveGroup = make(map[string][]*UserMessageGroup)
 	ActiveUsers = make(map[string]*User)
 	AllUsers = make(map[string]*User)
@@ -111,7 +111,10 @@ func init() {
 		}
 	}
 
-	log.Println(ActiveGroup)
-	log.Println(ActiveUsers)
+	//log.Println(ActiveGroup)
+	//log.Println(ActiveUsers)
+	for i := range ActiveGroup {
+		log.Println(i)
+	}
 
 }

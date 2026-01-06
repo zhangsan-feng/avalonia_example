@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
 using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
@@ -74,11 +75,12 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
         set =>this.RaiseAndSetIfChanged(ref _userInput, value);
     }
     
-    private ObservableCollection<IStorageFile> _selectedFiles;
-    public ObservableCollection<IStorageFile> SelectedFiles{
+    private IReadOnlyList<IStorageFile> _selectedFiles;
+    public IReadOnlyList<IStorageFile> SelectedFiles{
         get => _selectedFiles;
         set => this.RaiseAndSetIfChanged(ref _selectedFiles, value);
     }
+    
     public ReactiveCommand<IStorageFile, Unit> RemoveFileCommand { get; }
     
     private async Task InitializeAsync(){
@@ -117,25 +119,33 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
 
     public MessagesViewModel(IScreen screen){
         HostScreen = screen;
-        MessageApi = RestService.For<IMessage>(State.ServerAddress);
+        MessageApi = RestService.For<IMessage>("http" + State.ServerAddress);
         if (SelectMessageGroupIndex == null){
             MessageWindowIsShow = false;
         }
         _ = InitializeAsync();
         
         
-        RemoveFileCommand = ReactiveCommand.Create<IStorageFile>(file => {
-            Console.WriteLine(file);
-            Console.WriteLine(SelectedFiles);
-            SelectedFiles.Remove(file);
-        });
-        
-        SubmitMessageEvent = ReactiveCommand.Create(() => {
+        SubmitMessageEvent = ReactiveCommand.CreateFromTask(async () => {
             Console.WriteLine(UserInput);
-            if (UserInput.Length == 0){
-                return;
+            if (UserInput != null && UserInput.Length != 0){
+                MessageApi.SendMessage(State.UserId, SelectMessageGroupIndex.Id, UserInput,[]);
             }
-            MessageApi.SendMessage(State.UserId, SelectMessageGroupIndex.Id, UserInput ,[]);
+            
+            if (SelectedFiles != null && SelectedFiles.Count != 0 && SelectedFiles.Count <= 5) {
+                var files = new List<StreamPart>();
+                foreach (var file in SelectedFiles){
+                    var properties = await file.GetBasicPropertiesAsync();
+                    if (properties.Size > 8 * 1024 * 1024){
+                        continue;
+                    }
+                    var f = await file.OpenReadAsync();
+                    files.Add(new StreamPart(f, file.Name));
+                }
+                MessageApi.SendMessage(State.UserId, SelectMessageGroupIndex.Id, UserInput, files);
+            }
+            
+            SelectedFiles = [];
             UserInput = "";
         });
 

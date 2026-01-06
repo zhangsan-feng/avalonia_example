@@ -2,10 +2,12 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
 	"log"
+	"net/http"
 	"time"
 )
 
@@ -25,27 +27,35 @@ func UserSendMessageApi(r *gin.Context) {
 
 	log.Println(req.SendUserId, req.SendGroupId, req.Message)
 
-	//form, _ := r.MultipartForm()
-	//files := form.File["files"] // 注意：字段名要匹配前端的 AliasAs("files")
-	//
-	//if len(files) == 0 {
-	//	r.JSON(http.StatusBadRequest, gin.H{"error": "no files uploaded"})
-	//	return
-	//}
-	//
-	//// 3. 遍历并保存每个文件
-	//for _, fileHeader := range files {
-	//	err := r.SaveUploadedFile(fileHeader, "./uploads/"+fileHeader.Filename)
-	//	if err != nil {
-	//		r.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save file"})
-	//		return
-	//	}
-	//}
-	//
+	form, _ := r.MultipartForm()
+	files := form.File["files"]
+	log.Println(files)
+
+	message_files := []string{}
+
+	if len(files) > 0 {
+		for _, fileHeader := range files {
+			tmp_file_path := "./static/files/" + fileHeader.Filename
+			message_files = append(message_files, "http://127.0.0.1:34332/avatar/files/"+fileHeader.Filename)
+			if gfile.Exists(tmp_file_path) {
+				continue
+			}
+			if fileHeader.Size > 8*1024*1024 {
+				continue
+			}
+			err := r.SaveUploadedFile(fileHeader, tmp_file_path)
+			if err != nil {
+				r.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save file"})
+				return
+			}
+		}
+	}
 
 	//if err := global.EventBus.Publish(event_bus.EventWebSocketMessage, gconv.String("")); err != nil {
 	//	log.Println(err)
 	//}
+	log.Println(message_files)
+
 	//ActiveUsers[req.SendUserId].Conn.WriteMessage(websocket.TextMessage, []byte(req.Message))
 
 	for _, v := range ActiveGroup[req.SendUserId] {
@@ -66,13 +76,16 @@ func UserSendMessageApi(r *gin.Context) {
 							SendUserAvatar: AllUsers[req.SendUserId].Avatar,
 							Message:        req.Message,
 							Time:           time.Now().Format("2006-01-02 15:04:05"),
-							Emoji:          nil,
+							Files:          message_files,
 						}
-
+						log.Println(gconv.String(sendMsg))
 						err := ActiveUsers[k.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(sendMsg)))
 						if err != nil {
 							log.Println(err)
 							return
+						}
+						if len(v.History) == 1000 {
+							v.History = v.History[500:]
 						}
 						v.History = append(v.History, sendMsg)
 					}

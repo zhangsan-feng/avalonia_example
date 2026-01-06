@@ -30,7 +30,7 @@ public class GroupHistoryMessageHttp{
     [JsonPropertyName("send_user_avatar")] public string SendUserAvatar{ get; set; }
     [JsonPropertyName("message")] public string Message{ get; set; }
     [JsonPropertyName("time")] public string Time{ get; set; }
-    [JsonPropertyName("emoji")] public string[] Emoji{ get; set; }
+    [JsonPropertyName("files")] public string[] Files{ get; set; }
 }
 
 public class GroupMembersHttp{
@@ -62,7 +62,7 @@ public interface IMessage{
         [AliasAs("send_user_id")] string sendUserId,
         [AliasAs("send_group_id")] string sendGroupId,
         [AliasAs("message")] string message,
-        [AliasAs("emoji")] IEnumerable<StreamPart> files); 
+        [AliasAs("files")] IEnumerable<StreamPart> files); 
     
     [Get("/user_message_group")]
     Task<ApiResponse<UserMessageGroupHttp[]>> GetMessageGroup([AliasAs("user_id")] string userId);

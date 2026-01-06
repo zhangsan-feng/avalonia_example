@@ -13,70 +13,22 @@ using ReactiveUI;
 
 namespace example.Component.Messages;
 
-public static class ImageHelper{
-    private static readonly HttpClient _httpClient = new(); 
-    private static readonly ConcurrentDictionary<string, Task<Bitmap?>> _cache = new();
-    private static readonly SemaphoreSlim _decodeSemaphore = new(4, 4); 
-
-    public static async Task<Bitmap?> LoadFromWeb(Uri url){
-        var key = url.ToString();
-        return await _cache.GetOrAdd(key, async (k) => {
-            try{
-                var response = await _httpClient.GetAsync(new Uri(k));
-                response.EnsureSuccessStatusCode();
-                var data = await response.Content.ReadAsByteArrayAsync();
-
-                await _decodeSemaphore.WaitAsync();
-                try{
-                    return await Task.Run(() => {
-                        try{
-                            return new Bitmap(new MemoryStream(data));
-                        }
-                        catch{
-                            return null;
-                        }
-                    });
-                }
-                finally{
-                    _decodeSemaphore.Release();
-                }
-            }
-            catch (Exception ex){
-                Console.WriteLine($"Failed to load image from {k}: {ex.Message}");
-                return null;
-            }
-        });
-    }
-
-    public static Bitmap LoadFromResource(Uri resourceUri){
-        return new Bitmap(AssetLoader.Open(resourceUri));
-    }
-}
 
 public class GroupMembersUi{
     public string Name{ get; set; }
     public string Id{ get; set; }
     public string UserTyoe{ get; set; }
-    public Bitmap? Avatar{ get; set; }
+    public string Avatar{ get; set; }
 
     public static async Task<GroupMembersUi> FromPayloadAsync(GroupMembersHttp payload){
         if (payload == null)
             return null;
-
-        Bitmap? avatar = null;
-        if (!string.IsNullOrEmpty(payload.Avatar)){
-            try{
-                avatar = await ImageHelper.LoadFromWeb(new Uri(payload.Avatar));
-            }
-            catch (Exception ex){
-                avatar = null;
-            }
-        }
+        
 
         return new GroupMembersUi {
             Id = payload.Id,
             Name = payload.Name,
-            Avatar = avatar,
+            Avatar = payload.Avatar,
             UserTyoe = "普通群员"
         };
     }
@@ -89,39 +41,25 @@ public class GroupHistoryMessageUi : ReactiveObject{
     public string SendGroupId{ get; set; }
     public string SendUserId{ get; set; }
     public string SendUserName{ get; set; }
-    public Bitmap? SendUserAvatar{ get; set; }
+    public string SendUserAvatar{ get; set; }
     public string Message{ get; set; }
     public string Time{ get; set; }
-    public Bitmap?[] Emoji{ get; set; }
+    public string?[] Files{ get; set; }
     public bool IsSelf => SendUserId == State.UserId;
     
     public static async Task<GroupHistoryMessageUi> FromPayloadAsync(GroupHistoryMessageHttp payload){
         if (payload == null)
             return null;
 
-
-        Bitmap? userAvatar = null;
-        if (!string.IsNullOrEmpty(payload.SendUserAvatar)){
-            try{
-                userAvatar = await ImageHelper.LoadFromWeb(new Uri(payload.SendUserAvatar));
-            }
-            catch (Exception ex){
-                userAvatar = null;
-            }
-        }
-        var tasks = payload.Emoji?.Select(x=>ImageHelper.LoadFromWeb(new Uri(x)));
-        if (tasks == null){
-            tasks = [];
-        }
         return new GroupHistoryMessageUi {
             SendUserId = payload.SendUserId,
             SendUserName = payload.SendUserName,
-            SendUserAvatar = userAvatar,
+            SendUserAvatar = payload.SendUserAvatar,
             MessageId = payload.MessageId,
             SendGroupId = payload.SendGroupId,
             Message = payload.Message,
             Time = payload.Time,
-            Emoji = await Task.WhenAll(tasks)
+            Files = payload.Files
         };
     }
 }
@@ -131,7 +69,7 @@ public class GroupHistoryMessageUi : ReactiveObject{
 public class UserMessageGroupUi : ReactiveObject{
     public string Id{ get; set; }
     public string Name{ get; set; }
-    public Bitmap? Avatar{ get; set; }
+    public string? Avatar{ get; set; }
     public int MessageNumber{ get; set; }
     public GroupHistoryMessageHttp[] History{ get; set; }
     public GroupMembersUi[] Members{ get; set; }
@@ -159,7 +97,7 @@ public class UserMessageGroupUi : ReactiveObject{
     private async Task ConvertFromPayloadAsync(UserMessageGroupHttp data){
         Id = data.Id;
         Name = data.Name;
-        Avatar = !string.IsNullOrEmpty(data.Avatar) ? await ImageHelper.LoadFromWeb(new Uri(data.Avatar)) : null;
+        Avatar = data.Avatar;
         History = data.History ?? Array.Empty<GroupHistoryMessageHttp>();
         MessageNumber = History.Length;
         LastMessage = History.Length > 0 ? History[^1] : new GroupHistoryMessageHttp();
