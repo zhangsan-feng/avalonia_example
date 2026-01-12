@@ -1,0 +1,47 @@
+name: .NET Core Desktop (Avalonia)
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+
+    runs-on: windows-latest
+
+    env:
+      SOLUTION_FILE: avalonia_example.sln
+      # 如果你没有测试项目，可以删除 dotnet test 步骤
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x'  # 根据你的项目调整
+
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.SOLUTION_FILE }}
+
+    - name: Build
+      run: dotnet build ${{ env.SOLUTION_FILE }} --configuration ${{ matrix.configuration }} --no-restore
+
+    - name: Run unit tests (optional)
+      run: dotnet test ${{ env.SOLUTION_FILE }} --configuration ${{ matrix.configuration }} --no-build
+
+    # 可选：发布应用并上传构建产物
+    - name: Publish application
+      run: dotnet publish ${{ env.SOLUTION_FILE }} --configuration ${{ matrix.configuration }} --output ./publish
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: avalonia-app-${{ matrix.configuration }}
+        path: ./publish/
