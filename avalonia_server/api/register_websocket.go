@@ -28,16 +28,7 @@ func RegisterWsConn(r *gin.Context) {
 	log.Println(gconv.Map(string(msg))["token"])
 	id := gconv.String(gconv.Map(string(msg))["id"])
 
-	if ActiveUsers[id] != nil {
-		if ActiveUsers[id].Conn != nil {
-			return
-		}
-	}
-
-	ActiveUsers[id] = &User{
-		Id:     id,
-		Name:   "",
-		Avatar: "",
-		Conn:   conn,
+	if AllUsers[id] != nil {
+		AllUsers[id].Conn = conn
 	}
 }

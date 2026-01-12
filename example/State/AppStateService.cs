@@ -11,7 +11,7 @@ namespace example.State;
 
 public class AppStateService : ReactiveObject{
     private string _userName = "默认用户名";
-    private string _userId = "9ef3c295-229d-4660-97a1-650890e03370";
+    private string _userId = "2dfefc57-3b76-4d8c-8f9d-c362b9975781";
     // private static string _serverAddress = "://127.0.0.1:34332";
     private static string _serverAddress = "://39.96.115.200:34332";
     private string _userAvatar = "";

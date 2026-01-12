@@ -24,10 +24,8 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>{
     
     private readonly Subject<string> _messageSubject = new();
     public IObservable<string> Messages => _messageSubject.AsObservable();
-    public void OnWebSocketMessage(string msg) => _messageSubject.OnNext(msg);
     
     public MainWindow(){
-
         this.WhenActivated(disposables => {
         
         });

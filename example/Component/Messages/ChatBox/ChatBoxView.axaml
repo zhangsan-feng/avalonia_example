@@ -1,0 +1,85 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="clr-namespace:example.Component.Messages.ChatBox"
+             x:DataType="vm:ChatBoxViewModel"
+             x:Class="example.Component.Messages.ChatBox.ChatBoxView">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Button Background="Transparent">
+                    <Image Width="18" Source="avares://example/Assets/icons8-happy-64.png" />
+                    <Button.Flyout>
+                        <Flyout Placement="TopEdgeAlignedLeft">
+                            <Border Height="300" Width="400" />
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+                <Button Background="Transparent">
+                    <Image Width="18" Source="avares://example/Assets/icons8-scissors-50.png" />
+                </Button>
+                <Button Background="Transparent">
+                    <Image Width="18" Source="avares://example/Assets/icons8-microphone-48.png" />
+                </Button>
+                <Button Background="Transparent" Click="SelectFiles">
+                    <Image Width="18" Source="avares://example/Assets/icons8-picture-48.png" />
+                </Button>
+                <Button Background="Transparent" Click="SelectFiles">
+                    <Image Width="18" Source="avares://example/Assets/icons8-folder-24.png" />
+                </Button>
+
+            </StackPanel>
+            <Button Margin="0 0 10 0" Background="Transparent" HorizontalAlignment="Right">
+                <Image Width="18" Source="avares://example/Assets/icons8-time-machine-50.png" />
+            </Button>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="8">
+
+            <!-- <ItemsControl ItemsSource="{Binding SelectedFiles}" Margin="5"> -->
+            <!--     <ItemsControl.ItemTemplate> -->
+            <!--         <DataTemplate> -->
+            <!--             <StackPanel Orientation="Horizontal" VerticalAlignment="Center"> -->
+            <!--                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center" /> -->
+            <!-- -->
+            <!--             </StackPanel> -->
+            <!--         </DataTemplate> -->
+            <!--     </ItemsControl.ItemTemplate> -->
+            <!-- </ItemsControl> -->
+
+            <TextBox Name="InputBox"
+                     Text="{Binding UserInput}"
+                     Padding="8"
+                     AcceptsReturn="False"
+                     AcceptsTab="True">
+                <TextBox.KeyBindings>
+                    <KeyBinding Gesture="Enter" Command="{Binding SubmitMessageEvent}" />
+                </TextBox.KeyBindings>
+            </TextBox>
+        </Grid>
+
+        <!-- </Grid> -->
+
+        <Grid Grid.Row="2" RowSpacing="10">
+            <Button
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Right"
+                CornerRadius="10"
+                Background="#0099ff"
+                Command="{Binding SubmitMessageEvent}"
+                Width="80" Margin="0 0 10 0">
+                发送
+            </Button>
+        </Grid>
+
+    </Grid>
+</UserControl>

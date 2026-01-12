@@ -8,13 +8,16 @@ import (
 )
 
 type User struct {
-	Id     string          `json:"id"`
-	Name   string          `json:"name"`
-	Avatar string          `json:"avatar"`
-	Conn   *websocket.Conn `json:"-"`
+	Id            string          `json:"id"`
+	Name          string          `json:"name"`
+	Avatar        string          `json:"avatar"`
+	Conn          *websocket.Conn `json:"-"`
+	Status        string          `json:"state"`
+	MessageGroups []string        `json:"message_groups"`
+	FriendGroups  []string        `json:"friend_groups"`
 }
 
-type GroupHistoryMessage struct {
+type GroupHistory struct {
 	MessageId      string   `json:"message_id"`
 	SendGroupId    string   `json:"send_group_id"`
 	SendUserId     string   `json:"send_user_id"`
@@ -33,16 +36,22 @@ type GroupMembers struct {
 }
 
 type UserMessageGroup struct {
-	ID      string                 `json:"id"`
-	Name    string                 `json:"name"`
-	Avatar  string                 `json:"avatar"`
-	History []*GroupHistoryMessage `json:"history"`
-	Members []*GroupMembers        `json:"members"`
+	ID      string          `json:"id"`
+	Name    string          `json:"name"`
+	Avatar  string          `json:"avatar"`
+	History []*GroupHistory `json:"history"`
+	Members []*GroupMembers `json:"members"`
 }
 
-var ActiveGroup map[string][]*UserMessageGroup
-var ActiveUsers map[string]*User
+type WebSocketMessage struct {
+	GroupId string      `json:"group_id"`
+	Type    string      `json:"type"`
+	Data    interface{} `json:"data"`
+}
+
+var AllGroup map[string]*UserMessageGroup
 var AllUsers map[string]*User
+var UserAvatar []string
 
 /*
 所有用户
@@ -52,9 +61,10 @@ var AllUsers map[string]*User
 用户有哪些好友
 */
 
+const StaticAddress = "http://127.0.0.1:34332"
+
 func InitData() {
-	ActiveGroup = make(map[string][]*UserMessageGroup)
-	ActiveUsers = make(map[string]*User)
+	AllGroup = make(map[string]*UserMessageGroup)
 	AllUsers = make(map[string]*User)
 	GroupAvatar, err := os.ReadDir("./static/group_avatar/")
 	if err != nil {
@@ -62,59 +72,47 @@ func InitData() {
 		return
 	}
 
-	var groupList []*UserMessageGroup
 	for _, entry := range GroupAvatar {
 		groupUuid := uuid.New().String()
-		groupData := &UserMessageGroup{
+		AllGroup[groupUuid] = &UserMessageGroup{
 			ID:      groupUuid,
 			Name:    groupUuid,
-			Avatar:  "http://127.0.0.1:34332/avatar/group_avatar/" + entry.Name(),
+			Avatar:  StaticAddress + "/avatar/group_avatar/" + entry.Name(),
 			History: nil,
 			Members: nil,
 		}
-		groupList = append(groupList, groupData)
+
 	}
 
-	UserAvatar, err := os.ReadDir("./static/user_avatar/")
+	userAvatar, err := os.ReadDir("./static/user_avatar/")
 	if err != nil {
 		log.Println("读取目录失败: ", err)
 		return
 	}
-	var groupUserList []*GroupMembers
-	for _, entry := range UserAvatar {
+
+	for _, entry := range userAvatar {
+		UserAvatar = append(UserAvatar, StaticAddress+"/avatar/user_avatar/"+entry.Name())
 		userUuid := uuid.New().String()
 
 		userData := &User{
 			Id:     userUuid,
 			Name:   userUuid,
-			Avatar: "http://127.0.0.1:34332/avatar/user_avatar/" + entry.Name(),
+			Avatar: StaticAddress + "/avatar/user_avatar/" + entry.Name(),
 			Conn:   nil,
 		}
 		AllUsers[userUuid] = userData
-		groupUserData := &GroupMembers{
-			Id:       userData.Id,
-			Name:     userData.Id,
-			Avatar:   "http://127.0.0.1:34332/avatar/user_avatar/" + entry.Name(),
-			Usertype: "普通群员",
-			Status:   "正常",
-		}
-		ActiveUsers[userUuid] = userData
-		groupUserList = append(groupUserList, groupUserData)
-
-		ActiveGroup[userUuid] = groupList
-
 	}
-
-	for k := range ActiveUsers {
-		for j := range ActiveGroup[k] {
-			ActiveGroup[k][j].Members = groupUserList
-		}
-	}
+	//
+	//for k := range AllUsers {
+	//	for j := range AllGroup[k] {
+	//		AllGroup[k][j].Members = groupUserList
+	//	}
+	//}
 
 	//log.Println(ActiveGroup)
 	//log.Println(ActiveUsers)
-	for i := range ActiveGroup {
-		log.Println(i)
-	}
+	//for i := range AllGroup {
+	//	log.Println(i)
+	//}
 
 }

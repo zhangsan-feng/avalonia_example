@@ -1,0 +1,49 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:vm="clr-namespace:example.Component.Messages.GroupMembers"
+             x:DataType="vm:GroupMembersViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="example.Component.Messages.GroupMembers.GroupMembersView">
+    
+    <ListBox ItemsSource="{Binding GroupMembers}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="Auto" />
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="Auto" />
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Border Grid.Column="0"
+                                                            Width="25"
+                                                            Height="25"
+                                                            CornerRadius="25"
+                                                            ClipToBounds="True">
+                                                        <Image asyncImageLoader:ImageLoader.Source="{Binding Avatar}" />
+                                                    </Border>
+
+                                                    <TextBlock Grid.Column="1"
+                                                               Text="{Binding Name}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Margin="8,0,0,0" />
+                                                    <!-- <TextBlock Grid.Column="1" -->
+                                                    <!--            Text="{Binding Avatar}" -->
+                                                    <!--            TextTrimming="CharacterEllipsis" -->
+                                                    <!--            Margin="8,0,0,0" /> -->
+                                                    <Border Grid.Column="2" Background="#c4e3f7" CornerRadius="55"
+                                                            HorizontalAlignment="Right"
+                                                            VerticalAlignment="Center">
+                                                        <TextBlock TextAlignment="Center" Text="{Binding UserTyoe}" />
+                                                    </Border>
+
+                                                </Grid>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+</UserControl>

@@ -29,7 +29,7 @@ func UserSendMessageApi(r *gin.Context) {
 
 	form, _ := r.MultipartForm()
 	files := form.File["files"]
-	log.Println(files)
+	//log.Println(files)
 
 	message_files := []string{}
 
@@ -51,47 +51,73 @@ func UserSendMessageApi(r *gin.Context) {
 		}
 	}
 
+	//AllUsers[req.SendUserId].Conn.WriteMessage(websocket.TextMessage, []byte(req.Message))
 	//if err := global.EventBus.Publish(event_bus.EventWebSocketMessage, gconv.String("")); err != nil {
 	//	log.Println(err)
 	//}
-	log.Println(message_files)
 
-	//ActiveUsers[req.SendUserId].Conn.WriteMessage(websocket.TextMessage, []byte(req.Message))
+	//log.Println(message_files)
 
-	for _, v := range ActiveGroup[req.SendUserId] {
-		if v.ID == req.SendGroupId {
-			for _, k := range v.Members {
-				if ActiveUsers[k.Id] != nil {
-					if ActiveUsers[k.Id].Conn != nil {
-						uid, uuid_err := uuid.NewUUID()
-						if uuid_err != nil {
-							log.Println(uuid_err)
-							return
-						}
-						sendMsg := &GroupHistoryMessage{
-							MessageId:      uid.String(),
-							SendGroupId:    req.SendGroupId,
-							SendUserId:     req.SendUserId,
-							SendUserName:   AllUsers[req.SendUserId].Name,
-							SendUserAvatar: AllUsers[req.SendUserId].Avatar,
-							Message:        req.Message,
-							Time:           time.Now().Format("2006-01-02 15:04:05"),
-							Files:          message_files,
-						}
-						log.Println(gconv.String(sendMsg))
-						err := ActiveUsers[k.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(sendMsg)))
-						if err != nil {
-							log.Println(err)
-							return
-						}
-						if len(v.History) == 1000 {
-							v.History = v.History[500:]
-						}
-						v.History = append(v.History, sendMsg)
+	group := AllGroup[req.SendGroupId]
+	exist := false
+	for _, groupMember := range group.Members {
+		if groupMember.Id == req.SendUserId {
+			exist = true
+		}
+	}
+	if !exist {
+		groupMember := &GroupMembers{
+			Id:       req.SendUserId,
+			Name:     AllUsers[req.SendUserId].Name,
+			Avatar:   AllUsers[req.SendUserId].Avatar,
+			Usertype: "普通群员",
+			Status:   AllUsers[req.SendUserId].Status,
+		}
+
+		group.Members = append(group.Members, groupMember)
+		for _, v := range group.Members {
+			if AllUsers[v.Id] != nil {
+				if AllUsers[v.Id].Conn != nil {
+					send := &WebSocketMessage{
+						Type:    "join_group",
+						Data:    groupMember,
+						GroupId: req.SendGroupId,
+					}
+					if err := AllUsers[v.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(send))); err != nil {
+						log.Println(err)
 					}
 				}
 			}
-			break
+		}
+
+	}
+
+	for _, v := range group.Members {
+		if AllUsers[v.Id] != nil {
+			if AllUsers[v.Id].Conn != nil {
+				sendMsg := &GroupHistory{
+					MessageId:      uuid.New().String(),
+					SendGroupId:    req.SendGroupId,
+					SendUserId:     req.SendUserId,
+					SendUserName:   AllUsers[req.SendUserId].Name,
+					SendUserAvatar: AllUsers[req.SendUserId].Avatar,
+					Message:        req.Message,
+					Time:           time.Now().Format("2006-01-02 15:04:05"),
+					Files:          message_files,
+				}
+				//log.Println(gconv.String(sendMsg))
+				send := &WebSocketMessage{
+					Type: "message",
+					Data: sendMsg,
+				}
+				if err := AllUsers[v.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(send))); err != nil {
+					log.Println(err)
+				}
+				if len(group.History) == 1000 {
+					group.History = group.History[500:]
+				}
+				group.History = append(group.History, sendMsg)
+			}
 		}
 	}
 	//log.Println(data)

@@ -1,0 +1,106 @@
+2026/01/12 15:58:27 main.go:120: http server start  0.0.0.0:34332
+2026/01/12 15:58:27 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 15:58:41 register_websocket.go:27: fbd7e283-faec-4403-b34f-5a4b7a503ad4
+2026/01/12 15:58:41 register_websocket.go:28: asdasdas123123
+2026/01/12 15:58:43 user_send_message.go:28: fbd7e283-faec-4403-b34f-5a4b7a503ad4 eab8721b-df00-4449-944c-aad084f99bad aaa
+2026/01/12 15:58:45 user_send_message.go:28: fbd7e283-faec-4403-b34f-5a4b7a503ad4 eab8721b-df00-4449-944c-aad084f99bad bbb
+2026/01/12 15:59:05 register_websocket.go:27: 5ddd5af8-2c95-483b-84c9-1cc156c10e44
+2026/01/12 15:59:05 register_websocket.go:28: asdasdas123123
+2026/01/12 15:59:06 user_send_message.go:28: 5ddd5af8-2c95-483b-84c9-1cc156c10e44 da040692-99ad-469f-a8aa-21e1f3e9ced2 111
+2026/01/12 15:59:08 user_send_message.go:28: 5ddd5af8-2c95-483b-84c9-1cc156c10e44 da040692-99ad-469f-a8aa-21e1f3e9ced2 222
+2026/01/12 16:00:56 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 16:00:56 main.go:120: http server start  0.0.0.0:34332
+2026/01/12 16:00:56 register_websocket.go:27: 5ddd5af8-2c95-483b-84c9-1cc156c10e44
+2026/01/12 16:00:56 register_websocket.go:28: asdasdas123123
+2026/01/12 16:15:13 register_websocket.go:27: e595a776-c837-4ecb-951c-4ac3cb5a7eb0
+2026/01/12 16:15:13 register_websocket.go:28: asdasdas123123
+2026/01/12 16:15:15 user_send_message.go:28: e595a776-c837-4ecb-951c-4ac3cb5a7eb0 14732923-38f2-4485-82d1-7b6a50b13ede 0..
+2026/01/12 16:16:10 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 16:16:10 main.go:120: http server start  0.0.0.0:34332
+2026/01/12 16:16:10 register_websocket.go:27: e595a776-c837-4ecb-951c-4ac3cb5a7eb0
+2026/01/12 16:16:10 register_websocket.go:28: asdasdas123123
+2026/01/12 16:16:13 user_send_message.go:28: e595a776-c837-4ecb-951c-4ac3cb5a7eb0 14732923-38f2-4485-82d1-7b6a50b13ede 123
+2026/01/12 16:16:16 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 16:16:16 main.go:120: http server start  0.0.0.0:34332
+2026/01/12 16:16:26 register_websocket.go:27: 4207f26c-08e5-41f8-9366-569ed0029b45
+2026/01/12 16:16:26 register_websocket.go:28: asdasdas123123
+2026/01/12 16:16:28 user_send_message.go:28: 4207f26c-08e5-41f8-9366-569ed0029b45 ea4eaed8-7349-402c-bcb6-7d471ccb988f 00
+2026/01/12 16:17:11 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 16:17:11 main.go:120: http server start  0.0.0.0:34332
+2026/01/12 16:17:12 register_websocket.go:27: 4207f26c-08e5-41f8-9366-569ed0029b45
+2026/01/12 16:17:12 register_websocket.go:28: asdasdas123123
+2026/01/12 16:17:21 register_websocket.go:27: d23fde7c-2804-47a8-bbaa-bd31938b2f59
+2026/01/12 16:17:21 register_websocket.go:28: asdasdas123123
+2026/01/12 16:17:22 user_send_message.go:28: d23fde7c-2804-47a8-bbaa-bd31938b2f59 d846f3bb-1a70-45cc-8ebf-453ee3cf61ed 000
+2026/01/12 16:17:54 register_websocket.go:27: 764a7837-d915-455d-9031-74b5f4eb4528
+2026/01/12 16:17:54 register_websocket.go:28: asdasdas123123
+2026/01/12 16:17:56 user_send_message.go:28: 764a7837-d915-455d-9031-74b5f4eb4528 464a13b3-2dcc-4728-954d-31aacc554e3a 111
+2026/01/12 16:21:28 register_websocket.go:27: 0bce6f75-3c8e-451a-b4f3-f1c1e0eaf4ae
+2026/01/12 16:21:28 register_websocket.go:28: asdasdas123123
+2026/01/12 16:21:29 user_send_message.go:28: 0bce6f75-3c8e-451a-b4f3-f1c1e0eaf4ae c2e38510-ed7f-4e0b-a0f9-c58cc8df9339 111
+2026/01/12 16:23:17 user_send_message.go:28: 0bce6f75-3c8e-451a-b4f3-f1c1e0eaf4ae 0997e88b-a53e-4785-befe-bdec67aebbda 1111
+2026/01/12 16:26:07 register_websocket.go:27: 72a25964-e27e-46c9-8ae7-4cc287024a22
+2026/01/12 16:26:07 register_websocket.go:28: asdasdas123123
+2026/01/12 16:26:09 user_send_message.go:28: 72a25964-e27e-46c9-8ae7-4cc287024a22 ef351cd9-c2d1-4797-9139-814b768e661c 11
+2026/01/12 16:26:11 user_send_message.go:28: 72a25964-e27e-46c9-8ae7-4cc287024a22 fdbc3935-fe99-4b20-a8a7-e5146c6b3439 222
+2026/01/12 16:32:56 register_websocket.go:27: db357b68-c86e-42a4-8d6f-0d219ce58918
+2026/01/12 16:32:56 register_websocket.go:28: asdasdas123123
+2026/01/12 16:32:58 user_send_message.go:28: db357b68-c86e-42a4-8d6f-0d219ce58918 6592c06e-f2dc-4af2-bff1-2e5ebe47b4c3 w 
+2026/01/12 16:39:49 register_websocket.go:27: e5088245-6a4e-4f4f-8e01-7b872321b7fc
+2026/01/12 16:39:49 register_websocket.go:28: asdasdas123123
+2026/01/12 16:39:51 user_send_message.go:28: e5088245-6a4e-4f4f-8e01-7b872321b7fc 4181d47e-2837-426c-a878-82da0aaef311 111
+2026/01/12 16:44:43 register_websocket.go:27: 1525454e-89ea-4c3c-af9c-146f49ab26e1
+2026/01/12 16:44:43 register_websocket.go:28: asdasdas123123
+2026/01/12 16:44:45 user_send_message.go:28: 1525454e-89ea-4c3c-af9c-146f49ab26e1 0997e88b-a53e-4785-befe-bdec67aebbda 11
+2026/01/12 16:44:45 user_send_message.go:87: write tcp 127.0.0.1:34332->127.0.0.1:12851: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/12 16:44:45 user_send_message.go:114: write tcp 127.0.0.1:34332->127.0.0.1:12851: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/12 16:44:52 user_send_message.go:28: 1525454e-89ea-4c3c-af9c-146f49ab26e1 10004f6d-d8fc-46b7-9397-601fd3a931fe 111
+2026/01/12 16:44:57 user_send_message.go:28: 1525454e-89ea-4c3c-af9c-146f49ab26e1 10004f6d-d8fc-46b7-9397-601fd3a931fe 我操
+2026/01/12 16:45:00 user_send_message.go:28: 1525454e-89ea-4c3c-af9c-146f49ab26e1 963c590c-60cc-43f4-a22e-dccc63533e60 你妈的
+2026/01/12 16:47:12 register_websocket.go:27: 376a30cc-b95b-4f3e-b477-dfca952a629a
+2026/01/12 16:47:12 register_websocket.go:28: asdasdas123123
+2026/01/12 16:48:27 register_websocket.go:27: b4d6b384-0c5c-4076-bd70-586838b4d1ce
+2026/01/12 16:48:27 register_websocket.go:28: asdasdas123123
+2026/01/12 16:48:59 register_websocket.go:27: 734c2f3e-4876-49f3-94d0-fb08dad3bddb
+2026/01/12 16:48:59 register_websocket.go:28: asdasdas123123
+2026/01/12 16:49:39 register_websocket.go:27: a4089f60-d678-45ea-b7a2-cb0aa2d0cf3c
+2026/01/12 16:49:39 register_websocket.go:28: asdasdas123123
+2026/01/12 16:50:50 register_websocket.go:27: 6f7c0b46-2a89-4b98-9af1-f15f26b85ca1
+2026/01/12 16:50:50 register_websocket.go:28: asdasdas123123
+2026/01/12 16:51:15 register_websocket.go:27: 8577a7a6-700f-4beb-a1c2-78e450e46497
+2026/01/12 16:51:15 register_websocket.go:28: asdasdas123123
+2026/01/12 16:51:40 register_websocket.go:27: 1b427625-6c4a-4b79-9932-d8893378dce1
+2026/01/12 16:51:40 register_websocket.go:28: asdasdas123123
+2026/01/12 16:52:43 register_websocket.go:27: 2dfefc57-3b76-4d8c-8f9d-c362b9975781
+2026/01/12 16:52:43 register_websocket.go:28: asdasdas123123
+2026/01/12 16:53:31 register_websocket.go:27: 2dfefc57-3b76-4d8c-8f9d-c362b9975781
+2026/01/12 16:53:31 register_websocket.go:28: asdasdas123123
+2026/01/12 16:53:45 register_websocket.go:27: 2dfefc57-3b76-4d8c-8f9d-c362b9975781
+2026/01/12 16:53:45 register_websocket.go:28: asdasdas123123
+2026/01/12 16:55:41 register_websocket.go:27: 2dfefc57-3b76-4d8c-8f9d-c362b9975781
+2026/01/12 16:55:41 register_websocket.go:28: asdasdas123123
+2026/01/12 16:56:54 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 16:56:54 main.go:120: http server start  0.0.0.0:34332
+2026/01/12 16:56:56 register_websocket.go:27: 2dfefc57-3b76-4d8c-8f9d-c362b9975781
+2026/01/12 16:56:56 register_websocket.go:28: asdasdas123123
+2026/01/12 16:57:13 register_websocket.go:27: 61c4eb1e-1233-4a44-a0c5-314a55fdb401
+2026/01/12 16:57:13 register_websocket.go:28: asdasdas123123
+2026/01/12 16:57:15 user_send_message.go:28: 61c4eb1e-1233-4a44-a0c5-314a55fdb401 b02f22db-60b7-4a2f-9eaf-85fc579a96be 我擦
+2026/01/12 16:57:19 user_send_message.go:28: 61c4eb1e-1233-4a44-a0c5-314a55fdb401 b02f22db-60b7-4a2f-9eaf-85fc579a96be 你妈的
+2026/01/12 17:02:52 register_websocket.go:27: c0ada3d1-3cdd-4d6c-82c6-5fae652d64d0
+2026/01/12 17:02:52 register_websocket.go:28: asdasdas123123
+2026/01/12 17:05:13 register_websocket.go:27: 057b6283-39c6-43ac-af97-123e1e21245f
+2026/01/12 17:05:13 register_websocket.go:28: asdasdas123123
+2026/01/12 17:05:33 register_websocket.go:27: fd4482ec-5575-4f77-b4a1-6fa6a856796d
+2026/01/12 17:05:33 register_websocket.go:28: asdasdas123123
+2026/01/12 17:05:51 register_websocket.go:27: 8cd0548e-7b33-4140-aa89-8725f0255b54
+2026/01/12 17:05:51 register_websocket.go:28: asdasdas123123
+2026/01/12 17:06:08 register_websocket.go:27: db63a985-ef5d-4177-8bcd-675dce3f8c7d
+2026/01/12 17:06:08 register_websocket.go:28: asdasdas123123
+2026/01/12 17:07:08 register_websocket.go:27: de08d8cf-a691-4d9e-971b-696e550335ed
+2026/01/12 17:07:08 register_websocket.go:28: asdasdas123123
+2026/01/12 17:07:18 user_send_message.go:28: de08d8cf-a691-4d9e-971b-696e550335ed b02f22db-60b7-4a2f-9eaf-85fc579a96be 傻逼
+2026/01/12 17:07:18 user_send_message.go:87: write tcp 127.0.0.1:34332->127.0.0.1:1395: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/12 17:07:18 user_send_message.go:114: write tcp 127.0.0.1:34332->127.0.0.1:1395: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/12 17:08:08 event_bus.go:135: Subscribed to event: websocket
+2026/01/12 17:08:08 main.go:120: http server start  0.0.0.0:34332

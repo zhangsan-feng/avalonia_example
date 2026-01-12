@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Refit;
@@ -33,6 +34,7 @@ public class GroupHistoryMessageHttp{
     [JsonPropertyName("files")] public string[] Files{ get; set; }
 }
 
+
 public class GroupMembersHttp{
     [JsonPropertyName("id")] public string Id{ get; set; }
     [JsonPropertyName("name")] public string Name{ get; set; }
@@ -49,13 +51,20 @@ public  class UserMessageGroupHttp{
 }
 
 
+public class WebSocketMessage{
+    [JsonPropertyName("group_id")] public string GroupId{ get; set; }
+    [JsonPropertyName("type")] public string Type { get; set; } = string.Empty;
+    [JsonPropertyName("data")] public JsonElement Data { get; set; }
+}
+
+
 public  class ApiResponse<T>{
     [JsonPropertyName("code")] public int Code{ get; set; }
     [JsonPropertyName("msg")] public string Msg{ get; set; }
     [JsonPropertyName("data")] public T Data{ get; set; }
 }
 
-public interface IMessage{
+public interface ChatMessageApiInterface{
     [Post("/user_send_message")]
     [Multipart]
     Task<ApiResponse<string>> SendMessage(

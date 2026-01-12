@@ -19,12 +19,11 @@ public class GroupMembersUi{
     public string Id{ get; set; }
     public string UserTyoe{ get; set; }
     public string Avatar{ get; set; }
-
     public static async Task<GroupMembersUi> FromPayloadAsync(GroupMembersHttp payload){
         if (payload == null)
             return null;
         
-
+        // Console.WriteLine(payload.Avatar);
         return new GroupMembersUi {
             Id = payload.Id,
             Name = payload.Name,
@@ -72,9 +71,14 @@ public class UserMessageGroupUi : ReactiveObject{
     public string? Avatar{ get; set; }
     public int MessageNumber{ get; set; }
     public GroupHistoryMessageHttp[] History{ get; set; }
-    public GroupMembersUi[] Members{ get; set; }
     public ObservableCollection<GroupHistoryMessageUi> HistoryCache { get; set; } = new();
     public bool IsHistoryLoaded { get; set; } = false;
+    
+    private ObservableCollection<GroupMembersUi> _members = new();
+    public ObservableCollection<GroupMembersUi> Members{
+        get => _members;
+        set => this.RaiseAndSetIfChanged(ref _members, value);
+    }
     
     private bool _showMessageNumber = false;
     public bool ShowMessageNumber{
@@ -102,12 +106,12 @@ public class UserMessageGroupUi : ReactiveObject{
         MessageNumber = History.Length;
         LastMessage = History.Length > 0 ? History[^1] : new GroupHistoryMessageHttp();
         ShowMessageNumber = MessageNumber > 0;
-        if (data.Members.Length > 0){
+        if (data.Members != null && data.Members.Length > 0){
             var memberTasks = data.Members.Select(GroupMembersUi.FromPayloadAsync);
-            Members = await Task.WhenAll(memberTasks);
+            Members =  new ObservableCollection<GroupMembersUi>(await Task.WhenAll(memberTasks));
         }
         else{
-            Members = Array.Empty<GroupMembersUi>();
+            Members =  new ObservableCollection<GroupMembersUi>();
         }
     }
 }

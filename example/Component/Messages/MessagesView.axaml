@@ -5,6 +5,9 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:example.Component.Messages"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:groupHistory="clr-namespace:example.Component.Messages.GroupHistory"
+             xmlns:chatBox="clr-namespace:example.Component.Messages.ChatBox"
+             xmlns:groupMembers="clr-namespace:example.Component.Messages.GroupMembers"
              x:DataType="vm:MessagesViewModel"
              x:Class="example.Component.Messages.MessagesView">
 
@@ -24,12 +27,18 @@
             <Grid Grid.Row="0">
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <TextBox Margin="5"
-                             Width="155"
-                             Text="{Binding SearchInput}"
+                             Width="240"
                              Watermark="搜索" />
                     <Button DockPanel.Dock="Right"
                             Margin="5"
-                            Content="+" />
+                            Content="+" >
+                        <Button.Flyout>
+                            <MenuFlyout Placement="BottomEdgeAlignedLeft">
+                                <MenuItem Header="创建群聊" />
+                                <MenuItem Header="添加好友" />
+                            </MenuFlyout>
+                        </Button.Flyout>
+                    </Button>
                 </StackPanel>
             </Grid>
 
@@ -49,7 +58,6 @@
                                             <MenuItem Header="复制群号" />
                                             <MenuItem Header="标记已读" />
                                         </MenuItem>
-                                        <Border Height="1" Background="#999999" />
                                         <MenuItem Header="从消息列表中删除" />
 
                                     </ContextMenu>
@@ -94,11 +102,17 @@
                                     </Grid>
 
                                     <Border IsVisible="{Binding ShowMessageNumber}" Grid.Column="1" Grid.Row="0"
-                                            Background="Transparent" CornerRadius="12" HorizontalAlignment="Right"
-                                            Padding="4">
-                                        <TextBlock Text="{Binding MessageNumber}" />
+                                            Background="#bcbcbc" CornerRadius="15" HorizontalAlignment="Right"
+                                            Width="25" Height="25" Padding="4">
+                                        <TextBlock 
+                                            Text="{Binding MessageNumber}"                   
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center" />
                                     </Border>
-                                    <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding LastMessage.Time}" />
+                                    <TextBlock 
+                                        Grid.Column="1" 
+                                        Grid.Row="1" 
+                                        Text="{Binding LastMessage.Time}" />
 
                                 </Grid>
                             </Grid>
@@ -177,87 +191,9 @@
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0">
-
-                                <ListBox x:Name="ListBoxScrollIntoView" ItemsSource="{Binding GroupHistoryMessage}" >
-                                    <ListBox.ItemContainerTheme>
-                                        <ControlTheme TargetType="ListBoxItem">
-                                            <Setter Property="Template">
-                                                <ControlTemplate>
-                                                    <Border Background="{TemplateBinding Background}"
-                                                            Padding="{TemplateBinding Padding}">
-                                                        <ContentPresenter Content="{TemplateBinding Content}"
-                                                                          ContentTemplate="{TemplateBinding ContentTemplate}" />
-                                                    </Border>
-                                                </ControlTemplate>
-                                            </Setter>
-                                            <!-- 默认样式 -->
-                                            <Setter Property="Background" Value="Transparent" />
-                                            <Setter Property="Foreground" Value="Black" />
-                                            <Setter Property="Padding" Value="0" />
-                                        </ControlTheme>
-                                    </ListBox.ItemContainerTheme>
-                                    <ListBox.Styles>
-                                        <Style Selector="ListBoxItem:pointerover">
-                                            <Setter Property="Background" Value="Transparent" />
-                                        </Style>
-                                        <Style Selector="ListBoxItem:selected:pointerover">
-                                            <Setter Property="Background" Value="Transparent" />
-                                        </Style>
-                                    </ListBox.Styles>
-                                    
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel Orientation="Horizontal" Name="MessageControl"  Margin="15">
-                                                <StackPanel.Styles>
-                                                    <Style Selector="StackPanel[Tag=True]">
-                                                        <Setter Property="HorizontalAlignment" Value="Right" />
-                                                        <Setter Property="FlowDirection" Value="RightToLeft" />
-                                                    </Style>
-                                                    <Style Selector="StackPanel[Tag=False]">
-                                                        <Setter Property="HorizontalAlignment" Value="Left" />
-                                                        <Setter Property="FlowDirection" Value="LeftToRight" />
-                                                    </Style>
-                                                </StackPanel.Styles>
-
-                                                <StackPanel.Tag>
-                                                    <Binding Path="IsSelf" />
-                                                </StackPanel.Tag>
-
-                                                <Border Width="45" Height="45" CornerRadius="25"
-                                                        ClipToBounds="True">
-                                                    <Image
-                                                        asyncImageLoader:ImageLoader.Source="{Binding SendUserAvatar}"
-                                                        Width="45" Height="45"
-                                                        Stretch="UniformToFill" />
-                                                </Border>
-
-                                                <StackPanel Margin="10,30 0 0 " >
-                                                    <TextBlock Text="{Binding SendUserName}"
-                                                               FlowDirection="LeftToRight" />
-                                                    <TextBlock Text="{Binding Message}" Margin="0,5,0,0"
-                                                               FlowDirection="LeftToRight" />
-                                                    <ListBox ItemsSource="{Binding Files}" Margin="5"  >
-                                                        <ListBox.ItemsPanel>
-                                                            <ItemsPanelTemplate>
-                                                                <StackPanel Orientation="Horizontal" />
-                                                            </ItemsPanelTemplate>
-                                                        </ListBox.ItemsPanel>
-                                                        <ListBox.ItemTemplate>
-                                                            <DataTemplate>
-                                                                <Border Background="Transparent" Width="50" Height="50" PointerPressed="Image_PointerPressed">
-                                                                    <Image asyncImageLoader:ImageLoader.Source="{Binding }"  />
-                                                                </Border>
-                                                            </DataTemplate>
-                                                        </ListBox.ItemTemplate>
-                                                    </ListBox>
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
+                                <groupHistory:GroupHistoryView  DataContext="{Binding GroupHistoryVm}"/>
                             </Grid>
-
-                            <!-- <GridSplitter Grid.Row="1" ResizeDirection="Rows" Background="Transparent"/> -->
+                            
                             <GridSplitter Grid.Row="1" ResizeDirection="Rows">
                                 <GridSplitter.Template>
                                     <ControlTemplate>
@@ -266,82 +202,8 @@
                                 </GridSplitter.Template>
                             </GridSplitter>
 
-                            <Grid Grid.Row="2">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="30" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="50" />
-                                </Grid.RowDefinitions>
-                                <Grid Grid.Row="0">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Background="Transparent">
-                                            <Image Width="18" Source="avares://example/Assets/icons8-happy-64.png" />
-                                            <Button.Flyout>
-                                                <Flyout Placement="TopEdgeAlignedLeft">
-                                                    <Border Height="300" Width="400" />
-                                                </Flyout>
-                                            </Button.Flyout>
-                                        </Button>
-                                        <Button Background="Transparent">
-                                            <Image Width="18" Source="avares://example/Assets/icons8-scissors-50.png" />
-                                        </Button>
-                                        <Button Background="Transparent">
-                                            <Image Width="18" Source="avares://example/Assets/icons8-microphone-48.png" />
-                                        </Button>
-                                        <Button Background="Transparent" Click="SelectFiles">
-                                            <Image Width="18" Source="avares://example/Assets/icons8-picture-48.png" />
-                                        </Button>
-                                        <Button Background="Transparent" Click="SelectFiles">
-                                            <Image Width="18" Source="avares://example/Assets/icons8-folder-24.png" />
-                                        </Button>
-
-                                    </StackPanel>
-                                    <Button Margin="0 0 10 0" Background="Transparent" HorizontalAlignment="Right">
-                                        <Image Width="18" Source="avares://example/Assets/icons8-time-machine-50.png" />
-                                    </Button>
-
-                                </Grid>
-
-                                <Grid Grid.Row="1" Margin="8">
-
-                                    <!-- <ItemsControl ItemsSource="{Binding SelectedFiles}" Margin="5"> -->
-                                    <!--     <ItemsControl.ItemTemplate> -->
-                                    <!--         <DataTemplate> -->
-                                    <!--             <StackPanel Orientation="Horizontal" VerticalAlignment="Center"> -->
-                                    <!--                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center" /> -->
-                                    <!-- -->
-                                    <!--             </StackPanel> -->
-                                    <!--         </DataTemplate> -->
-                                    <!--     </ItemsControl.ItemTemplate> -->
-                                    <!-- </ItemsControl> -->
-
-                                    <TextBox Name="InputBox"
-                                             Text="{Binding UserInput}"
-                                             Padding="8"
-                                             AcceptsReturn="False"
-                                             AcceptsTab="True">
-                                        <TextBox.KeyBindings>
-                                            <KeyBinding Gesture="Enter" Command="{Binding SubmitMessageEvent}" />
-                                        </TextBox.KeyBindings>
-                                    </TextBox>
-                                </Grid>
-
-                                <!-- </Grid> -->
-
-                                <Grid Grid.Row="2" RowSpacing="10">
-                                    <Button
-                                        HorizontalContentAlignment="Center"
-                                        VerticalContentAlignment="Center"
-                                        HorizontalAlignment="Right"
-                                        CornerRadius="10"
-                                        Background="#0099ff"
-                                        Command="{Binding SubmitMessageEvent}"
-                                        Width="80" Margin="0 0 10 0">
-                                        发送
-                                    </Button>
-                                </Grid>
-
-                            </Grid>
+                            <chatBox:ChatBoxView Grid.Row="2" DataContext="{Binding ChatBoxVm}"/>
+                            
                         </Grid>
                     </Grid>
 
@@ -371,41 +233,7 @@
 
                             <Grid Grid.Row="2">
                                 <TextBlock>群成员</TextBlock>
-                                <ListBox ItemsSource="{Binding GroupUser}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
-
-                                                    <Border Grid.Column="0"
-                                                            Width="25"
-                                                            Height="25"
-                                                            CornerRadius="25"
-                                                            ClipToBounds="True">
-                                                        <Image asyncImageLoader:ImageLoader.Source="{Binding Avatar}" />
-                                                    </Border>
-
-                                                    <TextBlock Grid.Column="1"
-                                                               Text="{Binding Name}"
-                                                               TextTrimming="CharacterEllipsis"
-                                                               Margin="8,0,0,0" />
-
-                                                    <Border Grid.Column="2" Background="#c4e3f7" CornerRadius="55"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Center">
-                                                        <TextBlock TextAlignment="Center" Text="{Binding UserTyoe}" />
-                                                    </Border>
-
-                                                </Grid>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
+                                <groupMembers:GroupMembersView DataContext="{Binding GroupMemberVm}"/>
                             </Grid>
                         </Grid>
                     </Grid>

@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text.Json;
-using System.Text.Json.Serialization.Metadata;
 using System.Threading.Tasks;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
-using Avalonia.Platform.Storage;
-using Avalonia.Threading;
+using DynamicData;
+using example.Component.Messages.ChatBox;
+using example.Component.Messages.GroupHistory;
+using example.Component.Messages.GroupMembers;
 using example.State;
 using example.ViewModels;
 using ReactiveUI;
@@ -20,79 +16,59 @@ using Refit;
 
 namespace example.Component.Messages;
 
-
-
-public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
-    public AppStateService State => AppState.Global;
-    public readonly IMessage MessageApi; 
-    public ReactiveCommand<Unit, Unit> SubmitMessageEvent  { get; }
-    
+public class MessagesViewModel : ViewModelBase, IRoutableViewModel{
     public IScreen HostScreen{ get; }
     public string UrlPathSegment{ get; } = "MessagesViewModel";
-    
+
+
+    public AppStateService State => AppState.Global;
+    public readonly ChatMessageApiInterface ChatMessageApi;
+
+
+    public ChatBoxViewModel ChatBoxVm{ get; set; }
+    public GroupHistoryViewModel GroupHistoryVm{ get; set; }
+    public GroupMembersViewModel GroupMemberVm{ get; set; }
+
+
+    private ObservableCollection<UserMessageGroupUi> _messageGroup;
+
+    public ObservableCollection<UserMessageGroupUi> MessageGroup{
+        get => _messageGroup;
+        set => this.RaiseAndSetIfChanged(ref _messageGroup, value);
+    }
+
+
     private UserMessageGroupUi? _selectMessageGroupIndex;
     public UserMessageGroupUi? SelectMessageGroupIndex{
         get => _selectMessageGroupIndex;
-        set => this.RaiseAndSetIfChanged(ref _selectMessageGroupIndex, value);
+        set{
+            this.RaiseAndSetIfChanged(ref _selectMessageGroupIndex, value);
+            ChatBoxVm.SelectGroupId = value.Id;
+        }
     }
-    
+
     private bool messageWindowIsShow = true;
+
     public bool MessageWindowIsShow{
         get => messageWindowIsShow;
         set => this.RaiseAndSetIfChanged(ref messageWindowIsShow, value);
     }
 
-    private ObservableCollection<GroupMembersUi> _groupUser;
-    public ObservableCollection<GroupMembersUi> GroupUser{
-        get =>  _groupUser; 
-        set => this.RaiseAndSetIfChanged(ref _groupUser, value);
-    }
-
-    private ObservableCollection<UserMessageGroupUi> _messageGroup;
-    public ObservableCollection<UserMessageGroupUi> MessageGroup{
-        get =>  _messageGroup; 
-        set => this.RaiseAndSetIfChanged(ref _messageGroup, value);
-    }
     
-    private string? _searchInput;
-    public string? SearchInput{
-        get => _searchInput;
-        set => this.RaiseAndSetIfChanged(ref _searchInput, value);
-    }
-
     private readonly CompositeDisposable _disposables = new();
     public void Dispose() => _disposables.Clear();
-    
-    private ObservableCollection<GroupHistoryMessageUi> _receivedMessage = [];
-    public ObservableCollection<GroupHistoryMessageUi> GroupHistoryMessage{
-        get => _receivedMessage;
-        set => this.RaiseAndSetIfChanged(ref _receivedMessage, value);
-    }
-    
-    private string _userInput;
-    public string UserInput{
-        get => _userInput;
-        set =>this.RaiseAndSetIfChanged(ref _userInput, value);
-    }
-    
-    private IReadOnlyList<IStorageFile> _selectedFiles;
-    public IReadOnlyList<IStorageFile> SelectedFiles{
-        get => _selectedFiles;
-        set => this.RaiseAndSetIfChanged(ref _selectedFiles, value);
-    }
-    
-    public ReactiveCommand<IStorageFile, Unit> RemoveFileCommand { get; }
+
     
     private async Task InitializeAsync(){
         try{
-            var res = await MessageApi.GetMessageGroup(State.UserId);
+            var res = await ChatMessageApi.GetMessageGroup(State.UserId);
             // Console.WriteLine(res.Data);
             var tasks = res.Data.Select(UserMessageGroupUi.FromPayloadAsync);
             MessageGroup = new ObservableCollection<UserMessageGroupUi>(await Task.WhenAll(tasks));
             MessageWindowIsShow = true;
             if (MessageGroup.Count > 0){
                 SelectMessageGroupIndex = MessageGroup[0];
-                GroupUser = new ObservableCollection<GroupMembersUi>(
+                GroupMemberVm.GroupMembers = new ObservableCollection<GroupMembersUi>(
                     SelectMessageGroupIndex.Members ?? Enumerable.Empty<GroupMembersUi>()
                 );
             }
@@ -101,89 +77,107 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel  {
             Console.WriteLine($"API Error: {ex}");
         }
     }
-    public ObservableCollection<Bitmap> PastedImages { get; } = new();
-    public void AddImage(Bitmap bitmap){
-        using (var ms = new System.IO.MemoryStream()){
-            bitmap.Save(ms);
-            ms.Position = 0;
-            var clonedBitmap = new Bitmap(ms);
-            
-            Avalonia.Threading.Dispatcher.UIThread.Post(() => {
-                PastedImages.Add(clonedBitmap);
-            });
-        }
 
-        Console.WriteLine(PastedImages.Count);
-    }
-    
 
     public MessagesViewModel(IScreen screen){
         HostScreen = screen;
-        MessageApi = RestService.For<IMessage>("http" + State.ServerAddress);
-        if (SelectMessageGroupIndex == null){
-            MessageWindowIsShow = false;
-        }
+        ChatMessageApi = RestService.For<ChatMessageApiInterface>("http" + State.ServerAddress);
+        
         _ = InitializeAsync();
-        
-        
-        SubmitMessageEvent = ReactiveCommand.CreateFromTask(async () => {
-            Console.WriteLine(UserInput);
-            if (UserInput != null && UserInput.Length != 0){
-                MessageApi.SendMessage(State.UserId, SelectMessageGroupIndex.Id, UserInput,[]);
-            }
-            
-            if (SelectedFiles != null && SelectedFiles.Count != 0 && SelectedFiles.Count <= 5) {
-                var files = new List<StreamPart>();
-                foreach (var file in SelectedFiles){
-                    var properties = await file.GetBasicPropertiesAsync();
-                    if (properties.Size > 8 * 1024 * 1024){
-                        continue;
-                    }
-                    var f = await file.OpenReadAsync();
-                    files.Add(new StreamPart(f, file.Name));
-                }
-                MessageApi.SendMessage(State.UserId, SelectMessageGroupIndex.Id, UserInput, files);
-            }
-            
-            SelectedFiles = [];
-            UserInput = "";
-        });
 
+        ChatBoxVm = new ChatBoxViewModel();
+        GroupHistoryVm = new GroupHistoryViewModel();
+        GroupMemberVm = new GroupMembersViewModel();
         
-        AppState.Global.Messages
-            .Select(msg => JsonSerializer.Deserialize<GroupHistoryMessageHttp>(msg)) 
-            .Where(payload => payload != null) 
-            .SelectMany(async payload => new { 
-                Payload = payload, 
-                UI = await GroupHistoryMessageUi.FromPayloadAsync(payload) 
-            }) 
-            .ObserveOn(RxApp.MainThreadScheduler) 
+        var parsedMessages = AppState.Global.Messages
+            .Select(msg => {
+                try{
+                    return JsonSerializer.Deserialize<WebSocketMessage>(msg);
+                }
+                catch (Exception ex){
+                    Console.WriteLine($"Parse error: {ex.Message}");
+                    return null;
+                }
+            })
+            .Where(header => header != null)
+            .Publish()
+            .RefCount();
+
+        parsedMessages
+            .Where(data => data.Type == "message")
+            .Select(msg => JsonSerializer.Deserialize<GroupHistoryMessageHttp>(msg.Data))
+            .Where(payload => payload != null)
+            .SelectMany(async payload => new {
+                Payload = payload,
+                UI = await GroupHistoryMessageUi.FromPayloadAsync(payload)
+            })
+            .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(result => {
+                // Console.WriteLine(result);
                 var targetGroup = MessageGroup.FirstOrDefault(g => g.Id == result.Payload.SendGroupId);
                 if (targetGroup != null){
                     targetGroup.HistoryCache.Add(result.UI);
                     targetGroup.LastMessage = result.Payload;
+
                     Console.WriteLine($"recv group: [ {targetGroup.Id} ] message");
                 }
             })
             .DisposeWith(_disposables);
-        
+
+        parsedMessages
+            .Where(data => data.Type == "join_group")
+            .SelectMany(async msg => {
+                try{
+                    var payload = msg.Data.Deserialize<GroupMembersHttp>();
+                    if (payload == null) return null;
+
+                    var ui = await GroupMembersUi.FromPayloadAsync(payload);
+                    return new {
+                        GroupId = msg.GroupId,
+                        Payload = payload,
+                        UI = ui
+                    };
+                }
+                catch (Exception ex){
+                    Console.WriteLine($"Error processing join_group: {ex}");
+                    return null;
+                }
+            })
+            .Where(result => result != null) // 过滤掉失败的
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(result => {
+                Console.WriteLine($"Processing join_group for group: {result.GroupId}");
+                
+                var targetGroup = MessageGroup.FirstOrDefault(g => g.Id == result.GroupId);
+                if (targetGroup != null){
+                    Console.WriteLine(result.UI.GetType());
+                    targetGroup.Members.Add(result.UI);
+                    Console.WriteLine($"Updated group: [ {targetGroup.Id} ]");
+                }
+            })
+            .DisposeWith(_disposables);
+
         this.WhenAnyValue(x => x.SelectMessageGroupIndex)
             .WhereNotNull()
             .Do(item => item.ShowMessageNumber = false)
+            .SelectMany(async groupIndex => {
+                if (!groupIndex.IsHistoryLoaded) {
+                    var results = await Task.WhenAll(groupIndex.History.Select(GroupHistoryMessageUi.FromPayloadAsync));
+                    return (groupIndex, results);
+                }
+                return (groupIndex, (GroupHistoryMessageUi[])null);
+            })
             .ObserveOn(RxApp.MainThreadScheduler)
-            .Subscribe(async groupIndex => {
-                if (!groupIndex.IsHistoryLoaded){
-                    var tasks = groupIndex.History.Select(GroupHistoryMessageUi.FromPayloadAsync);
-                    var results = await Task.WhenAll(tasks);
+            .Subscribe(data => {
+                var (groupIndex, results) = data;
+                if (results != null) {
                     groupIndex.HistoryCache.Clear();
-                    foreach (var res in results) groupIndex.HistoryCache.Add(res);
+                    foreach (var r in results) groupIndex.HistoryCache.Add(r);
                     groupIndex.IsHistoryLoaded = true;
                 }
-                
-                GroupHistoryMessage = groupIndex.HistoryCache;
-                GroupUser = new ObservableCollection<GroupMembersUi>(groupIndex.Members ?? Enumerable.Empty<GroupMembersUi>());
-            })
+                GroupHistoryVm.GroupHistoryMessage = groupIndex.HistoryCache;
+                GroupMemberVm.GroupMembers = groupIndex.Members;
+            }, ex => Console.WriteLine($"Error loading history: {ex}"))
             .DisposeWith(_disposables);
     }
 }

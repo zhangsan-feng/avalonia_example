@@ -21,7 +21,8 @@ public class MenuItemViewModel(string title,string icon, Type viewModelType) : R
 }
 
 public class MainWindowViewModel : ViewModelBase, IScreen {
-
+    private readonly Dictionary<Type, IRoutableViewModel> _viewModelCache = new();
+    
     public List<MenuItemViewModel> MenuItems{ get; } = [
         new("", "avares://example/Assets/message_icon.png", typeof(MessagesViewModel)),
         new("", "avares://example/Assets/user_icon.png", typeof(UsersViewModel)),
@@ -49,12 +50,16 @@ public class MainWindowViewModel : ViewModelBase, IScreen {
         SelectedMenuItem = MenuItems[0];
         
         Button_OnClick = ReactiveCommand.Create(() => { BorderIsVisible = !BorderIsVisible; });
-
         
         this.WhenAnyValue(x => x.SelectedMenuItem)
             .WhereNotNull()
             .Subscribe(item => {
-                var vm = (IRoutableViewModel)Activator.CreateInstance(item.ViewModelType, this)!;
+                var vmType = item.ViewModelType;
+
+                if (!_viewModelCache.TryGetValue(vmType, out var vm)){
+                    vm = (IRoutableViewModel)Activator.CreateInstance(vmType, this)!;
+                    _viewModelCache[vmType] = vm;
+                }
                 Router.Navigate.Execute(vm);
             });
     }
