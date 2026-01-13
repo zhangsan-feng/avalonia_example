@@ -37,7 +37,7 @@ jobs:
       run: dotnet test ${{ env.SOLUTION_FILE }} --configuration ${{ matrix.configuration }} --no-build
 
     - name: Publish application
-      run: dotnet publish ${{ env.SOLUTION_FILE }} --configuration ${{ matrix.configuration }} --output ./publish/${{ matrix.configuration }}
+      run: dotnet publish -c Release -r win-x64 /p:PublishSingleFile=true /p:SelfContained=true /p:IncludeNativeLibrariesForSelfExtract=true --output ./publish/${{ matrix.configuration }}
 
     - name: Upload build artifacts (for debugging or PRs)
       uses: actions/upload-artifact@v4
