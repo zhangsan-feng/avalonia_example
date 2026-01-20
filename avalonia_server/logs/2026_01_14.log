@@ -1,0 +1,601 @@
+2026/01/14 09:54:17 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 09:54:17 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 09:54:36 register_websocket.go:27: eebd2e82-4b68-4a10-a951-6985a56d5907
+2026/01/14 09:54:36 register_websocket.go:28: asdasdas123123
+2026/01/14 09:54:38 user_send_message.go:28: eebd2e82-4b68-4a10-a951-6985a56d5907 0480b388-2cd7-4ba6-836d-7a578dcc7326 0
+2026/01/14 09:55:23 register_websocket.go:27: 364066e7-5682-4e9d-a2d7-d31346b0c937
+2026/01/14 09:55:23 register_websocket.go:28: asdasdas123123
+2026/01/14 09:55:25 user_send_message.go:28: 364066e7-5682-4e9d-a2d7-d31346b0c937 0a9da1f8-731a-4de4-aeb5-94ccf625f8cb 1
+2026/01/14 09:55:52 register_websocket.go:27: 45f7d60f-433d-488d-a591-d6f859c95bcc
+2026/01/14 09:55:52 register_websocket.go:28: asdasdas123123
+2026/01/14 09:55:54 user_send_message.go:28: 45f7d60f-433d-488d-a591-d6f859c95bcc 7c58f66c-fffb-4bf2-b830-7ea1e9f6b89d 1
+2026/01/14 09:56:17 register_websocket.go:27: d438f697-4ad0-480e-8328-9f5d80c9dc67
+2026/01/14 09:56:17 register_websocket.go:28: asdasdas123123
+2026/01/14 09:56:19 user_send_message.go:28: d438f697-4ad0-480e-8328-9f5d80c9dc67 79bca5df-be46-4626-bdee-b0c6c67884c3 1
+2026/01/14 09:56:57 register_websocket.go:27: 721fdb37-8cae-4cf9-92aa-bc11ef0b92aa
+2026/01/14 09:56:57 register_websocket.go:28: asdasdas123123
+2026/01/14 09:56:58 user_send_message.go:28: 721fdb37-8cae-4cf9-92aa-bc11ef0b92aa d5571a52-c4c8-48c3-8f52-2797b675a382 1
+2026/01/14 09:57:50 register_websocket.go:27: a149900d-3971-4d18-a05d-c275d833dedc
+2026/01/14 09:57:50 register_websocket.go:28: asdasdas123123
+2026/01/14 09:57:55 user_send_message.go:28: a149900d-3971-4d18-a05d-c275d833dedc 7c58f66c-fffb-4bf2-b830-7ea1e9f6b89d 1
+2026/01/14 09:57:55 user_send_message.go:92: write tcp 127.0.0.1:34332->127.0.0.1:5916: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 09:57:55 user_send_message.go:119: write tcp 127.0.0.1:34332->127.0.0.1:5916: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 10:21:07 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:21:07 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:21:24 register_websocket.go:27: 6045328a-5f37-49e0-92b7-13be8be8492b
+2026/01/14 10:21:24 register_websocket.go:28: asdasdas123123
+2026/01/14 10:22:16 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:22:16 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:22:19 register_websocket.go:27: 6045328a-5f37-49e0-92b7-13be8be8492b
+2026/01/14 10:22:19 register_websocket.go:28: asdasdas123123
+2026/01/14 10:22:24 register_websocket.go:27: 6045328a-5f37-49e0-92b7-13be8be8492b
+2026/01/14 10:22:24 register_websocket.go:28: asdasdas123123
+2026/01/14 10:22:32 register_websocket.go:27: 48a91f27-6dec-46d9-ba1b-b2a5420948d2
+2026/01/14 10:22:32 register_websocket.go:28: asdasdas123123
+2026/01/14 10:23:40 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:23:40 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:23:42 register_websocket.go:27: 48a91f27-6dec-46d9-ba1b-b2a5420948d2
+2026/01/14 10:23:42 register_websocket.go:28: asdasdas123123
+2026/01/14 10:23:54 register_websocket.go:27: 39f0f765-7226-4109-9da1-7a69fe6d3d1f
+2026/01/14 10:23:54 register_websocket.go:28: asdasdas123123
+2026/01/14 10:23:55 user_send_message.go:28: 39f0f765-7226-4109-9da1-7a69fe6d3d1f d59d4ee9-3a45-4752-a0a2-ae84a7a5ca60 1
+2026/01/14 10:24:18 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:24:18 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:24:19 register_websocket.go:27: 39f0f765-7226-4109-9da1-7a69fe6d3d1f
+2026/01/14 10:24:19 register_websocket.go:28: asdasdas123123
+2026/01/14 10:24:42 register_websocket.go:27: 54620104-719e-484b-b427-1cc2f6bd8510
+2026/01/14 10:24:42 register_websocket.go:28: asdasdas123123
+2026/01/14 10:24:44 user_send_message.go:28: 54620104-719e-484b-b427-1cc2f6bd8510 5dd6f77e-db73-464a-a943-9fedcc822958 1
+2026/01/14 10:25:41 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:25:41 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:25:41 data.go:82: 读取目录失败:  open ./avatar/group_avatar/: The system cannot find the path specified.
+2026/01/14 10:25:42 register_websocket.go:27: 54620104-719e-484b-b427-1cc2f6bd8510
+2026/01/14 10:25:42 register_websocket.go:28: asdasdas123123
+2026/01/14 10:25:47 register_websocket.go:27: 54620104-719e-484b-b427-1cc2f6bd8510
+2026/01/14 10:25:47 register_websocket.go:28: asdasdas123123
+2026/01/14 10:25:48 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:25:48 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:25:48 data.go:82: 读取目录失败:  open ./avatar/group_avatar/: The system cannot find the path specified.
+2026/01/14 10:25:52 register_websocket.go:27: 54620104-719e-484b-b427-1cc2f6bd8510
+2026/01/14 10:25:52 register_websocket.go:28: asdasdas123123
+2026/01/14 10:27:08 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:27:08 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:27:33 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 10:27:33 main.go:120: http server start  0.0.0.0:34332
+2026/01/14 10:27:44 register_websocket.go:27: c5373c2f-44f9-42cd-b062-1c9f40a6bc30
+2026/01/14 10:27:44 register_websocket.go:28: asdasdas123123
+2026/01/14 10:27:46 user_send_message.go:28: c5373c2f-44f9-42cd-b062-1c9f40a6bc30 2b30ded1-6c8a-4fdf-9191-8c5d475372db 1
+2026/01/14 11:46:33 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 11:46:33 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 13:34:34 register_websocket.go:28: f7971c0f-2eb3-42de-9b39-f6c2d7b8b09e
+2026/01/14 13:34:34 register_websocket.go:29: asdasdas123123
+2026/01/14 13:41:20 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:41:20 register_websocket.go:29: asdasdas123123
+2026/01/14 13:42:31 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 13:42:31 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 13:42:31 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:42:31 register_websocket.go:29: asdasdas123123
+2026/01/14 13:42:36 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:42:36 register_websocket.go:29: asdasdas123123
+2026/01/14 13:42:41 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:42:41 register_websocket.go:29: asdasdas123123
+2026/01/14 13:42:46 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:42:46 register_websocket.go:29: asdasdas123123
+2026/01/14 13:42:51 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:42:51 register_websocket.go:29: asdasdas123123
+2026/01/14 13:42:56 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:42:56 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:01 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:01 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:06 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:06 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:11 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:11 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:16 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:16 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:21 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:21 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:26 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:26 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:31 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:31 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:36 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:36 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:41 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:41 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:46 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:46 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:51 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:51 register_websocket.go:29: asdasdas123123
+2026/01/14 13:43:56 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:43:56 register_websocket.go:29: asdasdas123123
+2026/01/14 13:44:01 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:44:01 register_websocket.go:29: asdasdas123123
+2026/01/14 13:44:06 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:44:06 register_websocket.go:29: asdasdas123123
+2026/01/14 13:44:11 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:44:11 register_websocket.go:29: asdasdas123123
+2026/01/14 13:44:17 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:44:17 register_websocket.go:29: asdasdas123123
+2026/01/14 13:44:22 register_websocket.go:28: 64b51b12-2065-4888-b1ab-7083515f0858
+2026/01/14 13:44:22 register_websocket.go:29: asdasdas123123
+2026/01/14 13:44:32 register_websocket.go:28: eaec6d59-9467-4ba4-a8be-dd56745c377a
+2026/01/14 13:44:32 register_websocket.go:29: asdasdas123123
+2026/01/14 13:45:38 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 13:45:38 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 13:45:42 register_websocket.go:28: eaec6d59-9467-4ba4-a8be-dd56745c377a
+2026/01/14 13:45:42 register_websocket.go:29: asdasdas123123
+2026/01/14 13:47:59 register_websocket.go:28: d95eead4-1c1e-4843-86fa-7034893a4370
+2026/01/14 13:47:59 register_websocket.go:29: asdasdas123123
+2026/01/14 13:49:12 register_websocket.go:28: 5645ae8d-d187-4d51-96a9-bde71729964d
+2026/01/14 13:49:12 register_websocket.go:29: asdasdas123123
+2026/01/14 13:53:35 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 13:53:35 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 13:53:47 register_websocket.go:28: 74019011-21d9-4ad2-b36f-663545fdeb75
+2026/01/14 13:53:47 register_websocket.go:29: asdasdas123123
+2026/01/14 13:54:10 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 13:54:10 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 13:54:28 register_websocket.go:28: bba82b90-3784-4cf2-a665-dc08763c3463
+2026/01/14 13:54:28 register_websocket.go:29: asdasdas123123
+2026/01/14 13:56:18 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 13:56:18 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 13:56:29 register_websocket.go:28: b137aeed-150b-495a-9e58-686bf2691d56
+2026/01/14 13:56:29 register_websocket.go:29: asdasdas123123
+2026/01/14 13:57:06 register_websocket.go:28: 97972925-9817-47b3-a065-90ab129d3d81
+2026/01/14 13:57:06 register_websocket.go:29: asdasdas123123
+2026/01/14 13:58:53 register_websocket.go:28: 1c0e371d-3ba0-4e68-bbd2-dcb0ffe51505
+2026/01/14 13:58:53 register_websocket.go:29: asdasdas123123
+2026/01/14 13:59:14 register_websocket.go:28: ba6a9f0b-da4b-4271-9f34-144ecf5f046a
+2026/01/14 13:59:14 register_websocket.go:29: asdasdas123123
+2026/01/14 14:02:33 register_websocket.go:28: 2f6ae369-d12c-41d8-961b-7a9516e77bb3
+2026/01/14 14:02:33 register_websocket.go:29: asdasdas123123
+2026/01/14 14:05:53 register_websocket.go:28: 40c58391-237f-40e7-a638-7b831d2508f4
+2026/01/14 14:05:53 register_websocket.go:29: asdasdas123123
+2026/01/14 14:09:04 register_websocket.go:28: d1bd0c4d-d228-4db1-889b-8ee637635b43
+2026/01/14 14:09:04 register_websocket.go:29: asdasdas123123
+2026/01/14 14:09:58 register_websocket.go:28: 5f82dd28-abb1-458d-84e7-6bdbb7c2eb32
+2026/01/14 14:09:58 register_websocket.go:29: asdasdas123123
+2026/01/14 14:10:44 register_websocket.go:28: 5ccdb43f-dc1b-416b-b3b1-277f4bb1449c
+2026/01/14 14:10:44 register_websocket.go:29: asdasdas123123
+2026/01/14 14:12:38 register_websocket.go:28: 24e39ff5-082b-41ce-b3ba-9ee6cbf4f567
+2026/01/14 14:12:38 register_websocket.go:29: asdasdas123123
+2026/01/14 14:19:12 register_websocket.go:28: 1eb0e029-0784-4599-8e08-b36fbcb80621
+2026/01/14 14:19:12 register_websocket.go:29: asdasdas123123
+2026/01/14 14:20:56 register_websocket.go:28: 5420b20b-0dd4-448d-ae34-401e8d72a41b
+2026/01/14 14:20:56 register_websocket.go:29: asdasdas123123
+2026/01/14 14:21:45 register_websocket.go:28: 2e0dcae2-746d-4544-89a9-772062b24107
+2026/01/14 14:21:45 register_websocket.go:29: asdasdas123123
+2026/01/14 14:24:35 register_websocket.go:28: 610cfb94-2ada-4474-ae31-c1ab6c186046
+2026/01/14 14:24:35 register_websocket.go:29: asdasdas123123
+2026/01/14 14:26:29 register_websocket.go:28: 53f869df-6820-44df-bdb4-aa387ecf0e25
+2026/01/14 14:26:29 register_websocket.go:29: asdasdas123123
+2026/01/14 14:30:18 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:30:18 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:30:19 register_websocket.go:28: 53f869df-6820-44df-bdb4-aa387ecf0e25
+2026/01/14 14:30:19 register_websocket.go:29: asdasdas123123
+2026/01/14 14:30:24 register_websocket.go:28: 53f869df-6820-44df-bdb4-aa387ecf0e25
+2026/01/14 14:30:24 register_websocket.go:29: asdasdas123123
+2026/01/14 14:30:30 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:30:30 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:30:38 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:30:38 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:30:46 register_websocket.go:28: c0f95356-c3a1-4590-8fc2-5af8d27d6e10
+2026/01/14 14:30:46 register_websocket.go:29: asdasdas123123
+2026/01/14 14:31:28 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:31:28 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:31:31 register_websocket.go:28: c0f95356-c3a1-4590-8fc2-5af8d27d6e10
+2026/01/14 14:31:31 register_websocket.go:29: asdasdas123123
+2026/01/14 14:31:36 register_websocket.go:28: c0f95356-c3a1-4590-8fc2-5af8d27d6e10
+2026/01/14 14:31:36 register_websocket.go:29: asdasdas123123
+2026/01/14 14:31:41 register_websocket.go:28: c0f95356-c3a1-4590-8fc2-5af8d27d6e10
+2026/01/14 14:31:41 register_websocket.go:29: asdasdas123123
+2026/01/14 14:31:46 register_websocket.go:28: c0f95356-c3a1-4590-8fc2-5af8d27d6e10
+2026/01/14 14:31:46 register_websocket.go:29: asdasdas123123
+2026/01/14 14:31:51 register_websocket.go:28: c0f95356-c3a1-4590-8fc2-5af8d27d6e10
+2026/01/14 14:31:51 register_websocket.go:29: asdasdas123123
+2026/01/14 14:32:02 register_websocket.go:28: c00fd374-d470-4d18-9e73-35be6f77edd9
+2026/01/14 14:32:02 register_websocket.go:29: asdasdas123123
+2026/01/14 14:32:42 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:32:42 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:32:48 register_websocket.go:28: bdb553f9-425a-4b1b-9b5a-732f6115a9bd
+2026/01/14 14:32:48 register_websocket.go:29: asdasdas123123
+2026/01/14 14:33:34 register_websocket.go:28: 0c69ab39-7de4-4c51-bbb7-ffec0a83efb1
+2026/01/14 14:33:34 register_websocket.go:29: asdasdas123123
+2026/01/14 14:34:37 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:34:37 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:34:45 register_websocket.go:28: 42767a43-29e5-43ae-ac6f-a97810c062a0
+2026/01/14 14:34:45 register_websocket.go:29: asdasdas123123
+2026/01/14 14:34:52 create_group_chat.go:52: <nil>
+2026/01/14 14:35:15 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:35:15 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:35:15 register_websocket.go:28: 42767a43-29e5-43ae-ac6f-a97810c062a0
+2026/01/14 14:35:15 register_websocket.go:29: asdasdas123123
+2026/01/14 14:35:27 register_websocket.go:28: 5d8a5e9b-f1ea-4601-95f8-0440a9f3ac0a
+2026/01/14 14:35:27 register_websocket.go:29: asdasdas123123
+2026/01/14 14:35:34 create_group_chat.go:52: <nil> 
+2026/01/14 14:36:06 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:36:06 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:36:13 register_websocket.go:28: f9a360f1-3e86-49af-a8b8-7ba37511aa56
+2026/01/14 14:36:13 register_websocket.go:29: asdasdas123123
+2026/01/14 14:36:20 create_group_chat.go:52: 
+2026/01/14 14:36:20 create_group_chat.go:53: <nil>
+2026/01/14 14:36:51 register_websocket.go:28: 3338927b-7199-41c6-85e8-fa1fe28dcada
+2026/01/14 14:36:51 register_websocket.go:29: asdasdas123123
+2026/01/14 14:37:10 create_group_chat.go:52: 
+2026/01/14 14:37:10 create_group_chat.go:53: <nil>
+2026/01/14 14:37:58 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:37:58 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:38:01 register_websocket.go:28: 3338927b-7199-41c6-85e8-fa1fe28dcada
+2026/01/14 14:38:01 register_websocket.go:29: asdasdas123123
+2026/01/14 14:38:07 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:38:07 register_websocket.go:29: asdasdas123123
+2026/01/14 14:38:13 create_group_chat.go:52: 
+2026/01/14 14:38:13 create_group_chat.go:53: <nil>
+2026/01/14 14:39:10 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:39:10 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:39:12 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:12 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:13 create_group_chat.go:28: &{ }
+2026/01/14 14:39:13 create_group_chat.go:53: 
+2026/01/14 14:39:13 create_group_chat.go:54: <nil>
+2026/01/14 14:39:17 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:17 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:22 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:22 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:27 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:27 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:32 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:32 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:37 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:37 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:42 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:42 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:47 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:47 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:53 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:53 register_websocket.go:29: asdasdas123123
+2026/01/14 14:39:58 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:39:58 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:03 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:03 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:08 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:08 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:14 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:40:14 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:40:14 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:14 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:17 create_group_chat.go:30: &{ }
+2026/01/14 14:40:17 create_group_chat.go:55: 
+2026/01/14 14:40:17 create_group_chat.go:56: <nil>
+2026/01/14 14:40:19 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:19 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:24 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:24 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:29 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:40:29 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:40:29 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:29 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:32 create_group_chat.go:30: &{ }
+2026/01/14 14:40:32 create_group_chat.go:55: 
+2026/01/14 14:40:32 create_group_chat.go:56: <nil>
+2026/01/14 14:40:34 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:34 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:39 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:39 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:44 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:44 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:49 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:49 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:54 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:54 register_websocket.go:29: asdasdas123123
+2026/01/14 14:40:59 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:40:59 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:04 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:04 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:09 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:09 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:14 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:14 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:19 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:19 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:24 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:24 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:29 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:29 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:34 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:34 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:39 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:39 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:44 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:44 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:49 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:49 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:54 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:54 register_websocket.go:29: asdasdas123123
+2026/01/14 14:41:59 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:41:59 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:04 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:04 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:09 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:09 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:14 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:14 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:19 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:19 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:24 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:24 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:29 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:29 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:34 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:34 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:39 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:39 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:44 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:44 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:49 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:49 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:54 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:54 register_websocket.go:29: asdasdas123123
+2026/01/14 14:42:59 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:42:59 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:04 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:04 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:09 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:09 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:14 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:14 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:19 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:19 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:24 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:24 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:30 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:30 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:35 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:35 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:40 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:40 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:45 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:45 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:50 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:50 register_websocket.go:29: asdasdas123123
+2026/01/14 14:43:55 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:43:55 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:00 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:00 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:05 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:05 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:10 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:10 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:15 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:15 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:20 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:20 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:25 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:25 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:30 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:30 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:35 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:35 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:40 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:40 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:45 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:45 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:50 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:50 register_websocket.go:29: asdasdas123123
+2026/01/14 14:44:54 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:44:54 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:44:55 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:44:55 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:00 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:00 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:05 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:05 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:05 create_group_chat.go:31: &{ }
+2026/01/14 14:45:05 create_group_chat.go:56: 
+2026/01/14 14:45:05 create_group_chat.go:57: <nil>
+2026/01/14 14:45:10 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:10 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:15 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:15 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:20 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:20 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:25 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:25 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:30 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:30 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:35 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:35 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:40 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:40 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:45 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:45 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:50 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:50 register_websocket.go:29: asdasdas123123
+2026/01/14 14:45:55 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:45:55 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:00 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:00 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:05 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:05 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:10 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:10 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:15 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:15 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:20 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:20 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:25 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:25 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:30 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:46:30 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:46:30 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:30 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:35 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:35 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:37 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:46:37 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:46:41 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:41 register_websocket.go:29: asdasdas123123
+2026/01/14 14:46:44 create_group_chat.go:21: Key: 'CreateGroupChatParams.GroupName' Error:Field validation for 'GroupName' failed on the 'required' tag
+2026/01/14 14:46:46 register_websocket.go:28: c7e60885-3677-4eb9-a7e8-c6aef876b7b9
+2026/01/14 14:46:46 register_websocket.go:29: asdasdas123123
+2026/01/14 14:47:44 register_websocket.go:28: eea80584-da4f-437b-8319-430eaaa60615
+2026/01/14 14:47:44 register_websocket.go:29: asdasdas123123
+2026/01/14 14:47:51 create_group_chat.go:30: &{啊啊 eea80584-da4f-437b-8319-430eaaa60615}
+2026/01/14 14:47:51 create_group_chat.go:55: eea80584-da4f-437b-8319-430eaaa60615
+2026/01/14 14:47:51 create_group_chat.go:56: &{eea80584-da4f-437b-8319-430eaaa60615 12312 http://127.0.0.1:34332/avatar/user_avatar/fbb901f52a160921db449cd5b1a179a7.png 0xc00013a9a0 在线 [] []}
+2026/01/14 14:49:10 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:49:10 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:49:10 register_websocket.go:28: eea80584-da4f-437b-8319-430eaaa60615
+2026/01/14 14:49:10 register_websocket.go:29: asdasdas123123
+2026/01/14 14:49:15 register_websocket.go:28: eea80584-da4f-437b-8319-430eaaa60615
+2026/01/14 14:49:15 register_websocket.go:29: asdasdas123123
+2026/01/14 14:49:20 register_websocket.go:28: eea80584-da4f-437b-8319-430eaaa60615
+2026/01/14 14:49:20 register_websocket.go:29: asdasdas123123
+2026/01/14 14:49:24 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:49:24 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:49:37 register_websocket.go:28: 58b2fb25-ad87-4983-a302-1e14315880bd
+2026/01/14 14:49:37 register_websocket.go:29: asdasdas123123
+2026/01/14 14:49:46 create_group_chat.go:30: &{啊啊啊 58b2fb25-ad87-4983-a302-1e14315880bd}
+2026/01/14 14:49:46 create_group_chat.go:55: 58b2fb25-ad87-4983-a302-1e14315880bd
+2026/01/14 14:49:46 create_group_chat.go:56: &{58b2fb25-ad87-4983-a302-1e14315880bd 123 http://127.0.0.1:34332/avatar/user_avatar/4be607663d4053cd64c1b7583cb35638.jpg 0xc000166160 在线 [] []}
+2026/01/14 14:51:27 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:51:27 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:51:28 register_websocket.go:28: 58b2fb25-ad87-4983-a302-1e14315880bd
+2026/01/14 14:51:28 register_websocket.go:29: asdasdas123123
+2026/01/14 14:55:28 register_websocket.go:28: 5b8e0015-02da-42be-9c8c-07554d7a1be4
+2026/01/14 14:55:28 register_websocket.go:29: asdasdas123123
+2026/01/14 14:55:58 create_group_chat.go:30: &{黄图交流群 5b8e0015-02da-42be-9c8c-07554d7a1be4}
+2026/01/14 14:55:58 create_group_chat.go:55: 5b8e0015-02da-42be-9c8c-07554d7a1be4
+2026/01/14 14:55:58 create_group_chat.go:56: &{5b8e0015-02da-42be-9c8c-07554d7a1be4 123 http://127.0.0.1:34332/avatar/user_avatar/4be607663d4053cd64c1b7583cb35638.jpg 0xc0003d6160 在线 [] []}
+2026/01/14 14:56:19 register_websocket.go:28: 5b8e0015-02da-42be-9c8c-07554d7a1be4
+2026/01/14 14:56:19 register_websocket.go:29: asdasdas123123
+2026/01/14 14:59:08 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:59:08 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:59:09 register_websocket.go:28: 5b8e0015-02da-42be-9c8c-07554d7a1be4
+2026/01/14 14:59:09 register_websocket.go:29: asdasdas123123
+2026/01/14 14:59:14 register_websocket.go:28: 5b8e0015-02da-42be-9c8c-07554d7a1be4
+2026/01/14 14:59:14 register_websocket.go:29: asdasdas123123
+2026/01/14 14:59:21 user_message_group.go:11: 619671d2-350b-4e57-ac3b-c89bf3e4ec6c
+2026/01/14 14:59:22 register_websocket.go:28: 619671d2-350b-4e57-ac3b-c89bf3e4ec6c
+2026/01/14 14:59:22 register_websocket.go:29: asdasdas123123
+2026/01/14 14:59:51 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 14:59:51 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 14:59:59 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 14:59:59 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 14:59:59 register_websocket.go:29: asdasdas123123
+2026/01/14 15:00:16 create_group_chat.go:54: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:00:16 create_group_chat.go:55: &{963b305a-caee-479a-b86d-3fdee884ef65 123123 http://127.0.0.1:34332/avatar/user_avatar/fbb901f52a160921db449cd5b1a179a7.png 0xc000418160 在线 [] []}
+2026/01/14 15:00:55 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:00:56 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:00:56 register_websocket.go:29: asdasdas123123
+2026/01/14 15:01:03 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 d373f700-956e-4bc7-a119-703647f1d8ac 1
+2026/01/14 15:01:06 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 d373f700-956e-4bc7-a119-703647f1d8ac 4
+2026/01/14 15:01:20 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 d373f700-956e-4bc7-a119-703647f1d8ac 我擦
+2026/01/14 15:01:30 create_group_chat.go:54: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:01:30 create_group_chat.go:55: &{963b305a-caee-479a-b86d-3fdee884ef65 123123 http://127.0.0.1:34332/avatar/user_avatar/fbb901f52a160921db449cd5b1a179a7.png 0xc00035adc0 离线 [d373f700-956e-4bc7-a119-703647f1d8ac] []}
+2026/01/14 15:01:33 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 c09a1034-0d4f-4cdd-afd4-f7e9a2df033b 1
+2026/01/14 15:02:50 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 423f4cc5-7360-4efa-a813-539e3f4f876a 0
+2026/01/14 15:03:06 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:03:07 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:03:07 register_websocket.go:29: asdasdas123123
+2026/01/14 15:03:34 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:03:35 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:03:35 register_websocket.go:29: asdasdas123123
+2026/01/14 15:03:36 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 c09a1034-0d4f-4cdd-afd4-f7e9a2df033b 1
+2026/01/14 15:03:40 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 34a9ac90-7ad1-49ab-bd3e-a5cf8ca203c3 5
+2026/01/14 15:04:13 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:04:13 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:04:13 register_websocket.go:29: asdasdas123123
+2026/01/14 15:04:16 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 553d54c4-67b7-454f-911e-490b4317854c 2
+2026/01/14 15:04:20 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 25947a37-09d6-4ff0-8b63-ee6b1432ee42 3
+2026/01/14 15:04:25 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:04:26 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:04:26 register_websocket.go:29: asdasdas123123
+2026/01/14 15:04:29 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 c09a1034-0d4f-4cdd-afd4-f7e9a2df033b 1
+2026/01/14 15:05:15 user_message_group.go:11: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:05:15 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:05:15 register_websocket.go:29: asdasdas123123
+2026/01/14 15:05:17 user_send_message.go:28: 963b305a-caee-479a-b86d-3fdee884ef65 c09a1034-0d4f-4cdd-afd4-f7e9a2df033b 2
+2026/01/14 15:05:22 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 15:05:22 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 15:05:25 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:05:25 register_websocket.go:29: asdasdas123123
+2026/01/14 15:05:30 register_websocket.go:28: 963b305a-caee-479a-b86d-3fdee884ef65
+2026/01/14 15:05:30 register_websocket.go:29: asdasdas123123
+2026/01/14 15:05:38 user_message_group.go:11: d7f8bb36-3c1e-4939-85dd-38b7ab6539bf
+2026/01/14 15:05:38 register_websocket.go:28: d7f8bb36-3c1e-4939-85dd-38b7ab6539bf
+2026/01/14 15:05:38 register_websocket.go:29: asdasdas123123
+2026/01/14 15:05:39 user_send_message.go:28: d7f8bb36-3c1e-4939-85dd-38b7ab6539bf 81a421db-2f78-4331-bd16-c62733762585 1
+2026/01/14 15:05:44 user_send_message.go:28: d7f8bb36-3c1e-4939-85dd-38b7ab6539bf 58ca0e90-4d99-4bb3-863e-b9ffd7f12345 2
+2026/01/14 15:05:48 user_send_message.go:28: d7f8bb36-3c1e-4939-85dd-38b7ab6539bf c9f68129-c38c-487d-8c6e-cc062f0cbbcf 2
+2026/01/14 15:06:10 user_message_group.go:11: d52c404d-6ef6-4e8a-8556-02abef75e0ce
+2026/01/14 15:06:10 register_websocket.go:28: d52c404d-6ef6-4e8a-8556-02abef75e0ce
+2026/01/14 15:06:10 register_websocket.go:29: asdasdas123123
+2026/01/14 15:06:12 user_send_message.go:28: d52c404d-6ef6-4e8a-8556-02abef75e0ce c8a7d1ac-e20a-4d81-9d72-695f9be3bbc9 2
+2026/01/14 15:06:16 user_send_message.go:28: d52c404d-6ef6-4e8a-8556-02abef75e0ce b29e2039-b94d-4133-8d5e-1137db247ba7 2
+2026/01/14 15:06:24 user_message_group.go:11: 4099028f-6b1b-48a7-ab0b-add64873040b
+2026/01/14 15:06:24 register_websocket.go:28: 4099028f-6b1b-48a7-ab0b-add64873040b
+2026/01/14 15:06:24 register_websocket.go:29: asdasdas123123
+2026/01/14 15:06:27 user_send_message.go:28: 4099028f-6b1b-48a7-ab0b-add64873040b c9f68129-c38c-487d-8c6e-cc062f0cbbcf 1
+2026/01/14 15:06:27 user_send_message.go:95: write tcp 127.0.0.1:34332->127.0.0.1:8784: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 15:06:27 user_send_message.go:122: write tcp 127.0.0.1:34332->127.0.0.1:8784: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 15:06:35 user_message_group.go:11: 5640a289-9d89-4b5d-82df-8223dd00e336
+2026/01/14 15:06:35 register_websocket.go:28: 5640a289-9d89-4b5d-82df-8223dd00e336
+2026/01/14 15:06:35 register_websocket.go:29: asdasdas123123
+2026/01/14 15:06:37 user_send_message.go:28: 5640a289-9d89-4b5d-82df-8223dd00e336 06447294-b86b-4d76-b4e3-fe4a271363e8 1
+2026/01/14 15:06:40 user_send_message.go:28: 5640a289-9d89-4b5d-82df-8223dd00e336 71e9899a-0670-4994-8084-255a0e4c1e72 1
+2026/01/14 15:19:02 user_message_group.go:11: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:19:02 register_websocket.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:19:02 register_websocket.go:29: asdasdas123123
+2026/01/14 15:19:04 user_send_message.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3 c9f68129-c38c-487d-8c6e-cc062f0cbbcf 5
+2026/01/14 15:19:04 user_send_message.go:95: write tcp 127.0.0.1:34332->127.0.0.1:8784: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 15:19:04 user_send_message.go:95: write tcp 127.0.0.1:34332->127.0.0.1:8864: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 15:19:04 user_send_message.go:122: write tcp 127.0.0.1:34332->127.0.0.1:8784: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 15:19:04 user_send_message.go:122: write tcp 127.0.0.1:34332->127.0.0.1:8864: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/14 15:22:01 Subscribed to event: websocket
+2026/01/14 15:22:01 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 15:22:02 register_websocket.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:22:02 register_websocket.go:29: asdasdas123123
+2026/01/14 15:22:07 register_websocket.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:22:07 register_websocket.go:29: asdasdas123123
+2026/01/14 15:22:12 register_websocket.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:22:12 register_websocket.go:29: asdasdas123123
+2026/01/14 15:22:17 register_websocket.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:22:17 register_websocket.go:29: asdasdas123123
+2026/01/14 15:22:20 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 15:22:20 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 15:22:22 register_websocket.go:28: 84ec0b73-4cd7-48d9-9cf0-6863ec1723e3
+2026/01/14 15:22:22 register_websocket.go:29: asdasdas123123
+2026/01/14 15:23:26 user_message_group.go:11: 4352
+2026/01/14 15:23:26 register_websocket.go:28: 4352
+2026/01/14 15:23:26 register_websocket.go:29: asdasdas123123
+2026/01/14 15:23:29 user_send_message.go:28: 4352 0ca25a77-5dd7-4e10-be15-8c0651df699c 1
+2026/01/14 15:24:25 user_message_group.go:11: 4352
+2026/01/14 15:24:25 register_websocket.go:28: 4352
+2026/01/14 15:24:25 register_websocket.go:29: asdasdas123123
+2026/01/14 15:24:28 user_send_message.go:28: 4352 0ca25a77-5dd7-4e10-be15-8c0651df699c .
+2026/01/14 15:27:21 event_bus.go:135: Subscribed to event: websocket
+2026/01/14 15:27:21 main.go:121: http server start  0.0.0.0:34332
+2026/01/14 15:27:21 register_websocket.go:28: 4352
+2026/01/14 15:27:21 register_websocket.go:29: asdasdas123123
+2026/01/14 15:27:36 user_message_group.go:11: 123
+2026/01/14 15:27:37 register_websocket.go:28: 123
+2026/01/14 15:27:37 register_websocket.go:29: asdasdas123123
+2026/01/14 15:27:39 user_send_message.go:28: 123 d987149e-0cf8-4611-b7c7-965f6eff4c54 1
+2026/01/14 15:27:48 user_message_group.go:11: 123
+2026/01/14 15:27:48 register_websocket.go:28: 123
+2026/01/14 15:27:48 register_websocket.go:29: asdasdas123123
+2026/01/14 15:27:52 user_send_message.go:28: 123 d987149e-0cf8-4611-b7c7-965f6eff4c54 00.
+2026/01/14 15:46:55 user_message_group.go:11: 123
+2026/01/14 15:46:55 register_websocket.go:28: 123
+2026/01/14 15:46:55 register_websocket.go:29: asdasdas123123
+2026/01/14 15:47:33 user_message_group.go:11: 123
+2026/01/14 15:47:33 register_websocket.go:28: 123
+2026/01/14 15:47:33 register_websocket.go:29: asdasdas123123
+2026/01/14 15:49:39 user_message_group.go:11: 123
+2026/01/14 15:49:39 register_websocket.go:28: 123
+2026/01/14 15:49:39 register_websocket.go:29: asdasdas123123
+2026/01/14 15:49:51 user_send_message.go:28: 123 40d10a07-612b-4745-b194-c81834081775 1
+2026/01/14 15:50:02 create_group_chat.go:54: 123
+2026/01/14 15:50:02 create_group_chat.go:55: &{123 123 http://127.0.0.1:34332/avatar/user_avatar/4be607663d4053cd64c1b7583cb35638.jpg 0xc000266b00 离线 [] []}
+2026/01/14 15:50:07 user_send_message.go:28: 123 f1d8b759-f0a9-4eab-8edb-42c30e82d811 123

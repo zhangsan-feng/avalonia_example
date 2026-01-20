@@ -2,6 +2,7 @@ package main
 
 import (
 	"avalonia_server/api"
+	"avalonia_server/api/datastore"
 	"avalonia_server/event_bus"
 	"avalonia_server/global"
 	"bufio"
@@ -119,7 +120,7 @@ func main() {
 	address := "0.0.0.0:34332"
 	log.Println("http server start ", address)
 
-	api.InitData()
+	datastore.InitData()
 
 	if err := engine.Run(address); err != nil {
 		log.Println("http server start failed", address)
@@ -127,5 +128,5 @@ func main() {
 }
 
 /*
-	../go/bin/go run main.go >> /dev/null 2 >&1 &
+nohup ../go/bin/go run main.go >> /dev/null 2>&1 &
 */

@@ -14,7 +14,7 @@ using example.State;
 namespace example.ViewModels;
 
 
-public class MenuItemViewModel(string title,string icon, Type viewModelType) : ReactiveObject{
+public class MenuItemViewModel(string title,string icon, Type viewModelType) : ViewModelBase{
     public string Title { get; } = title;
     public Type ViewModelType { get; } = viewModelType;
     public Bitmap Icon { get; } = new Bitmap(AssetLoader.Open(new Uri(icon)));
@@ -46,6 +46,7 @@ public class MainWindowViewModel : ViewModelBase, IScreen {
     
     public AppStateService State => AppState.Global;
     public MainWindowViewModel(){
+        LibVLCSharp.Shared.Core.Initialize();
         
         SelectedMenuItem = MenuItems[0];
         

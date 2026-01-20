@@ -30,6 +30,7 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>{
         
         });
         AvaloniaXamlLoader.Load(this);
+        NotificationService.Instance.Initialize(this);
     }
     
     private void Mask_PointerPressed(object? sender, PointerPressedEventArgs e){

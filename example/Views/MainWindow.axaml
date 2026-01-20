@@ -8,11 +8,13 @@
         MinHeight="600"
         x:Class="example.Views.MainWindow"
         xmlns:rxui="http://reactiveui.net"
+        xmlns:groupHistory="clr-namespace:example.Component.Messages.GroupHistory"
         x:DataType="vm:MainWindowViewModel"
         WindowStartupLocation="CenterScreen"
 
         Title="example">
 
+    
     <Grid RowDefinitions="50 *" Name="MainGrid">
 
 

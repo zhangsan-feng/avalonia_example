@@ -24,9 +24,9 @@ public class SettingsViewModel : ViewModelBase, IRoutableViewModel{
         HostScreen = screen;
         SubmitMessageEvent = ReactiveCommand.Create(() => {
 
-            Console.WriteLine($"Before clear: '{UserInput}'");
+            Logger.Log($"Before clear: '{UserInput}'");
             UserInput = "";
-            Console.WriteLine($"After clear: '{UserInput}'");
+            Logger.Log($"After clear: '{UserInput}'");
         });
     }
 }

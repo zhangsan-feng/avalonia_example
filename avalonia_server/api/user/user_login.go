@@ -1,10 +1,10 @@
-package api
+package user
 
 import (
+	"avalonia_server/api/datastore"
 	"avalonia_server/global"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/google/uuid"
 	"log"
 	"math/rand"
 	"time"
@@ -17,17 +17,18 @@ type LoginParams struct {
 
 func LoginApi(r *gin.Context) {
 	params := &LoginParams{}
+
 	err := r.ShouldBind(params)
 	if err != nil {
 		log.Println(err)
 		return
 	}
-	user_uuid := uuid.New().String()
+	userUuid := params.Username
 
 	token, err := global.GenerateJWT(&global.MyCustomClaims{
 		Username:         params.Username,
 		UserAvatar:       "",
-		UserUuid:         user_uuid,
+		UserUuid:         userUuid,
 		RegisteredClaims: jwt.RegisteredClaims{},
 	})
 	if err != nil {
@@ -35,20 +36,23 @@ func LoginApi(r *gin.Context) {
 		return
 	}
 
-	rand.Seed(time.Now().UnixNano())
+	rand.NewSource(time.Now().UnixNano())
 
-	index := rand.Intn(len(UserAvatar))
+	index := rand.Intn(len(datastore.UserAvatar))
 
-	AllUsers[user_uuid] = &User{
-		Id:     user_uuid,
-		Name:   params.Username,
-		Avatar: UserAvatar[index],
-		Status: "在线",
-		Conn:   nil,
+	if datastore.AllUsers[userUuid] == nil {
+		datastore.AllUsers[userUuid] = &datastore.User{
+			Id:     userUuid,
+			Name:   params.Username,
+			Avatar: datastore.UserAvatar[index],
+			Status: "在线",
+			Conn:   nil,
+		}
 	}
+
 	r.JSON(200, gin.H{
 		"token": token,
-		"uuid":  user_uuid,
+		"uuid":  userUuid,
 	})
 
 }

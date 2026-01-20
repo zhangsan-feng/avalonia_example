@@ -20,21 +20,30 @@ public partial class App : Application{
 
     public override async void OnFrameworkInitializationCompleted(){
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop){
-            
-            var loginWindow = new LoginView();
-            desktop.MainWindow = loginWindow;
-            var loginVm = new LoginViewModel();
-            loginWindow.DataContext = loginVm;
-            loginVm.OnLoginSuccess += () => {
-                
+            var isDeBug = false;
+            // var isDeBug = true;
+            if (isDeBug){
                 var mainWindow = new MainWindow {
                     DataContext = new MainWindowViewModel(),
                 };
                 desktop.MainWindow = mainWindow;
                 mainWindow.Show();
-                
-            loginWindow.Close();
-            };
+            }
+            else{
+                var loginWindow = new LoginView();
+                desktop.MainWindow = loginWindow;
+                var loginVm = new LoginViewModel();
+                loginWindow.DataContext = loginVm;
+                loginVm.OnLoginSuccess += () => {
+                    var mainWindow = new MainWindow {
+                        DataContext = new MainWindowViewModel(),
+                    };
+                    desktop.MainWindow = mainWindow;
+                    mainWindow.Show();
+                    loginWindow.Close();
+                };
+            }
+            
         }
 
         Locator.CurrentMutable.Register<IViewFor<SettingsViewModel>>(() => new SettingsView());

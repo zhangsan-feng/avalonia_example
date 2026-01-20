@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Markup.Xaml;
+using example.State;
 
 namespace example.Component.Screenshot;
 
@@ -40,7 +41,7 @@ public partial class ScreenshotView : Window{
             // 可选：获取最终选中区域
             var rect = GetSelectionRect(_startPoint!.Value, e.GetPosition(MainCanvas));
             // 这里可以处理选中逻辑，比如选中 Canvas 中的其他控件
-            Console.WriteLine($"Selected area: {rect}");
+            Logger.Log($"Selected area: {rect}");
             
             var end = e.GetPosition(this);
             Result = GetSelectionRect(_startPoint!.Value, end);

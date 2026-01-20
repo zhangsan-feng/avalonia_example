@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Reactive;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform.Storage;
 using example.State;
 using example.ViewModels;
 using ReactiveUI;
@@ -37,6 +39,18 @@ public class LoginViewModel : ViewModelBase{
         set => this.RaiseAndSetIfChanged(ref _errorMessage, value);
     }
     
+    private IStorageFile _selectedAvatar;
+    public IStorageFile SelectedAvatar{
+        get => _selectedAvatar;
+        set => this.RaiseAndSetIfChanged(ref _selectedAvatar, value);
+    }
+
+    private Bitmap _selectedAvatarUi;
+    public Bitmap SelectedAvatarUi{
+        get => _selectedAvatarUi;
+        set => this.RaiseAndSetIfChanged(ref _selectedAvatarUi, value);
+    }
+    
     public readonly LoginApiInterface LoginApi;  
 
     public Action? OnLoginSuccess{ get; set; }
@@ -48,7 +62,7 @@ public class LoginViewModel : ViewModelBase{
         LoginApi = RestService.For<LoginApiInterface>("http" + State.ServerAddress);
         
         LoginCommand = ReactiveCommand.CreateFromTask(async () => {
-            if (UserName != null && UserName.Length > 16){
+            if (UserName != null && UserName.Length > 16 && UserName.Length == 0){
                 return;
             }
             try{
@@ -56,16 +70,20 @@ public class LoginViewModel : ViewModelBase{
                     UserName = UserName,
                     Password = Password,
                 });
-                Console.WriteLine(result.uuid);
-                Console.WriteLine(result.token);
+                // Logger.Log(result.uuid);
+                // Logger.Log(result.token);
+                
+                State.UserName = UserName;
+                State.UserPassword = Password;
                 State.UserId = result.uuid;
                 State.UserToken = result.token;
+                
                 
                 OnLoginSuccess?.Invoke();
 
             }
             catch (Exception e){
-                Console.WriteLine(e);
+                Logger.Log(e);
                 throw;
             }
 

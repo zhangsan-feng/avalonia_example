@@ -13,6 +13,7 @@ public class LoginParams{
 public class LoginCallBack{
     [JsonPropertyName("uuid")]public string uuid { get; set; }
     [JsonPropertyName("token")]public string token { get; set; }
+    // [JsonPropertyName("avatar")]public string Avatar { get; set; }
 }
 
 public class ApiResponse<T>{

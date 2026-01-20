@@ -1,0 +1,50 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:vm="clr-namespace:example.Component.Messages.CreateGroupChatWindow"
+        xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+        x:DataType="vm:CreateGroupChatWindowViewModel"
+        WindowStartupLocation="CenterOwner"
+        Width="400"
+        Height="400"
+        CanResize="False"
+        x:Class="example.Component.Messages.CreateGroupChatWindow.CreateGroupChatWindowView"
+        Title="">
+    <Grid>
+        <Border Padding="50">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="15">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">创建群聊名称</TextBlock>
+                <TextBox
+                    Width="250"
+                    Height="40"
+                    FontSize="16"
+                    Text="{Binding TextInput, Mode=TwoWay}"
+                    Margin="0"/>
+                
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">选择群聊头像</TextBlock>
+                <Border PointerPressed="PickAvatarCommand" Background="#e3e3e3" Width="150" Height="150" CornerRadius="100" ClipToBounds="True">
+                    <Image Source="{Binding SelectedAvatarUi}" Width="150" Height="150" 
+                           Stretch="UniformToFill"/>
+                </Border>
+                
+           
+                <Button
+                    Width="120"
+                    Height="40"
+                    Content="创建群聊"
+                    FontSize="16"
+                    HorizontalContentAlignment="Center"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Background="#008DEB"
+                    Foreground="White"
+                    CornerRadius="5"
+                    Click="CreateGroupCommand"
+                    />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

@@ -1,4 +1,4 @@
-package api
+package datastore
 
 import (
 	"github.com/google/uuid"
@@ -41,6 +41,7 @@ type UserMessageGroup struct {
 	Avatar  string          `json:"avatar"`
 	History []*GroupHistory `json:"history"`
 	Members []*GroupMembers `json:"members"`
+	Type    string          `json:"type"`
 }
 
 type WebSocketMessage struct {
@@ -62,6 +63,14 @@ var UserAvatar []string
 */
 
 const StaticAddress = "http://127.0.0.1:34332"
+
+const (
+	WsMsgTypeMessage     = "message"
+	WsMsgJoinGroupChat   = "join_group_chat"
+	WsMsgExitGroupChat   = "exit_group_chat"
+	WsMsgDropGroupChat   = "drop_group_chat"
+	WsMsgCreateGroupChat = "create_group_chat"
+)
 
 func InitData() {
 	AllGroup = make(map[string]*UserMessageGroup)
@@ -92,16 +101,17 @@ func InitData() {
 
 	for _, entry := range userAvatar {
 		UserAvatar = append(UserAvatar, StaticAddress+"/avatar/user_avatar/"+entry.Name())
-		userUuid := uuid.New().String()
+		//userUuid := uuid.New().String()
 
-		userData := &User{
-			Id:     userUuid,
-			Name:   userUuid,
-			Avatar: StaticAddress + "/avatar/user_avatar/" + entry.Name(),
-			Conn:   nil,
-		}
-		AllUsers[userUuid] = userData
+		//userData := &User{
+		//	Id:     userUuid,
+		//	Name:   userUuid,
+		//	Avatar: StaticAddress + "/avatar/user_avatar/" + entry.Name(),
+		//	Conn:   nil,
+		//}
+		//AllUsers[userUuid] = userData
 	}
+
 	//
 	//for k := range AllUsers {
 	//	for j := range AllGroup[k] {

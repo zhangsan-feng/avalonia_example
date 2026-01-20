@@ -1,0 +1,236 @@
+2026/01/15 15:06:20 Subscribed to event: websocket
+2026/01/15 15:06:20 main.go:121: http server start  0.0.0.0:34332
+2026/01/15 15:07:26 user_message_group.go:11: 123
+2026/01/15 15:07:26 register_websocket.go:28: 123
+2026/01/15 15:07:26 register_websocket.go:29: asdasdas123123
+2026/01/15 15:07:28 user_send_message.go:28: 123 97a7f810-1a4e-490e-9adf-f75d6942401c 1
+2026/01/15 15:07:39 user_send_message.go:28: 123 97a7f810-1a4e-490e-9adf-f75d6942401c 
+2026/01/15 15:08:20 user_send_message.go:28: 123 97a7f810-1a4e-490e-9adf-f75d6942401c 
+2026/01/15 15:08:55 main.go:121: http server start  0.0.0.0:34332
+2026/01/15 15:08:55 event_bus.go:135: Subscribed to event: websocket
+2026/01/15 15:08:56 register_websocket.go:28: 123
+2026/01/15 15:08:56 register_websocket.go:29: asdasdas123123
+2026/01/15 15:09:04 user_message_group.go:11: 234
+2026/01/15 15:09:04 register_websocket.go:28: 234
+2026/01/15 15:09:04 register_websocket.go:29: asdasdas123123
+2026/01/15 15:09:09 user_send_message.go:28: 234 ae4ae075-ac8a-4ff9-b406-9698ae03b7f5 
+2026/01/15 15:09:33 event_bus.go:135: Subscribed to event: websocket
+2026/01/15 15:09:33 main.go:121: http server start  0.0.0.0:34332
+2026/01/15 15:09:40 user_message_group.go:11: 1243123
+2026/01/15 15:09:40 register_websocket.go:28: 1243123
+2026/01/15 15:09:40 register_websocket.go:29: asdasdas123123
+2026/01/15 15:09:44 user_send_message.go:28: 1243123 27df2442-2261-4923-bdb6-8126e241b4cd 
+2026/01/15 15:09:44 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/0a1095d6eee773733834d223838d1e68.jpg]
+2026/01/15 15:14:28 user_message_group.go:11: 123
+2026/01/15 15:14:28 register_websocket.go:28: 123
+2026/01/15 15:14:28 register_websocket.go:29: asdasdas123123
+2026/01/15 15:22:54 user_message_group.go:11: 1231
+2026/01/15 15:22:54 register_websocket.go:28: 1231
+2026/01/15 15:22:54 register_websocket.go:29: asdasdas123123
+2026/01/15 15:44:03 user_message_group.go:11: 2141
+2026/01/15 15:44:03 register_websocket.go:28: 2141
+2026/01/15 15:44:03 register_websocket.go:29: asdasdas123123
+2026/01/15 15:48:09 user_message_group.go:11: 123
+2026/01/15 15:48:10 register_websocket.go:28: 123
+2026/01/15 15:48:10 register_websocket.go:29: asdasdas123123
+2026/01/15 15:49:20 user_message_group.go:11: 123
+2026/01/15 15:49:21 register_websocket.go:28: 123
+2026/01/15 15:49:21 register_websocket.go:29: asdasdas123123
+2026/01/15 15:49:59 user_message_group.go:11: 123
+2026/01/15 15:49:59 register_websocket.go:28: 123
+2026/01/15 15:49:59 register_websocket.go:29: asdasdas123123
+2026/01/15 15:55:23 user_message_group.go:11: 21431
+2026/01/15 15:55:24 register_websocket.go:28: 21431
+2026/01/15 15:55:24 register_websocket.go:29: asdasdas123123
+2026/01/15 15:59:32 user_message_group.go:11: 123
+2026/01/15 15:59:32 register_websocket.go:28: 123
+2026/01/15 15:59:32 register_websocket.go:29: asdasdas123123
+2026/01/15 16:00:55 user_message_group.go:11: 123
+2026/01/15 16:00:55 register_websocket.go:28: 123
+2026/01/15 16:00:55 register_websocket.go:29: asdasdas123123
+2026/01/15 16:03:20 user_message_group.go:11: 345
+2026/01/15 16:03:20 register_websocket.go:28: 345
+2026/01/15 16:03:20 register_websocket.go:29: asdasdas123123
+2026/01/15 16:03:27 user_send_message.go:28: 345 00e3d30f-8897-4863-a2b9-5cd94265d56f 
+2026/01/15 16:03:27 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/270156f0a18f6907bcffd96cc09c81d8.mp4]
+2026/01/15 16:08:54 user_message_group.go:11: 2134
+2026/01/15 16:08:54 register_websocket.go:28: 2134
+2026/01/15 16:08:54 register_websocket.go:29: asdasdas123123
+2026/01/15 16:10:26 user_message_group.go:11: 2134
+2026/01/15 16:10:26 register_websocket.go:28: 2134
+2026/01/15 16:10:26 register_websocket.go:29: asdasdas123123
+2026/01/15 16:11:30 user_message_group.go:11: 123
+2026/01/15 16:11:30 register_websocket.go:28: 123
+2026/01/15 16:11:30 register_websocket.go:29: asdasdas123123
+2026/01/15 16:11:42 user_message_group.go:11: 123123
+2026/01/15 16:11:42 register_websocket.go:28: 123123
+2026/01/15 16:11:42 register_websocket.go:29: asdasdas123123
+2026/01/15 16:11:49 user_send_message.go:28: 123123 00e3d30f-8897-4863-a2b9-5cd94265d56f 
+2026/01/15 16:11:49 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/270156f0a18f6907bcffd96cc09c81d8.mp4]
+2026/01/15 16:11:49 user_send_message.go:93: write tcp 127.0.0.1:34332->127.0.0.1:3283: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/15 16:11:49 user_send_message.go:120: write tcp 127.0.0.1:34332->127.0.0.1:3283: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/15 16:16:59 user_message_group.go:11: 123
+2026/01/15 16:16:59 register_websocket.go:28: 123
+2026/01/15 16:16:59 register_websocket.go:29: asdasdas123123
+2026/01/15 16:18:14 user_message_group.go:11: 123
+2026/01/15 16:18:14 register_websocket.go:28: 123
+2026/01/15 16:18:14 register_websocket.go:29: asdasdas123123
+2026/01/15 16:19:07 user_message_group.go:11: 3254
+2026/01/15 16:19:08 register_websocket.go:28: 3254
+2026/01/15 16:19:08 register_websocket.go:29: asdasdas123123
+2026/01/15 16:19:43 event_bus.go:135: Subscribed to event: websocket
+2026/01/15 16:19:43 main.go:121: http server start  0.0.0.0:34332
+2026/01/15 16:19:43 register_websocket.go:28: 3254
+2026/01/15 16:19:43 register_websocket.go:29: asdasdas123123
+2026/01/15 16:19:48 register_websocket.go:28: 3254
+2026/01/15 16:19:48 register_websocket.go:29: asdasdas123123
+2026/01/15 16:19:53 register_websocket.go:28: 3254
+2026/01/15 16:19:53 register_websocket.go:29: asdasdas123123
+2026/01/15 16:19:58 register_websocket.go:28: 3254
+2026/01/15 16:19:58 register_websocket.go:29: asdasdas123123
+2026/01/15 16:20:03 register_websocket.go:28: 3254
+2026/01/15 16:20:03 register_websocket.go:29: asdasdas123123
+2026/01/15 16:20:08 register_websocket.go:28: 3254
+2026/01/15 16:20:08 register_websocket.go:29: asdasdas123123
+2026/01/15 16:20:13 register_websocket.go:28: 3254
+2026/01/15 16:20:13 register_websocket.go:29: asdasdas123123
+2026/01/15 16:21:00 user_message_group.go:11: 213
+2026/01/15 16:21:00 register_websocket.go:28: 213
+2026/01/15 16:21:00 register_websocket.go:29: asdasdas123123
+2026/01/15 16:21:24 user_send_message.go:28: 213 2c5bc6ca-b52c-4227-a003-0eec6c8fda1c 32
+2026/01/15 16:21:24 user_send_message.go:62: []
+2026/01/15 16:21:31 event_bus.go:135: Subscribed to event: websocket
+2026/01/15 16:21:31 main.go:121: http server start  0.0.0.0:34332
+2026/01/15 16:21:39 user_message_group.go:11: 123
+2026/01/15 16:21:39 register_websocket.go:28: 123
+2026/01/15 16:21:39 register_websocket.go:29: asdasdas123123
+2026/01/15 16:21:48 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 
+2026/01/15 16:21:48 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/270156f0a18f6907bcffd96cc09c81d8.mp4]
+2026/01/15 16:22:23 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 
+2026/01/15 16:22:23 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/mmexport1743348535278.jpeg]
+2026/01/15 16:26:04 user_message_group.go:11: 123
+2026/01/15 16:26:04 register_websocket.go:28: 123
+2026/01/15 16:26:04 register_websocket.go:29: asdasdas123123
+2026/01/15 16:27:30 user_message_group.go:11: 123
+2026/01/15 16:27:30 register_websocket.go:28: 123
+2026/01/15 16:27:30 register_websocket.go:29: asdasdas123123
+2026/01/15 16:31:55 user_message_group.go:11: 123
+2026/01/15 16:31:56 register_websocket.go:28: 123
+2026/01/15 16:31:56 register_websocket.go:29: asdasdas123123
+2026/01/15 16:35:40 user_message_group.go:11: 2134
+2026/01/15 16:35:41 register_websocket.go:28: 2134
+2026/01/15 16:35:41 register_websocket.go:29: asdasdas123123
+2026/01/15 16:37:49 user_message_group.go:11: 123
+2026/01/15 16:37:49 register_websocket.go:28: 123
+2026/01/15 16:37:49 register_websocket.go:29: asdasdas123123
+2026/01/15 16:41:33 user_message_group.go:11: 123
+2026/01/15 16:41:33 register_websocket.go:28: 123
+2026/01/15 16:41:33 register_websocket.go:29: asdasdas123123
+2026/01/15 16:43:39 user_message_group.go:11: 123
+2026/01/15 16:43:39 register_websocket.go:28: 123
+2026/01/15 16:43:39 register_websocket.go:29: asdasdas123123
+2026/01/15 16:44:08 user_message_group.go:11: 123
+2026/01/15 16:44:08 register_websocket.go:28: 123
+2026/01/15 16:44:08 register_websocket.go:29: asdasdas123123
+2026/01/15 16:46:23 user_message_group.go:11: 123
+2026/01/15 16:46:23 register_websocket.go:28: 123
+2026/01/15 16:46:23 register_websocket.go:29: asdasdas123123
+2026/01/15 16:47:09 user_message_group.go:11: 123
+2026/01/15 16:47:09 register_websocket.go:28: 123
+2026/01/15 16:47:09 register_websocket.go:29: asdasdas123123
+2026/01/15 16:48:15 user_message_group.go:11: 123
+2026/01/15 16:48:15 register_websocket.go:28: 123
+2026/01/15 16:48:15 register_websocket.go:29: asdasdas123123
+2026/01/15 16:49:57 user_message_group.go:11: 123
+2026/01/15 16:49:57 register_websocket.go:28: 123
+2026/01/15 16:49:57 register_websocket.go:29: asdasdas123123
+2026/01/15 16:50:24 user_message_group.go:11: 123
+2026/01/15 16:50:24 register_websocket.go:28: 123
+2026/01/15 16:50:24 register_websocket.go:29: asdasdas123123
+2026/01/15 16:51:52 user_message_group.go:11: 123
+2026/01/15 16:51:52 register_websocket.go:28: 123
+2026/01/15 16:51:52 register_websocket.go:29: asdasdas123123
+2026/01/15 16:52:46 user_message_group.go:11: 123
+2026/01/15 16:52:46 register_websocket.go:28: 123
+2026/01/15 16:52:46 register_websocket.go:29: asdasdas123123
+2026/01/15 16:52:49 user_send_message.go:28: 123 6562be0b-94a8-4384-b2b2-3c610744e18e 1
+2026/01/15 16:52:49 user_send_message.go:62: []
+2026/01/15 16:52:50 user_send_message.go:28: 123 6562be0b-94a8-4384-b2b2-3c610744e18e 2
+2026/01/15 16:52:50 user_send_message.go:62: []
+2026/01/15 16:53:31 user_message_group.go:11: 123
+2026/01/15 16:53:31 register_websocket.go:28: 123
+2026/01/15 16:53:31 register_websocket.go:29: asdasdas123123
+2026/01/15 16:53:51 user_message_group.go:11: 123
+2026/01/15 16:53:51 register_websocket.go:28: 123
+2026/01/15 16:53:51 register_websocket.go:29: asdasdas123123
+2026/01/15 16:54:18 user_send_message.go:28: 123 6562be0b-94a8-4384-b2b2-3c610744e18e 
+2026/01/15 16:54:18 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/0b0af2f7d26d17bd18830b1f66fa2770.jpg]
+2026/01/15 16:54:27 user_send_message.go:28: 123 6562be0b-94a8-4384-b2b2-3c610744e18e 
+2026/01/15 16:54:27 user_send_message.go:62: [http://127.0.0.1:34332/avatar/files/0cf4f06187096b580630a8e5cf74325b.png http://127.0.0.1:34332/avatar/files/0d9b41ba3000294682badac0b967c72f.jpg http://127.0.0.1:34332/avatar/files/0e89a30bb772fbe88f414b78136bda57.gif]
+2026/01/15 16:56:19 user_message_group.go:11: 123
+2026/01/15 16:56:19 register_websocket.go:28: 123
+2026/01/15 16:56:19 register_websocket.go:29: asdasdas123123
+2026/01/15 16:58:13 user_message_group.go:11: 123
+2026/01/15 16:58:13 register_websocket.go:28: 123
+2026/01/15 16:58:13 register_websocket.go:29: asdasdas123123
+2026/01/15 17:03:24 user_message_group.go:11: 123
+2026/01/15 17:03:24 register_websocket.go:28: 123
+2026/01/15 17:03:24 register_websocket.go:29: asdasdas123123
+2026/01/15 17:06:39 user_message_group.go:11: 123
+2026/01/15 17:06:39 register_websocket.go:28: 123
+2026/01/15 17:06:39 register_websocket.go:29: asdasdas123123
+2026/01/15 17:09:16 user_message_group.go:11: 123
+2026/01/15 17:09:16 register_websocket.go:28: 123
+2026/01/15 17:09:16 register_websocket.go:29: asdasdas123123
+2026/01/15 17:09:40 user_message_group.go:11: 123
+2026/01/15 17:09:40 register_websocket.go:28: 123
+2026/01/15 17:09:40 register_websocket.go:29: asdasdas123123
+2026/01/15 17:10:16 user_message_group.go:11: 123
+2026/01/15 17:10:16 register_websocket.go:28: 123
+2026/01/15 17:10:16 register_websocket.go:29: asdasdas123123
+2026/01/15 17:10:30 user_message_group.go:11: 123
+2026/01/15 17:10:30 register_websocket.go:28: 123
+2026/01/15 17:10:30 register_websocket.go:29: asdasdas123123
+2026/01/15 17:11:41 user_send_message.go:28: 123 6562be0b-94a8-4384-b2b2-3c610744e18e 213
+2026/01/15 17:11:41 user_send_message.go:62: []
+2026/01/15 17:13:39 user_message_group.go:11: 123
+2026/01/15 17:13:40 register_websocket.go:28: 123
+2026/01/15 17:13:40 register_websocket.go:29: asdasdas123123
+2026/01/15 17:13:47 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 11
+2026/01/15 17:13:47 user_send_message.go:62: []
+2026/01/15 17:13:58 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 123123
+2026/01/15 17:13:58 user_send_message.go:62: []
+2026/01/15 17:13:58 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 22
+2026/01/15 17:13:58 user_send_message.go:62: []
+2026/01/15 17:14:33 user_message_group.go:11: 123
+2026/01/15 17:14:33 register_websocket.go:28: 123
+2026/01/15 17:14:33 register_websocket.go:29: asdasdas123123
+2026/01/15 17:14:54 user_message_group.go:11: 123
+2026/01/15 17:14:54 register_websocket.go:28: 123
+2026/01/15 17:14:54 register_websocket.go:29: asdasdas123123
+2026/01/15 17:15:40 user_message_group.go:11: 123
+2026/01/15 17:15:40 register_websocket.go:28: 123
+2026/01/15 17:15:40 register_websocket.go:29: asdasdas123123
+2026/01/15 17:19:26 user_message_group.go:11: 123
+2026/01/15 17:19:26 register_websocket.go:28: 123
+2026/01/15 17:19:26 register_websocket.go:29: asdasdas123123
+2026/01/15 17:19:36 user_send_message.go:28: 123 6562be0b-94a8-4384-b2b2-3c610744e18e 111
+2026/01/15 17:19:36 user_send_message.go:62: []
+2026/01/15 17:20:25 user_message_group.go:11: 123
+2026/01/15 17:20:25 register_websocket.go:28: 123
+2026/01/15 17:20:25 register_websocket.go:29: asdasdas123123
+2026/01/15 17:21:01 user_message_group.go:11: 123
+2026/01/15 17:21:01 register_websocket.go:28: 123
+2026/01/15 17:21:01 register_websocket.go:29: asdasdas123123
+2026/01/15 17:21:41 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 1
+2026/01/15 17:21:41 user_send_message.go:62: []
+2026/01/15 17:21:41 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 1
+2026/01/15 17:21:41 user_send_message.go:62: []
+2026/01/15 17:21:42 user_send_message.go:28: 123 3a7b304c-d7ad-432a-9863-11404fbc523e 1
+2026/01/15 17:21:42 user_send_message.go:62: []
+2026/01/15 17:23:14 user_message_group.go:11: 123
+2026/01/15 17:23:14 register_websocket.go:28: 123
+2026/01/15 17:23:14 register_websocket.go:29: asdasdas123123
+2026/01/15 17:24:24 user_message_group.go:11: 123
+2026/01/15 17:24:24 register_websocket.go:28: 123
+2026/01/15 17:24:24 register_websocket.go:29: asdasdas123123

@@ -1,6 +1,7 @@
 package api
 
 import (
+	"avalonia_server/api/datastore"
 	"github.com/gin-gonic/gin"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gorilla/websocket"
@@ -28,7 +29,12 @@ func RegisterWsConn(r *gin.Context) {
 	log.Println(gconv.Map(string(msg))["token"])
 	id := gconv.String(gconv.Map(string(msg))["id"])
 
-	if AllUsers[id] != nil {
-		AllUsers[id].Conn = conn
+	if datastore.AllUsers[id] != nil {
+		datastore.AllUsers[id].Conn = conn
+	} else {
+		if connError := conn.Close(); connError != nil {
+			log.Println(connError)
+		}
 	}
+
 }

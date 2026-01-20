@@ -12,6 +12,8 @@
              x:Class="example.Component.Messages.MessagesView">
 
     <Grid>
+        <!-- <Grid Name="RootGrid"> -->
+        <!-- </Grid> -->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" MinWidth="200" MaxWidth="400" />
             <ColumnDefinition Width="6" />
@@ -31,11 +33,11 @@
                              Watermark="搜索" />
                     <Button DockPanel.Dock="Right"
                             Margin="5"
-                            Content="+" >
+                            Content="+">
                         <Button.Flyout>
                             <MenuFlyout Placement="BottomEdgeAlignedLeft">
-                                <MenuItem Header="创建群聊" />
-                                <MenuItem Header="添加好友" />
+                                <MenuItem Header="创建群聊" Click="CreateGroupChat" />
+                                <MenuItem Header="添加好友/群聊" Click="SearchGroupAndUser" />
                             </MenuFlyout>
                         </Button.Flyout>
                     </Button>
@@ -51,12 +53,12 @@
                                     <ContextMenu>
                                         <MenuItem Header="置顶" />
                                         <MenuItem Header="查看群信息" />
-                                        <MenuItem Header="复制群号" />
+                                        <MenuItem Header="复制群号" Tag="{Binding Id}" Click="CopyGroupId" />
                                         <MenuItem Header="标记已读" />
                                         <MenuItem Header="群消息设置">
-                                            <MenuItem Header="置顶" />
-                                            <MenuItem Header="复制群号" />
-                                            <MenuItem Header="标记已读" />
+                                            <MenuItem Header="允许接收群消息" />
+                                            <MenuItem Header="接收消息但是不提醒" />
+                                            <MenuItem Header="屏蔽群消息" />
                                         </MenuItem>
                                         <MenuItem Header="从消息列表中删除" />
 
@@ -69,51 +71,70 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid Grid.Column="0">
                                     <Border Width="50" Height="50" CornerRadius="25" ClipToBounds="True">
-                                        <Image asyncImageLoader:ImageLoader.Source="{Binding Avatar}"
+                                        <Image Source="{Binding Avatar}"
                                                Stretch="UniformToFill" Width="50" Height="50" />
                                     </Border>
                                 </Grid>
-                                <Grid Grid.Column="1" Margin="8 0 0 0 ">
+                                <Grid Grid.Column="1" Margin="8,0,0,0" Height="60"> <!-- 固定高度便于垂直居中 -->
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition />
-                                        <ColumnDefinition />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
-                                    <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding Name}"
-                                               TextTrimming="CharacterEllipsis" />
 
-                                    <Grid Grid.Column="0" Grid.Row="1">
-                                        <Grid Margin="4 0 0 0" ColumnDefinitions="Auto, Auto, *">
-                                            <TextBlock Grid.Column="0"
-                                                       Text="{Binding LastMessage.SendUserName}"
-                                                       MaxWidth="80"
-                                                       TextTrimming="CharacterEllipsis" />
+                                    <!-- 左上：Name → 左对齐，垂直居中 -->
+                                    <TextBlock Grid.Column="0" Grid.Row="0"
+                                               Text="{Binding Name}"
+                                               TextTrimming="CharacterEllipsis"
+                                               HorizontalAlignment="Left"
+                                               VerticalAlignment="Center" />
 
-                                            <TextBlock Grid.Column="1" Text=": "
-                                                       IsVisible="{Binding LastMessage.Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+                                    <!-- 左下：消息预览 → 左对齐，垂直居中 -->
+                                    <Grid Grid.Column="0" Grid.Row="1"
+                                          HorizontalAlignment="Left"
+                                          VerticalAlignment="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                                            <TextBlock Grid.Column="2"
-                                                       Text="{Binding LastMessage.Message}"
-                                                       TextTrimming="CharacterEllipsis" />
-                                        </Grid>
+                                        <TextBlock Grid.Column="0"
+                                                   Text="{Binding LastMessage.SendUserName}"
+                                                   MaxWidth="80"
+                                                   TextTrimming="CharacterEllipsis" />
+
+                                        <TextBlock Grid.Column="1"
+                                                   Text=": "
+                                                   IsVisible="{Binding LastMessage.Message, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+
+                                        <TextBlock Grid.Column="2"
+                                                   Text="{Binding LastMessage.Message}"
+                                                   TextTrimming="CharacterEllipsis" />
                                     </Grid>
 
-                                    <Border IsVisible="{Binding ShowMessageNumber}" Grid.Column="1" Grid.Row="0"
-                                            Background="#bcbcbc" CornerRadius="15" HorizontalAlignment="Right"
-                                            Width="25" Height="25" Padding="4">
-                                        <TextBlock 
-                                            Text="{Binding MessageNumber}"                   
-                                            HorizontalAlignment="Center"
-                                            VerticalAlignment="Center" />
+                                    <!-- 右上：未读数 → 右对齐，垂直居中 -->
+                                    <Border Grid.Column="1" Grid.Row="0"
+                                            IsVisible="{Binding ShowMessageNumber}"
+                                            Background="#bcbcbc"
+                                            CornerRadius="15"
+                                            Width="25" Height="25"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Center"
+                                            Padding="4">
+                                        <TextBlock Text="{Binding MessageNumber}"
+                                                   HorizontalAlignment="Center"
+                                                   VerticalAlignment="Center" />
                                     </Border>
-                                    <TextBlock 
-                                        Grid.Column="1" 
-                                        Grid.Row="1" 
-                                        Text="{Binding LastMessage.Time}" />
 
+                                    <!-- 右下：时间 → 右对齐，垂直居中 -->
+                                    <TextBlock Grid.Column="1" Grid.Row="1"
+                                               Text="{Binding LastMessage.Time}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Center" />
                                 </Grid>
                             </Grid>
 
@@ -150,8 +171,8 @@
                             <Setter Property="VerticalAlignment" Value="Center" />
                         </Style>
                     </Grid.Styles>
-                    <Grid Grid.Column="0">
-                        <TextBlock Margin="20 0 0 0"> 群标题</TextBlock>
+                    <Grid Grid.Column="0" Background="#ffffff">
+                        <TextBlock Margin="20 0 0 0" Text="{Binding SelectMessageGroupIndex.Name}"></TextBlock>
                     </Grid>
                     <Grid Grid.Column="1">
                         <StackPanel Orientation="Horizontal">
@@ -179,8 +200,8 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="2" />
-                        <ColumnDefinition Width="200" MaxWidth="400" MinWidth="200" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
                         <Grid>
@@ -191,9 +212,9 @@
                             </Grid.RowDefinitions>
 
                             <Grid Grid.Row="0">
-                                <groupHistory:GroupHistoryView  DataContext="{Binding GroupHistoryVm}"/>
+                                <groupHistory:GroupHistoryView DataContext="{Binding GroupHistoryVm}" />
                             </Grid>
-                            
+
                             <GridSplitter Grid.Row="1" ResizeDirection="Rows">
                                 <GridSplitter.Template>
                                     <ControlTemplate>
@@ -202,12 +223,12 @@
                                 </GridSplitter.Template>
                             </GridSplitter>
 
-                            <chatBox:ChatBoxView Grid.Row="2" DataContext="{Binding ChatBoxVm}"/>
-                            
+                            <chatBox:ChatBoxView Grid.Row="2" DataContext="{Binding ChatBoxVm}" />
+
                         </Grid>
                     </Grid>
 
-                    <GridSplitter Grid.Column="1" ResizeDirection="Columns">
+                    <GridSplitter Grid.Column="1" ResizeDirection="Columns" Width=" 2">
                         <GridSplitter.Template>
                             <ControlTemplate>
                                 <Border Width="3" Background="#f8f8f8" />
@@ -215,7 +236,8 @@
                         </GridSplitter.Template>
                     </GridSplitter>
 
-                    <Grid Grid.Column="2">
+                    <Grid Grid.Column="2" Width="200" MaxWidth="400" MinWidth="200"
+                          IsVisible="{Binding SelectMessageGroupIndex.IsShowGroupMember}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="3*" />
@@ -233,7 +255,7 @@
 
                             <Grid Grid.Row="2">
                                 <TextBlock>群成员</TextBlock>
-                                <groupMembers:GroupMembersView DataContext="{Binding GroupMemberVm}"/>
+                                <groupMembers:GroupMembersView DataContext="{Binding GroupMemberVm}" />
                             </Grid>
                         </Grid>
                     </Grid>

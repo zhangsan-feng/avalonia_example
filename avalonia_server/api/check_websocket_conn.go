@@ -1,6 +1,7 @@
 package api
 
 import (
+	"avalonia_server/api/datastore"
 	"github.com/gorilla/websocket"
 	"log"
 	"time"
@@ -19,14 +20,21 @@ func CheckWebsocketConn() {
 	for {
 		select {
 		case <-ticker.C:
-			for k := range AllUsers {
+			for k := range datastore.AllUsers {
 				//log.Println(ActiveUsers[k])
-				if AllUsers[k].Conn == nil {
-					AllUsers[k].Status = "离线"
+				if datastore.AllUsers[k].Conn == nil {
+					datastore.AllUsers[k].Status = "离线"
 					continue
 				}
-				if err := AllUsers[k].Conn.WriteMessage(websocket.PingMessage, []byte("ping")); err != nil {
-					AllUsers[k].Status = "离线"
+				//for j := range AllGroup {
+				//	for l := range AllGroup[j].Members {
+				//		if AllUsers[k].Id == AllGroup[j].Members[l].Id {
+				//			AllGroup[j].Members = append(AllGroup[j].Members[:l], AllGroup[j].Members[l+1:]...)
+				//		}
+				//	}
+				//}
+				if err := datastore.AllUsers[k].Conn.WriteMessage(websocket.PingMessage, []byte("ping")); err != nil {
+					datastore.AllUsers[k].Status = "离线"
 					//log.Printf("发送 ping 失败: %v", err)
 				}
 

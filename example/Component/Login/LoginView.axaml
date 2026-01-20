@@ -20,12 +20,8 @@
                 CornerRadius="8"
                 BoxShadow="0 4 10 0 #20000000">
         
-            <StackPanel Spacing="15">
-                <TextBlock Text="欢迎回来" 
-                           FontSize="24" 
-                           FontWeight="Bold" 
-                           HorizontalAlignment="Center"
-                           Margin="0,0,0,10"/>
+            <StackPanel Spacing="10">
+   
 
                 <TextBox Text="{Binding UserName}" 
                          Watermark="请输入用户名"
@@ -44,6 +40,12 @@
                            Height="20"
                            IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"/>
                 
+                <!-- <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center">选择群聊头像</TextBlock> -->
+                <!-- <Border PointerPressed="PickAvatarCommand" Background="#e3e3e3" Width="150" Height="150" CornerRadius="100" ClipToBounds="True"> -->
+                <!--     <Image Source="{Binding SelectedAvatarUi}" Width="150" Height="150"  -->
+                <!--            Stretch="UniformToFill"/> -->
+                <!-- </Border> -->
+
                 <Button Content="登 录" 
                         Command="{Binding LoginCommand}"
                         Classes="accent"
@@ -51,12 +53,6 @@
                         HorizontalContentAlignment="Center"
                         Padding="10"
                         Margin="0,10,0,0"/>
-
-                <Button Content="忘记密码？" 
-                        Background="Transparent"
-                        FontSize="12"
-                        Foreground="Gray"
-                        HorizontalAlignment="Center"/>
             </StackPanel>
         </Border>
     </Grid>

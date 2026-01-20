@@ -14,7 +14,7 @@ public class ChatBoxViewModel:ViewModelBase, IRoutableViewModel{
     public AppStateService State => AppState.Global;
     public IScreen HostScreen{ get; }
     public string UrlPathSegment{ get; } = "ChatBoxViewModel";
-    public readonly ChatMessageApiInterface MessageApi; 
+     
     
     
     public ReactiveCommand<Unit, Unit> SubmitMessageEvent  { get; }
@@ -38,13 +38,13 @@ public class ChatBoxViewModel:ViewModelBase, IRoutableViewModel{
     
     
     public ChatBoxViewModel(){
-        MessageApi = RestService.For<ChatMessageApiInterface>("http" + State.ServerAddress);
+      
         
         SubmitMessageEvent = ReactiveCommand.CreateFromTask(async () => {
-            // Console.WriteLine(UserInput);
-            // Console.WriteLine(SelectGroupId);
+            // Logger.Log(UserInput);
+            // Logger.Log(SelectGroupId);
             if (UserInput != null && UserInput.Length != 0){
-                MessageApi.SendMessage(State.UserId, SelectGroupId, UserInput,[]);
+                State.MessageApi.SendMessage(State.UserId, SelectGroupId, UserInput,[]);
             }
             
             if (SelectedFiles != null && SelectedFiles.Count != 0 ) {
@@ -61,7 +61,7 @@ public class ChatBoxViewModel:ViewModelBase, IRoutableViewModel{
                     var f = await file.OpenReadAsync();
                     files.Add(new StreamPart(f, file.Name));
                 }
-                MessageApi.SendMessage(State.UserId, SelectGroupId, UserInput, files);
+                State.MessageApi.SendMessage(State.UserId, SelectGroupId, UserInput, files);
             }
             
             SelectedFiles = [];

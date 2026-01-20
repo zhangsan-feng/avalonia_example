@@ -1,6 +1,7 @@
-package api
+package user
 
 import (
+	"avalonia_server/api/datastore"
 	"github.com/gin-gonic/gin"
 	"github.com/gogf/gf/v2/os/gfile"
 	"github.com/gogf/gf/v2/util/gconv"
@@ -19,32 +20,34 @@ type UserSendMessage struct {
 
 func UserSendMessageApi(r *gin.Context) {
 	var req *UserSendMessage
-	err := r.ShouldBind(&req)
-	if err != nil {
-		log.Println(err)
+	if bindError := r.ShouldBind(&req); bindError != nil {
+		log.Println(bindError)
 		return
 	}
 
 	log.Println(req.SendUserId, req.SendGroupId, req.Message)
 
-	form, _ := r.MultipartForm()
+	form, fromFilesError := r.MultipartForm()
+	if fromFilesError != nil {
+		log.Println(fromFilesError)
+	}
+
 	files := form.File["files"]
 	//log.Println(files)
 
-	message_files := []string{}
+	messageFiles := []string{}
 
 	if len(files) > 0 {
 		for _, fileHeader := range files {
-			tmp_file_path := "./static/files/" + fileHeader.Filename
-			message_files = append(message_files, "http://127.0.0.1:34332/avatar/files/"+fileHeader.Filename)
-			if gfile.Exists(tmp_file_path) {
+			tmpFilePath := "./static/files/" + fileHeader.Filename
+			messageFiles = append(messageFiles, "http://127.0.0.1:34332/avatar/files/"+fileHeader.Filename)
+			if gfile.Exists(tmpFilePath) {
 				continue
 			}
 			if fileHeader.Size > 8*1024*1024 {
 				continue
 			}
-			err := r.SaveUploadedFile(fileHeader, tmp_file_path)
-			if err != nil {
+			if err := r.SaveUploadedFile(fileHeader, tmpFilePath); err != nil {
 				r.JSON(http.StatusInternalServerError, gin.H{"error": "failed to save file"})
 				return
 			}
@@ -56,9 +59,15 @@ func UserSendMessageApi(r *gin.Context) {
 	//	log.Println(err)
 	//}
 
-	//log.Println(message_files)
+	log.Println(messageFiles)
+	if len(messageFiles) == 0 && len(req.Message) == 0 {
+		return
+	}
 
-	group := AllGroup[req.SendGroupId]
+	group := datastore.AllGroup[req.SendGroupId]
+	if group == nil {
+		return
+	}
 	exist := false
 	for _, groupMember := range group.Members {
 		if groupMember.Id == req.SendUserId {
@@ -66,24 +75,25 @@ func UserSendMessageApi(r *gin.Context) {
 		}
 	}
 	if !exist {
-		groupMember := &GroupMembers{
+		groupMember := &datastore.GroupMembers{
 			Id:       req.SendUserId,
-			Name:     AllUsers[req.SendUserId].Name,
-			Avatar:   AllUsers[req.SendUserId].Avatar,
+			Name:     datastore.AllUsers[req.SendUserId].Name,
+			Avatar:   datastore.AllUsers[req.SendUserId].Avatar,
 			Usertype: "普通群员",
-			Status:   AllUsers[req.SendUserId].Status,
+			Status:   datastore.AllUsers[req.SendUserId].Status,
 		}
 
 		group.Members = append(group.Members, groupMember)
 		for _, v := range group.Members {
-			if AllUsers[v.Id] != nil {
-				if AllUsers[v.Id].Conn != nil {
-					send := &WebSocketMessage{
-						Type:    "join_group",
+			if datastore.AllUsers[v.Id] != nil {
+				log.Println(v.Name)
+				if datastore.AllUsers[v.Id].Conn != nil {
+					send := &datastore.WebSocketMessage{
+						Type:    datastore.WsMsgJoinGroupChat,
 						Data:    groupMember,
 						GroupId: req.SendGroupId,
 					}
-					if err := AllUsers[v.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(send))); err != nil {
+					if err := datastore.AllUsers[v.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(send))); err != nil {
 						log.Println(err)
 					}
 				}
@@ -93,24 +103,25 @@ func UserSendMessageApi(r *gin.Context) {
 	}
 
 	for _, v := range group.Members {
-		if AllUsers[v.Id] != nil {
-			if AllUsers[v.Id].Conn != nil {
-				sendMsg := &GroupHistory{
+		if datastore.AllUsers[v.Id] != nil {
+			if datastore.AllUsers[v.Id].Conn != nil {
+				log.Println(v.Name)
+				sendMsg := &datastore.GroupHistory{
 					MessageId:      uuid.New().String(),
 					SendGroupId:    req.SendGroupId,
 					SendUserId:     req.SendUserId,
-					SendUserName:   AllUsers[req.SendUserId].Name,
-					SendUserAvatar: AllUsers[req.SendUserId].Avatar,
+					SendUserName:   datastore.AllUsers[req.SendUserId].Name,
+					SendUserAvatar: datastore.AllUsers[req.SendUserId].Avatar,
 					Message:        req.Message,
 					Time:           time.Now().Format("2006-01-02 15:04:05"),
-					Files:          message_files,
+					Files:          messageFiles,
 				}
 				//log.Println(gconv.String(sendMsg))
-				send := &WebSocketMessage{
-					Type: "message",
+				send := &datastore.WebSocketMessage{
+					Type: datastore.WsMsgTypeMessage,
 					Data: sendMsg,
 				}
-				if err := AllUsers[v.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(send))); err != nil {
+				if err := datastore.AllUsers[v.Id].Conn.WriteMessage(websocket.TextMessage, []byte(gconv.String(send))); err != nil {
 					log.Println(err)
 				}
 				if len(group.History) == 1000 {

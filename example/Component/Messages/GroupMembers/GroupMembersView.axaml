@@ -7,43 +7,50 @@
              x:DataType="vm:GroupMembersViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="example.Component.Messages.GroupMembers.GroupMembersView">
-    
-    <ListBox ItemsSource="{Binding GroupMembers}">
-                                    <ListBox.ItemTemplate>
-                                        <DataTemplate>
-                                            <StackPanel>
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto" />
-                                                        <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="Auto" />
-                                                    </Grid.ColumnDefinitions>
 
-                                                    <Border Grid.Column="0"
-                                                            Width="25"
-                                                            Height="25"
-                                                            CornerRadius="25"
-                                                            ClipToBounds="True">
-                                                        <Image asyncImageLoader:ImageLoader.Source="{Binding Avatar}" />
-                                                    </Border>
+    <ListBox ItemsSource="{Binding GroupMembers}" >
+        <ListBox.ItemTemplate>
+            <DataTemplate>
+                <StackPanel Background="Transparent" Name="StackPanelContextMenu" AttachedToVisualTree="OnStackPanelAttached">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                                                    <TextBlock Grid.Column="1"
-                                                               Text="{Binding Name}"
-                                                               TextTrimming="CharacterEllipsis"
-                                                               Margin="8,0,0,0" />
-                                                    <!-- <TextBlock Grid.Column="1" -->
-                                                    <!--            Text="{Binding Avatar}" -->
-                                                    <!--            TextTrimming="CharacterEllipsis" -->
-                                                    <!--            Margin="8,0,0,0" /> -->
-                                                    <Border Grid.Column="2" Background="#c4e3f7" CornerRadius="55"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Center">
-                                                        <TextBlock TextAlignment="Center" Text="{Binding UserTyoe}" />
-                                                    </Border>
+                        <Border Grid.Column="0"
+                                Width="25"
+                                Height="25"
+                                CornerRadius="25"
+                                ClipToBounds="True">
+                            <Image Source="{Binding Avatar}" />
+                        </Border>
 
-                                                </Grid>
-                                            </StackPanel>
-                                        </DataTemplate>
-                                    </ListBox.ItemTemplate>
-                                </ListBox>
+                        <TextBlock Grid.Column="1"
+                                   Text="{Binding Name}"
+                                   VerticalAlignment="Center"
+                                   TextTrimming="CharacterEllipsis"
+                                   Margin="8,0,0,0" />
+                        <!-- <TextBlock Grid.Column="1" -->
+                        <!--            Text="{Binding Avatar}" -->
+                        <!--            TextTrimming="CharacterEllipsis" -->
+                        <!--            Margin="8,0,0,0" /> -->
+                        <Border Grid.Column="2" Background="#c4e3f7" CornerRadius="5"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center">
+                            <TextBlock TextAlignment="Center" Text="{Binding UserType}" />
+                        </Border>
+                        <!-- <Border Grid.Column="3" Background="#c4e3f7" CornerRadius="5" -->
+                        <!--         Margin="5 0 0 0 " -->
+                        <!--         HorizontalAlignment="Right" -->
+                        <!--         VerticalAlignment="Center"> -->
+                        <!--     <TextBlock TextAlignment="Center" Text="{Binding Status}" /> -->
+                        <!-- </Border> -->
+                    </Grid>
+                </StackPanel>
+            </DataTemplate>
+        </ListBox.ItemTemplate>
+    </ListBox>
 </UserControl>

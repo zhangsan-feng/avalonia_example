@@ -5,11 +5,12 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              xmlns:vm="clr-namespace:example.Component.Messages.GroupHistory"
              xmlns:asyncImageLoader="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+             xmlns:vlc="clr-namespace:LibVLCSharp.Avalonia;assembly=LibVLCSharp.Avalonia"
              x:DataType="vm:GroupHistoryViewModel"
              x:Class="example.Component.Messages.GroupHistory.GroupHistoryView">
 
-    <ListBox x:Name="ListBoxScrollIntoView"
-             ItemsSource="{Binding GroupHistoryMessage}">
+    <ListBox x:Name="ListBoxScrollIntoView"  AutoScrollToSelectedItem="True"
+             ItemsSource="{Binding GroupHistoryMessage}" >
         
         <ListBox.ItemContainerTheme>
             <ControlTheme TargetType="ListBoxItem">
@@ -38,7 +39,7 @@
 
         <ListBox.ItemTemplate>
             <DataTemplate>
-                <StackPanel Orientation="Horizontal" Name="MessageControl" Margin="15">
+                <StackPanel Orientation="Horizontal" Name="MessageControl" Margin="0 20 0 20 " AttachedToVisualTree="OnStackPanelAttached">
                     <StackPanel.Styles>
                         <Style Selector="StackPanel[Tag=True]">
                             <Setter Property="HorizontalAlignment" Value="Right" />
@@ -53,43 +54,45 @@
                     <StackPanel.Tag>
                         <Binding Path="IsSelf" />
                     </StackPanel.Tag>
-
-                    <Border Width="45" Height="45" CornerRadius="25"
+                    
+                    
+                    
+                    <Border Width="50" Height="50" CornerRadius="25" Margin="15 0 15 0"
+                            VerticalAlignment="Top"
                             ClipToBounds="True">
-                        <Image
-                            asyncImageLoader:ImageLoader.Source="{Binding SendUserAvatar}"
-                            Width="45" Height="45"
-                            Stretch="UniformToFill" />
+                        <Image Source="{Binding SendUserAvatar}" Stretch="UniformToFill" />
                     </Border>
 
-                    <StackPanel Margin="10,30 0 0 ">
-                        <StackPanel Orientation="Horizontal">
+                    <StackPanel >
+                        <StackPanel Orientation="Horizontal" Margin="10 0 10 0">
                             <TextBlock Text="{Binding SendUserName}" FlowDirection="LeftToRight" />
                             <TextBlock Text="{Binding Time}" FlowDirection="LeftToRight" Margin="10 0 10 0" />
                         </StackPanel>
-
-                        <TextBlock 
-                            Text="{Binding Message}"
-                            Margin="0,5,0,0"
-                            FlowDirection="LeftToRight"
-                          />
                         
-
-                        <ListBox ItemsSource="{Binding Files}" Margin="5">
-                            <ListBox.ItemsPanel>
+                        <TextBlock Text="{Binding Message}" Margin="10, 15, 10, 0" IsVisible="{Binding IsShowMessage}">
+                            <TextBlock.Styles>
+                                <Style Selector="TextBlock">
+                                    <Setter Property="TextAlignment" Value="Left" />
+                                </Style>
+                                <Style Selector="TextBlock[Tag=True]">
+                                    <Setter Property="TextAlignment" Value="Right" />
+                                </Style>
+                            </TextBlock.Styles>
+                            <TextBlock.Tag>
+                                <Binding Path="IsSelf" />
+                            </TextBlock.Tag>
+                        </TextBlock>
+                        
+                        <ItemsControl ItemsSource="{Binding Files}" Margin="5 0 5 0">
+                            <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <StackPanel Orientation="Horizontal" />
                                 </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <Border Background="Transparent" Width="50" Height="50"
-                                            PointerPressed="Image_PointerPressed">
-                                        <Image asyncImageLoader:ImageLoader.Source="{Binding }" />
-                                    </Border>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <vm:MessageDataTemplate/>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
                     </StackPanel>
                 </StackPanel>
             </DataTemplate>

@@ -1,0 +1,165 @@
+2026/01/19 09:45:36 event_bus.go:135: Subscribed to event: websocket
+2026/01/19 09:45:36 main.go:121: http server start  0.0.0.0:34332
+2026/01/19 09:46:14 user_message_group.go:11: 1234
+2026/01/19 09:46:14 register_websocket.go:28: 1234
+2026/01/19 09:46:14 register_websocket.go:29: asdasdas123123
+2026/01/19 09:50:28 user_message_group.go:11: 123
+2026/01/19 09:50:28 register_websocket.go:28: 123
+2026/01/19 09:50:28 register_websocket.go:29: asdasdas123123
+2026/01/19 09:50:46 user_send_message.go:28: 123 6ca1a8ee-3d0e-4747-8f9b-f664f98d1cf2 1
+2026/01/19 09:50:46 user_send_message.go:62: []
+2026/01/19 09:50:46 user_send_message.go:89: 123
+2026/01/19 09:50:46 user_send_message.go:108: 123
+2026/01/19 10:00:38 user_message_group.go:11: 123
+2026/01/19 10:00:38 register_websocket.go:28: 123
+2026/01/19 10:00:38 register_websocket.go:29: asdasdas123123
+2026/01/19 10:00:40 user_send_message.go:28: 123 88554065-852c-46a3-815f-c0533c3cb1ab 1
+2026/01/19 10:00:40 user_send_message.go:62: []
+2026/01/19 10:00:40 user_send_message.go:89: 123
+2026/01/19 10:00:40 user_send_message.go:108: 123
+2026/01/19 10:02:22 user_message_group.go:11: 123
+2026/01/19 10:02:22 register_websocket.go:28: 123
+2026/01/19 10:02:22 register_websocket.go:29: asdasdas123123
+2026/01/19 10:02:23 user_send_message.go:28: 123 a01dcdb5-f6ea-4662-aa6d-cd3c240a0cfe 1
+2026/01/19 10:02:23 user_send_message.go:62: []
+2026/01/19 10:02:23 user_send_message.go:89: 123
+2026/01/19 10:02:23 user_send_message.go:108: 123
+2026/01/19 10:03:02 user_message_group.go:11: 1234
+2026/01/19 10:03:02 register_websocket.go:28: 1234
+2026/01/19 10:03:02 register_websocket.go:29: asdasdas123123
+2026/01/19 10:03:03 user_send_message.go:28: 1234 e961433a-f9fc-4420-b282-fcf7d8cfb329 1
+2026/01/19 10:03:03 user_send_message.go:62: []
+2026/01/19 10:03:03 user_send_message.go:89: 1234
+2026/01/19 10:03:03 user_send_message.go:108: 1234
+2026/01/19 10:05:18 user_message_group.go:11: 1234
+2026/01/19 10:05:19 register_websocket.go:28: 1234
+2026/01/19 10:05:19 register_websocket.go:29: asdasdas123123
+2026/01/19 10:05:30 create_group_chat.go:70: [1234 123]
+2026/01/19 10:05:30 create_group_chat.go:71: &{1234 1234 http://127.0.0.1:34332/avatar/user_avatar/c1391a75d79d9c11d84cecb2af4e541f.jpg 0xc00039c420 离线 [] []}
+2026/01/19 10:05:30 create_group_chat.go:70: [1234 123]
+2026/01/19 10:05:30 create_group_chat.go:71: &{123 123 http://127.0.0.1:34332/avatar/user_avatar/f6d6f4c109d8ccc07b5689bdba16fe59.jpg 0xc000365600 离线 [] []}
+2026/01/19 10:05:30 create_group_chat.go:76: write tcp 127.0.0.1:34332->127.0.0.1:7045: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/19 10:05:33 user_send_message.go:28: 1234 4b22e4db-9891-435c-8427-cf4919323752 111
+2026/01/19 10:05:33 user_send_message.go:62: []
+2026/01/19 10:05:33 user_send_message.go:108: 1234
+2026/01/19 10:05:33 user_send_message.go:108: 123
+2026/01/19 10:05:33 user_send_message.go:125: write tcp 127.0.0.1:34332->127.0.0.1:7045: wsasend: An existing connection was forcibly closed by the remote host.
+2026/01/19 11:26:00 main.go:121: http server start  0.0.0.0:34332
+2026/01/19 11:26:00 event_bus.go:135: Subscribed to event: websocket
+2026/01/19 11:32:47 user_message_group.go:11: 12345
+2026/01/19 11:32:47 register_websocket.go:28: 12345
+2026/01/19 11:32:47 register_websocket.go:29: asdasdas123123
+2026/01/19 11:33:07 user_message_group.go:11: 1234
+2026/01/19 11:33:07 register_websocket.go:28: 1234
+2026/01/19 11:33:07 register_websocket.go:29: asdasdas123123
+2026/01/19 11:33:29 create_group_chat.go:70: [1234]
+2026/01/19 11:33:29 create_group_chat.go:71: &{1234 1234 http://127.0.0.1:34332/avatar/user_avatar/1ae05acaf96a70b01b899ca69a935dc6.jpg 0xc00041ba20 在线 [] []}
+2026/01/19 11:33:34 user_message_group.go:11: 123
+2026/01/19 11:33:34 register_websocket.go:28: 123
+2026/01/19 11:33:34 register_websocket.go:29: asdasdas123123
+2026/01/19 11:43:48 user_message_group.go:11: 1234
+2026/01/19 11:43:48 register_websocket.go:28: 1234
+2026/01/19 11:43:48 register_websocket.go:29: asdasdas123123
+2026/01/19 11:43:52 user_message_group.go:11: 123
+2026/01/19 11:43:52 register_websocket.go:28: 123
+2026/01/19 11:43:52 register_websocket.go:29: asdasdas123123
+2026/01/19 11:45:39 user_message_group.go:11: 123
+2026/01/19 11:45:39 register_websocket.go:28: 123
+2026/01/19 11:45:39 register_websocket.go:29: asdasdas123123
+2026/01/19 11:48:37 user_message_group.go:11: 123
+2026/01/19 11:48:37 register_websocket.go:28: 123
+2026/01/19 11:48:37 register_websocket.go:29: asdasdas123123
+2026/01/19 11:49:01 user_message_group.go:11: 123
+2026/01/19 11:49:01 register_websocket.go:28: 123
+2026/01/19 11:49:01 register_websocket.go:29: asdasdas123123
+2026/01/19 11:50:00 user_message_group.go:11: 123
+2026/01/19 11:50:00 register_websocket.go:28: 123
+2026/01/19 11:50:00 register_websocket.go:29: asdasdas123123
+2026/01/19 11:52:59 user_message_group.go:11: 123
+2026/01/19 11:52:59 register_websocket.go:28: 123
+2026/01/19 11:52:59 register_websocket.go:29: asdasdas123123
+2026/01/19 11:53:56 user_message_group.go:11: 123
+2026/01/19 11:53:56 register_websocket.go:28: 123
+2026/01/19 11:53:56 register_websocket.go:29: asdasdas123123
+2026/01/19 11:59:20 user_message_group.go:11: 123
+2026/01/19 11:59:20 register_websocket.go:28: 123
+2026/01/19 11:59:20 register_websocket.go:29: asdasdas123123
+2026/01/19 12:00:17 user_message_group.go:11: 123
+2026/01/19 12:00:18 register_websocket.go:28: 123
+2026/01/19 12:00:18 register_websocket.go:29: asdasdas123123
+2026/01/19 12:00:56 user_message_group.go:11: 123
+2026/01/19 12:00:56 register_websocket.go:28: 123
+2026/01/19 12:00:56 register_websocket.go:29: asdasdas123123
+2026/01/19 14:07:14 user_message_group.go:11: 123
+2026/01/19 14:07:14 register_websocket.go:28: 123
+2026/01/19 14:07:14 register_websocket.go:29: asdasdas123123
+2026/01/19 14:08:37 event_bus.go:135: Subscribed to event: websocket
+2026/01/19 14:08:37 main.go:121: http server start  0.0.0.0:34332
+2026/01/19 14:08:39 register_websocket.go:28: 123
+2026/01/19 14:08:39 register_websocket.go:29: asdasdas123123
+2026/01/19 14:08:44 register_websocket.go:28: 123
+2026/01/19 14:08:44 register_websocket.go:29: asdasdas123123
+2026/01/19 14:08:49 register_websocket.go:28: 123
+2026/01/19 14:08:49 register_websocket.go:29: asdasdas123123
+2026/01/19 14:09:32 event_bus.go:135: Subscribed to event: websocket
+2026/01/19 14:09:32 main.go:121: http server start  0.0.0.0:34332
+2026/01/19 14:10:12 event_bus.go:135: Subscribed to event: websocket
+2026/01/19 14:10:12 main.go:121: http server start  0.0.0.0:34332
+2026/01/19 14:10:17 user_message_group.go:11: 1234
+2026/01/19 14:10:17 register_websocket.go:28: 1234
+2026/01/19 14:10:17 register_websocket.go:29: asdasdas123123
+2026/01/19 14:14:31 user_message_group.go:11: 123
+2026/01/19 14:14:32 register_websocket.go:28: 123
+2026/01/19 14:14:32 register_websocket.go:29: asdasdas123123
+2026/01/19 14:15:47 user_message_group.go:11: 12354
+2026/01/19 14:15:47 register_websocket.go:28: 12354
+2026/01/19 14:15:47 register_websocket.go:29: asdasdas123123
+2026/01/19 14:56:14 user_message_group.go:11: 123
+2026/01/19 14:56:14 register_websocket.go:28: 123
+2026/01/19 14:56:14 register_websocket.go:29: asdasdas123123
+2026/01/19 14:58:19 user_message_group.go:11: aaa
+2026/01/19 14:58:19 register_websocket.go:28: aaa
+2026/01/19 14:58:19 register_websocket.go:29: asdasdas123123
+2026/01/19 15:00:25 user_message_group.go:11: 1234
+2026/01/19 15:00:25 register_websocket.go:28: 1234
+2026/01/19 15:00:25 register_websocket.go:29: asdasdas123123
+2026/01/19 15:00:51 user_send_message.go:28: 1234 226c51b6-ba1d-466f-8429-dd26d9ccc830 1
+2026/01/19 15:00:51 user_send_message.go:62: []
+2026/01/19 15:00:51 user_send_message.go:89: 1234
+2026/01/19 15:00:51 user_send_message.go:108: 1234
+2026/01/19 15:01:01 user_send_message.go:28: 1234 d1334268-52fa-4e93-8ae1-fdf0118469a9 2
+2026/01/19 15:01:01 user_send_message.go:62: []
+2026/01/19 15:01:01 user_send_message.go:89: 1234
+2026/01/19 15:01:01 user_send_message.go:108: 1234
+2026/01/19 15:04:27 user_message_group.go:11: 2134
+2026/01/19 15:04:28 register_websocket.go:28: 2134
+2026/01/19 15:04:28 register_websocket.go:29: asdasdas123123
+2026/01/19 15:04:30 user_send_message.go:28: 2134 10394426-1ae6-468c-823a-de4ff30fc81b 1
+2026/01/19 15:04:30 user_send_message.go:62: []
+2026/01/19 15:04:30 user_send_message.go:89: 2134
+2026/01/19 15:04:30 user_send_message.go:108: 2134
+2026/01/19 15:07:34 user_message_group.go:11: 123
+2026/01/19 15:07:35 register_websocket.go:28: 123
+2026/01/19 15:07:35 register_websocket.go:29: asdasdas123123
+2026/01/19 15:07:44 user_send_message.go:28: 123 c5e1386f-c921-4208-a824-0bdd6a11e23a 1
+2026/01/19 15:07:44 user_send_message.go:62: []
+2026/01/19 15:07:44 user_send_message.go:89: 123
+2026/01/19 15:07:44 user_send_message.go:108: 123
+2026/01/19 15:07:55 user_send_message.go:28: 123 c5e1386f-c921-4208-a824-0bdd6a11e23a 2
+2026/01/19 15:07:55 user_send_message.go:62: []
+2026/01/19 15:07:55 user_send_message.go:108: 123
+2026/01/19 15:07:58 user_send_message.go:28: 123 2d82a139-bfab-4677-b5c5-a80c293f2cac 1
+2026/01/19 15:07:58 user_send_message.go:62: []
+2026/01/19 15:07:58 user_send_message.go:89: 123
+2026/01/19 15:07:58 user_send_message.go:108: 123
+2026/01/19 15:08:59 user_message_group.go:11: 1234
+2026/01/19 15:08:59 register_websocket.go:28: 1234
+2026/01/19 15:08:59 register_websocket.go:29: asdasdas123123
+2026/01/19 15:09:01 user_send_message.go:28: 1234 91303d24-c0e9-4015-8d78-1eca5326142d 1
+2026/01/19 15:09:01 user_send_message.go:62: []
+2026/01/19 15:09:01 user_send_message.go:89: 1234
+2026/01/19 15:09:01 user_send_message.go:108: 1234
+2026/01/19 15:09:06 user_send_message.go:28: 1234 cef9c48c-8626-4ba2-9cf8-4e25ee263cd9 2
+2026/01/19 15:09:06 user_send_message.go:62: []
+2026/01/19 15:09:06 user_send_message.go:89: 1234
+2026/01/19 15:09:06 user_send_message.go:108: 1234

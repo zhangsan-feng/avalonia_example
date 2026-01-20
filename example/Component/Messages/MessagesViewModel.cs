@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using System.Text.Json;
@@ -22,7 +23,7 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel{
 
 
     public AppStateService State => AppState.Global;
-    public readonly ChatMessageApiInterface ChatMessageApi;
+    public readonly ChatMessageApi ChatMessageApi;
 
 
     public ChatBoxViewModel ChatBoxVm{ get; set; }
@@ -39,6 +40,7 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel{
 
 
     private UserMessageGroupUi? _selectMessageGroupIndex;
+
     public UserMessageGroupUi? SelectMessageGroupIndex{
         get => _selectMessageGroupIndex;
         set{
@@ -54,15 +56,15 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel{
         set => this.RaiseAndSetIfChanged(ref messageWindowIsShow, value);
     }
 
-    
+
     private readonly CompositeDisposable _disposables = new();
     public void Dispose() => _disposables.Clear();
 
-    
+
     private async Task InitializeAsync(){
         try{
             var res = await ChatMessageApi.GetMessageGroup(State.UserId);
-            // Console.WriteLine(res.Data);
+            // Logger.Log(res.Data);
             var tasks = res.Data.Select(UserMessageGroupUi.FromPayloadAsync);
             MessageGroup = new ObservableCollection<UserMessageGroupUi>(await Task.WhenAll(tasks));
             MessageWindowIsShow = true;
@@ -74,28 +76,41 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel{
             }
         }
         catch (Exception ex){
-            Console.WriteLine($"API Error: {ex}");
+            Logger.Log($"API Error: {ex}");
         }
     }
 
+    private void MoveMessavePostion(UserMessageGroupUi targetGroup){
+        if (SelectMessageGroupIndex != targetGroup){
+            targetGroup.MessageNumber++;
+            targetGroup.ShowMessageNumber = true;
+        }
+                    
+        var oldIndex = MessageGroup.IndexOf(targetGroup);
+        if (oldIndex > 0){
+            MessageGroup.Move(oldIndex, 0);
+            SelectMessageGroupIndex = targetGroup;
+        }
+    }
 
     public MessagesViewModel(IScreen screen){
         HostScreen = screen;
-        ChatMessageApi = RestService.For<ChatMessageApiInterface>("http" + State.ServerAddress);
-        
+        ChatMessageApi = RestService.For<ChatMessageApi>("http" + State.ServerAddress);
+
         _ = InitializeAsync();
 
         ChatBoxVm = new ChatBoxViewModel();
         GroupHistoryVm = new GroupHistoryViewModel();
         GroupMemberVm = new GroupMembersViewModel();
-        
+
+
         var parsedMessages = AppState.Global.Messages
             .Select(msg => {
                 try{
                     return JsonSerializer.Deserialize<WebSocketMessage>(msg);
                 }
                 catch (Exception ex){
-                    Console.WriteLine($"Parse error: {ex.Message}");
+                    Logger.Log($"Parse error: {ex.Message}");
                     return null;
                 }
             })
@@ -105,79 +120,150 @@ public class MessagesViewModel : ViewModelBase, IRoutableViewModel{
 
         parsedMessages
             .Where(data => data.Type == "message")
-            .Select(msg => JsonSerializer.Deserialize<GroupHistoryMessageHttp>(msg.Data))
-            .Where(payload => payload != null)
-            .SelectMany(async payload => new {
-                Payload = payload,
-                UI = await GroupHistoryMessageUi.FromPayloadAsync(payload)
+            .SelectMany(async payload => {
+                var p = JsonSerializer.Deserialize<GroupHistoryMessageHttp>(payload.Data);
+                return new {
+                    Payload = p,
+                    UI = await GroupHistoryMessageUi.FromPayloadAsync(p)
+                };
             })
+            .Where(result => result != null)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(result => {
-                // Console.WriteLine(result);
+
                 var targetGroup = MessageGroup.FirstOrDefault(g => g.Id == result.Payload.SendGroupId);
                 if (targetGroup != null){
                     targetGroup.HistoryCache.Add(result.UI);
                     targetGroup.LastMessage = result.Payload;
-
-                    Console.WriteLine($"recv group: [ {targetGroup.Id} ] message");
+                    MoveMessavePostion(targetGroup);
+                    Logger.Log($"recv group message id:[ {targetGroup.Id} ] moved to top.");
+                }
+                else{
+                    Logger.Log($"Received message for unknown group: {result.Payload.SendGroupId}");
                 }
             })
             .DisposeWith(_disposables);
 
         parsedMessages
-            .Where(data => data.Type == "join_group")
+            .Where(data => data.Type == "create_group_chat")
+            .SelectMany(async payload => {
+                var p = JsonSerializer.Deserialize<UserMessageGroupHttp>(payload.Data);
+                var ui = await UserMessageGroupUi.FromPayloadAsync(p);
+                foreach (var r in ui.Members){
+                    if (ui.GroupType == "private_chat" && r.Id != State.UserId){
+                        ui.Avatar = r.Avatar;
+                        ui.Name = r.Name;
+                    }
+                }
+
+                return new {
+                    Payload = p,
+                    UI = ui
+                };
+            })
+            .Where(result => result != null)
+            .ObserveOn(RxApp.MainThreadScheduler)
+            .Subscribe(result => { MessageGroup.Insert(0, result.UI); })
+            .DisposeWith(_disposables);
+
+        parsedMessages
+            .Where(data => data.Type == "join_group_chat")
             .SelectMany(async msg => {
                 try{
                     var payload = msg.Data.Deserialize<GroupMembersHttp>();
                     if (payload == null) return null;
-
                     var ui = await GroupMembersUi.FromPayloadAsync(payload);
                     return new {
                         GroupId = msg.GroupId,
-                        Payload = payload,
-                        UI = ui
+                        GroupMember = ui
                     };
                 }
                 catch (Exception ex){
-                    Console.WriteLine($"Error processing join_group: {ex}");
+                    Logger.Log($"Error processing join_group: {ex}");
                     return null;
                 }
             })
-            .Where(result => result != null) // 过滤掉失败的
+            .Where(result => result != null)
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(result => {
-                Console.WriteLine($"Processing join_group for group: {result.GroupId}");
-                
+                Logger.Log($"have user join group: {result.GroupId}");
                 var targetGroup = MessageGroup.FirstOrDefault(g => g.Id == result.GroupId);
                 if (targetGroup != null){
-                    Console.WriteLine(result.UI.GetType());
-                    targetGroup.Members.Add(result.UI);
-                    Console.WriteLine($"Updated group: [ {targetGroup.Id} ]");
+                    targetGroup.Members.Add(result.GroupMember);
+                    GroupMemberVm.GroupMembers = targetGroup.Members;
                 }
+                MoveMessavePostion(targetGroup);
             })
             .DisposeWith(_disposables);
 
+
+        // this.WhenAnyValue(x => x.SelectMessageGroupIndex)
+        //     .WhereNotNull()
+        //     .Do(item => item.ShowMessageNumber = false)
+        //     .SelectMany(async groupIndex => {
+        //      
+        //         if (!groupIndex.IsHistoryLoaded) {
+        //             var results = await Task.WhenAll(groupIndex.History.Select(GroupHistoryMessageUi.FromPayloadAsync));
+        //             foreach (var r in groupIndex.Members){
+        //                 if (groupIndex.GroupType == "private_chat" && r.Id != State.UserId){
+        //                     groupIndex.Avatar = r.Avatar;
+        //                     groupIndex.Name = r.Name;
+        //                 }
+        //             }
+        //             SelectMessageGroupIndex.Avatar = groupIndex.Avatar;
+        //             SelectMessageGroupIndex.Name = groupIndex.Name;
+        //             return (groupIndex, results);
+        //         }
+        //         return (groupIndex, (GroupHistoryMessageUi[])null);
+        //     })
+        //     .ObserveOn(RxApp.MainThreadScheduler)
+        //     .Subscribe(data => {
+        //         var (groupIndex, results) = data;
+        //         if (results != null) {
+        //             groupIndex.HistoryCache.Clear();
+        //             foreach (var r in results) groupIndex.HistoryCache.Add(r);
+        //             groupIndex.IsHistoryLoaded = true;
+        //         }
+        //         GroupHistoryVm.GroupHistoryMessage = groupIndex.HistoryCache;
+        //         GroupMemberVm.GroupMembers = groupIndex.Members;
+        //     }, ex => Logger.Log($"Error loading history: {ex}"))
+        //     .DisposeWith(_disposables);
+
         this.WhenAnyValue(x => x.SelectMessageGroupIndex)
             .WhereNotNull()
-            .Do(item => item.ShowMessageNumber = false)
-            .SelectMany(async groupIndex => {
-                if (!groupIndex.IsHistoryLoaded) {
-                    var results = await Task.WhenAll(groupIndex.History.Select(GroupHistoryMessageUi.FromPayloadAsync));
-                    return (groupIndex, results);
+            .Do(item => {
+                item.ShowMessageNumber = false;
+                item.MessageNumber = 0; 
+            })
+            .SelectMany(async groupItem => {
+                if (!groupItem.IsHistoryLoaded){
+                    var results = await Task.WhenAll(groupItem.History.Select(GroupHistoryMessageUi.FromPayloadAsync));
+                    
+                    foreach (var r in groupItem.Members){
+                        if (groupItem.GroupType == "private_chat" && r.Id != State.UserId){
+                            groupItem.Avatar = r.Avatar;
+                            groupItem.Name = r.Name;
+                        }
+                    }
+
+                    return (groupItem, results);
                 }
-                return (groupIndex, (GroupHistoryMessageUi[])null);
+
+                return (groupItem, (GroupHistoryMessageUi[])null);
             })
             .ObserveOn(RxApp.MainThreadScheduler)
             .Subscribe(data => {
-                var (groupIndex, results) = data;
-                if (results != null) {
-                    groupIndex.HistoryCache.Clear();
-                    foreach (var r in results) groupIndex.HistoryCache.Add(r);
-                    groupIndex.IsHistoryLoaded = true;
+                var (groupItem, results) = data;
+
+                if (results != null){
+                    groupItem.HistoryCache.Clear();
+                    foreach (var r in results) groupItem.HistoryCache.Add(r);
+                    groupItem.IsHistoryLoaded = true;
                 }
-                GroupHistoryVm.GroupHistoryMessage = groupIndex.HistoryCache;
-                GroupMemberVm.GroupMembers = groupIndex.Members;
-            }, ex => Console.WriteLine($"Error loading history: {ex}"))
+                
+                GroupHistoryVm.GroupHistoryMessage = groupItem.HistoryCache;
+                GroupMemberVm.GroupMembers = groupItem.Members;
+            }, ex => Logger.Log($"Error: {ex}"))
             .DisposeWith(_disposables);
     }
 }

@@ -5,23 +5,34 @@ using System.Reactive.Subjects;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using example.Component.Login;
+using example.Component.Messages;
+using example.ViewModels;
 using ReactiveUI;
+using Refit;
 
 namespace example.State;
 
-public class AppStateService : ReactiveObject{
+public class AppStateService : ViewModelBase{
     private string _userName = "默认用户名";
-    private string _userId = "2dfefc57-3b76-4d8c-8f9d-c362b9975781";
-    // private static string _serverAddress = "://127.0.0.1:34332";
-    private static string _serverAddress = "://39.96.115.200:34332";
+    private string _userId = "963b305a-caee-479a-b86d-3fdee884ef65";
+    private static string _serverAddress = "://127.0.0.1:34332";
+    // private static string _serverAddress = "://39.96.115.200:34332";
     private string _userAvatar = "";
     private string _userToken = "";
-
+    private string _userPassword = "";
+    private bool isLogin = false;
+    public readonly ChatMessageApi MessageApi = RestService.For<ChatMessageApi>("http" + _serverAddress);
+    
     public string UserToken{
         get => _userToken;
         set => this.RaiseAndSetIfChanged(ref _userToken, value);
     }
 
+    public string UserPassword{
+        get => _userPassword;
+        set => this.RaiseAndSetIfChanged(ref _userPassword, value);
+    }
     public string UserAvatar{
         get => _userAvatar;
         set => this.RaiseAndSetIfChanged(ref _userAvatar, value);
@@ -60,6 +71,7 @@ public class AppStateService : ReactiveObject{
     }
 
     public async Task InitWsAsync(){
+       
         while (!_disposed){
             try{
                 if (_webSocket?.State == WebSocketState.Open)
@@ -72,7 +84,7 @@ public class AppStateService : ReactiveObject{
                 var cancellationToken = _cancellationTokenSource?.Token ?? CancellationToken.None;
                 await _webSocket.ConnectAsync(new Uri($"ws{ServerAddress}/register_ws"), cancellationToken);
 
-                Console.WriteLine("✅ WebSocket 连接成功！");
+                Logger.Log("connection websocket success");
                 _ = ReceiveMessagesAsync(cancellationToken);
 
                 await SendMessageAsync($"{{\"id\":\"{UserId}\", \"token\":\"asdasdas123123\"}}");
@@ -82,7 +94,7 @@ public class AppStateService : ReactiveObject{
                 return; 
             }
             catch (Exception ex){
-                Console.WriteLine($"❌ 连接失败: {ex.Message}");
+                Logger.Log($"websocket connection failed: {ex.Message}");
                 if (_disposed) break;
                 await Task.Delay(TimeSpan.FromSeconds(3));
             }
@@ -95,12 +107,17 @@ public class AppStateService : ReactiveObject{
             try{
                 await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
                 if (_webSocket == null || _webSocket.State != WebSocketState.Open){
-                    Console.WriteLine("⚠️ 检测到连接断开，尝试重连...");
+                    Logger.Log("websocket connection fail");
+                    // var loginVm = new LoginViewModel();
+                    // loginVm.UserName = UserName;
+                    // loginVm.Password = UserPassword;
+                    
+                    // loginVm.LoginCommand.Execute();
                     await InitWsAsync(); 
                     break;
                 }
             }catch (Exception ex){
-                Console.WriteLine($"Monitor error: {ex}");
+                Logger.Log($"Monitor error: {ex}");
                 break;
             }
         }
@@ -124,25 +141,25 @@ public class AppStateService : ReactiveObject{
                         result.CloseStatus.Value,
                         result.CloseStatusDescription,
                         cancellationToken);
-                    Console.WriteLine("连接已关闭");
+                    Logger.Log("websocket connection closed");
                     break;
                 }
                 
                 var message = Encoding.UTF8.GetString(buffer, 0, result.Count);
-                Console.WriteLine($"recv message: {message}");
+                Logger.Log($"recv message: {message}");
                 if (message.StartsWith("{") && message.EndsWith("}")){
                     PushMessage(message);
                 }
             }
         }
         catch (Exception ex){
-            Console.WriteLine($"recv error: {ex.Message}");
+            Logger.Log($"recv error: {ex.Message}");
         }
     }
 
     public async Task SendMessageAsync(string message){
         if (_webSocket?.State != WebSocketState.Open){
-            Console.WriteLine("WebSocket未连接，无法发送消息");
+            Logger.Log("webSocket no connection send message error");
             return;
         }
 
@@ -154,12 +171,13 @@ public class AppStateService : ReactiveObject{
                 true, // 表示这是消息的最后一段
                 _cancellationTokenSource?.Token ?? CancellationToken.None);
 
-            Console.WriteLine($"已发送: {message}");
+            Logger.Log($"send message: {message}");
         }
         catch (Exception ex){
-            Console.WriteLine($"发送消息失败: {ex.Message}");
+            Logger.Log($"send message error: {ex.Message}");
         }
     }
 
+    
     
 }
